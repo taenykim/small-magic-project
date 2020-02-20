@@ -1,7 +1,8 @@
 import React from 'react'
+import Background from '../components/Background'
 
 const index = () => {
-  return <div>hello</div>
+  return <Background>hello</Background>
 }
 
 export default index
