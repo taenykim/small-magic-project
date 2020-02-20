@@ -7,9 +7,7 @@ const _app = ({ Component }) => {
     <>
       <GlobalStyle />
 
-      <Container>
-        <Component />
-      </Container>
+      <Component />
     </>
   )
 }
