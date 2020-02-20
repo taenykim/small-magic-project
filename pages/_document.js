@@ -13,7 +13,7 @@ class _document extends Document {
     return (
       <Html>
         <Head />
-        <body>
+        <body style={{ fontFamily: 'escore3' }}>
           <Main />
           <NextScript />
         </body>
