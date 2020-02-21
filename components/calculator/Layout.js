@@ -79,6 +79,8 @@ const Layout = () => {
         setResult(result + '.')
         setIsFirstPeriodTyping(false)
       }
+    } else if (button_type === 'toggleSign') {
+      setResult(result[0] === '-' ? result.substr(1) : '-' + result)
     } else if (button_type === '1' || '2' || '3' || '4' || '5' || '6' || '7' || '8' || '9' || '0') {
       if (isFirstNumberTyping) {
         setResult(button_type)
@@ -152,6 +154,9 @@ const Layout = () => {
       </button>
       <button name="period" type="button" onClick={e => buttonClickHandler(e.target.name)}>
         .
+      </button>
+      <button name="toggleSign" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+        ±
       </button>
       <button name="equal" type="button" onClick={e => buttonClickHandler(e.target.name)}>
         equal
