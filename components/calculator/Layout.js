@@ -14,6 +14,7 @@ const Layout = () => {
   const [tempResult, setTempResult] = useState('')
   const [pressedOperator, setPressedOperator] = useState('')
   const [isFirstNumberTyping, setIsFirstNumberTyping] = useState(true)
+  const [isFirstPeriodTyping, setIsFirstPeriodTyping] = useState(true)
 
   const buttonClickHandler = button_type => {
     console.log(result)
@@ -25,11 +26,13 @@ const Layout = () => {
       result.length === 1
         ? (setResult('0'), setIsFirstNumberTyping(true))
         : setResult(result.substr(0, result.length - 1))
+      result[result.length - 1] === '.' && setIsFirstPeriodTyping(true)
     } else if (button_type === 'plus') {
       const block_result = operating(pressedOperator)
       setTempResult(block_result)
       setPressedOperator('plus')
       setIsFirstNumberTyping(true)
+      setIsFirstPeriodTyping(true)
       if (pressedOperator !== '') {
         setResult(block_result)
       }
@@ -38,6 +41,8 @@ const Layout = () => {
       setTempResult(block_result)
       setPressedOperator('minus')
       setIsFirstNumberTyping(true)
+      setIsFirstPeriodTyping(true)
+
       if (pressedOperator !== '') {
         setResult(block_result)
       }
@@ -46,6 +51,8 @@ const Layout = () => {
       setTempResult(block_result)
       setPressedOperator('multiple')
       setIsFirstNumberTyping(true)
+      setIsFirstPeriodTyping(true)
+
       if (pressedOperator !== '') {
         setResult(block_result)
       }
@@ -54,6 +61,8 @@ const Layout = () => {
       setTempResult(block_result)
       setPressedOperator('divide')
       setIsFirstNumberTyping(true)
+      setIsFirstPeriodTyping(true)
+
       if (pressedOperator !== '') {
         setResult(block_result)
       }
@@ -64,6 +73,11 @@ const Layout = () => {
       setIsFirstNumberTyping(true)
       if (pressedOperator !== '') {
         setResult(block_result)
+      }
+    } else if (button_type === 'period') {
+      if (isFirstPeriodTyping) {
+        setResult(result + '.')
+        setIsFirstPeriodTyping(false)
       }
     } else if (button_type === '1' || '2' || '3' || '4' || '5' || '6' || '7' || '8' || '9' || '0') {
       if (isFirstNumberTyping) {
@@ -135,6 +149,9 @@ const Layout = () => {
       </button>
       <button name="divide" type="button" onClick={e => buttonClickHandler(e.target.name)}>
         divide
+      </button>
+      <button name="period" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+        .
       </button>
       <button name="equal" type="button" onClick={e => buttonClickHandler(e.target.name)}>
         equal
