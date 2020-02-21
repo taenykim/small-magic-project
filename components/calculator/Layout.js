@@ -29,7 +29,21 @@ const Layout = () => {
       setTempResult(block_result)
       setIsOperatorPressed(true)
     } else if (button_type === 'minus') {
-      setResult()
+      const block_result = String(Number(tempResult) - Number(result))
+      if (tempResult !== '') {
+        setResult(block_result)
+      }
+      setTempResult(block_result)
+      setIsOperatorPressed(true)
+    } else if (button_type === 'multiple') {
+      const block_result = String(
+        tempResult === '' ? Number(result) : Number(tempResult) * Number(result)
+      )
+      if (tempResult !== '') {
+        setResult(block_result)
+      }
+      setTempResult(block_result)
+      setIsOperatorPressed(true)
     } else if (button_type === '1' || '2' || '3' || '4' || '5' || '6' || '7' || '8' || '9' || '0') {
       if (isOperatorPressed) {
         setResult(button_type)
@@ -84,6 +98,9 @@ const Layout = () => {
       </button>
       <button name="minus" type="button" onClick={e => buttonClickHandler(e.target.name)}>
         minus
+      </button>
+      <button name="multiple" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+        multiple
       </button>
     </CalculatorContainer>
   )
