@@ -47,6 +47,14 @@ const Layout = () => {
       if (pressedOperator !== '') {
         setResult(block_result)
       }
+    } else if (button_type === 'equal') {
+      const block_result = operating(pressedOperator)
+      setTempResult(block_result)
+      setPressedOperator('equal')
+      setIsFirstNumberTyping(true)
+      if (pressedOperator !== '') {
+        setResult(block_result)
+      }
     } else if (button_type === '1' || '2' || '3' || '4' || '5' || '6' || '7' || '8' || '9' || '0') {
       if (isFirstNumberTyping) {
         setResult(button_type)
@@ -112,6 +120,9 @@ const Layout = () => {
       </button>
       <button name="multiple" type="button" onClick={e => buttonClickHandler(e.target.name)}>
         multiple
+      </button>
+      <button name="equal" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+        equal
       </button>
     </CalculatorContainer>
   )
