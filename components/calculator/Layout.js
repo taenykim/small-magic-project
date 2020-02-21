@@ -10,7 +10,7 @@ const CalculatorContainer = styled.div`
   border-radius: 20px;
 `
 const Layout = () => {
-  const [result, setResult] = useState('')
+  const [result, setResult] = useState('0')
   const [tempResult, setTempResult] = useState('')
   const [pressedOperator, setPressedOperator] = useState('')
   const [isFirstNumberTyping, setIsFirstNumberTyping] = useState(true)
@@ -18,10 +18,11 @@ const Layout = () => {
   const buttonClickHandler = button_type => {
     console.log(result)
     if (button_type === 'reset') {
-      setResult('')
+      setResult('0')
       setTempResult('')
     } else if (button_type === 'delete') {
-      setResult(result.substr(0, result.length - 1))
+      if (result === '0') return
+      result.length === 1 ? setResult('0') : setResult(result.substr(0, result.length - 1))
     } else if (button_type === 'plus') {
       const block_result = operating(pressedOperator)
       console.log('block_result', block_result)
