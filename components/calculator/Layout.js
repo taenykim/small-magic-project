@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const CalculatorContainer = styled.div`
@@ -10,7 +10,20 @@ const CalculatorContainer = styled.div`
   border-radius: 20px;
 `
 const Layout = () => {
-  return <CalculatorContainer></CalculatorContainer>
+  const [number, setNumber] = useState(0)
+
+  const buttonClickHandler = () => {
+    setNumber(number + 1)
+  }
+
+  return (
+    <CalculatorContainer>
+      <div style={{ marginTop: '20px' }}>{number}</div>
+      <button type="button" onClick={buttonClickHandler}>
+        +
+      </button>
+    </CalculatorContainer>
+  )
 }
 
 export default Layout
