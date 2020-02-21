@@ -22,7 +22,9 @@ const Layout = () => {
       setTempResult('')
     } else if (button_type === 'delete') {
       if (result === '0') return
-      result.length === 1 ? setResult('0') : setResult(result.substr(0, result.length - 1))
+      result.length === 1
+        ? (setResult('0'), setIsFirstNumberTyping(true))
+        : setResult(result.substr(0, result.length - 1))
     } else if (button_type === 'plus') {
       const block_result = operating(pressedOperator)
       console.log('block_result', block_result)
@@ -61,7 +63,7 @@ const Layout = () => {
         setResult(button_type)
         setIsFirstNumberTyping(false)
       } else {
-        setResult(result + button_type)
+        result[0] === '0' ? setResult(button_type) : setResult(result + button_type)
       }
     }
   }
