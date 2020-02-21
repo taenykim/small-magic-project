@@ -27,7 +27,6 @@ const Layout = () => {
         : setResult(result.substr(0, result.length - 1))
     } else if (button_type === 'plus') {
       const block_result = operating(pressedOperator)
-      console.log('block_result', block_result)
       setTempResult(block_result)
       setPressedOperator('plus')
       setIsFirstNumberTyping(true)
@@ -46,6 +45,14 @@ const Layout = () => {
       const block_result = operating(pressedOperator)
       setTempResult(block_result)
       setPressedOperator('multiple')
+      setIsFirstNumberTyping(true)
+      if (pressedOperator !== '') {
+        setResult(block_result)
+      }
+    } else if (button_type === 'divide') {
+      const block_result = operating(pressedOperator)
+      setTempResult(block_result)
+      setPressedOperator('divide')
       setIsFirstNumberTyping(true)
       if (pressedOperator !== '') {
         setResult(block_result)
@@ -73,6 +80,8 @@ const Layout = () => {
     else if (operator_type === 'minus') return String(Number(tempResult) - Number(result))
     else if (operator_type === 'multiple')
       return String(tempResult === '' ? Number(result) : Number(tempResult) * Number(result))
+    else if (operator_type === 'divide')
+      return String(tempResult === '' ? Number(result) : Number(tempResult) / Number(result))
     else return String(Number(result))
   }
 
@@ -123,6 +132,9 @@ const Layout = () => {
       </button>
       <button name="multiple" type="button" onClick={e => buttonClickHandler(e.target.name)}>
         multiple
+      </button>
+      <button name="divide" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+        divide
       </button>
       <button name="equal" type="button" onClick={e => buttonClickHandler(e.target.name)}>
         equal
