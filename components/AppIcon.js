@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Link from 'next/link'
 
 const AppIconContainer = styled.div`
   width: 100px;
@@ -9,7 +10,13 @@ const AppIconContainer = styled.div`
 `
 
 const AppIcon = () => {
-  return <AppIconContainer></AppIconContainer>
+  return (
+    <Link href="/calculator">
+      <a>
+        <AppIconContainer></AppIconContainer>
+      </a>
+    </Link>
+  )
 }
 
 export default AppIcon
