@@ -16,6 +16,7 @@ const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 5px 20px 10px 20px;
 `
 
 const index = () => {
@@ -24,15 +25,15 @@ const index = () => {
       <IndexContainer>
         <AppContainer>
           <AppIcon />
-          <AppName name="계산기" />
+          <AppName name="calculator" />
         </AppContainer>
         <AppContainer>
           <AppIcon />
-          <AppName name="계산기" />
+          <AppName name="calculator" />
         </AppContainer>
         <AppContainer>
           <AppIcon />
-          <AppName name="계산기" />
+          <AppName name="calculator" />
         </AppContainer>
       </IndexContainer>
     </Background>
