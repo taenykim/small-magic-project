@@ -12,46 +12,57 @@ const CalculatorContainer = styled.div`
 const Layout = () => {
   const [result, setResult] = useState('')
   const [tempResult, setTempResult] = useState('')
-  const [isOperatorPressed, setIsOperatorPressed] = useState(false)
+  const [pressedOperator, setPressedOperator] = useState('')
+  const [isFirstNumberTyping, setIsFirstNumberTyping] = useState(true)
 
   const buttonClickHandler = button_type => {
-    console.log(tempResult)
+    console.log(result)
     if (button_type === 'reset') {
       setResult('')
       setTempResult('')
     } else if (button_type === 'delete') {
       setResult(result.substr(0, result.length - 1))
     } else if (button_type === 'plus') {
-      const block_result = String(Number(tempResult) + Number(result))
-      if (tempResult !== '') {
+      const block_result = operating(pressedOperator)
+      console.log('block_result', block_result)
+      setTempResult(block_result)
+      setPressedOperator('plus')
+      setIsFirstNumberTyping(true)
+      if (pressedOperator !== '') {
         setResult(block_result)
       }
-      setTempResult(block_result)
-      setIsOperatorPressed(true)
     } else if (button_type === 'minus') {
-      const block_result = String(Number(tempResult) - Number(result))
-      if (tempResult !== '') {
+      const block_result = operating(pressedOperator)
+      setTempResult(block_result)
+      setPressedOperator('minus')
+      setIsFirstNumberTyping(true)
+      if (pressedOperator !== '') {
         setResult(block_result)
       }
-      setTempResult(block_result)
-      setIsOperatorPressed(true)
     } else if (button_type === 'multiple') {
-      const block_result = String(
-        tempResult === '' ? Number(result) : Number(tempResult) * Number(result)
-      )
-      if (tempResult !== '') {
+      const block_result = operating(pressedOperator)
+      setTempResult(block_result)
+      setPressedOperator('multiple')
+      setIsFirstNumberTyping(true)
+      if (pressedOperator !== '') {
         setResult(block_result)
       }
-      setTempResult(block_result)
-      setIsOperatorPressed(true)
     } else if (button_type === '1' || '2' || '3' || '4' || '5' || '6' || '7' || '8' || '9' || '0') {
-      if (isOperatorPressed) {
+      if (isFirstNumberTyping) {
         setResult(button_type)
-        setIsOperatorPressed(false)
+        setIsFirstNumberTyping(false)
       } else {
         setResult(result + button_type)
       }
     }
+  }
+
+  const operating = operator_type => {
+    if (operator_type === 'plus') return String(Number(tempResult) + Number(result))
+    else if (operator_type === 'minus') return String(Number(tempResult) - Number(result))
+    else if (operator_type === 'multiple')
+      return String(tempResult === '' ? Number(result) : Number(tempResult) * Number(result))
+    else return String(Number(result))
   }
 
   return (
