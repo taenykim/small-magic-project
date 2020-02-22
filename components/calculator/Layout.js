@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import ContentsMenubar from '../ContentsMenubar'
 
 const CalculatorContainer = styled.div`
   display: flex;
@@ -7,8 +8,59 @@ const CalculatorContainer = styled.div`
   width: 300px;
   height: 600px;
   background: white;
-  border-radius: 20px;
+  border-radius: 3px;
+  box-shadow: -4px -2px 4px 0px white, 4px 2px 6px 0px #dfe4ea;
 `
+
+const Title = styled.p`
+  font-family: escore5;
+  font-size: 12px;
+  align-self: center;
+  margin-top: 20px;
+`
+
+const ResultContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const ResultText = styled.p`
+  font-family: escore8;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: #333;
+  font-size: 26px;
+  margin-top: 20px;
+  margin-right: 20px;
+  height: 40px;
+`
+
+const ResultNumber = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: #555;
+  font-size: 26px;
+  margin-top: 10px;
+  margin-right: 20px;
+  height: 40px;
+`
+
+const CaculatorButtonRow = styled.div`
+  display: flex;
+  & > button {
+    flex: 1 0 0;
+    height: 50px;
+    width: 50px;
+  }
+  & > button.flex2 {
+    flex: 2 0 0;
+    width: 100px;
+    height: 50px;
+  }
+`
+
 const Layout = () => {
   const [result, setResult] = useState('0')
   const [tempResult, setTempResult] = useState('')
@@ -97,64 +149,86 @@ const Layout = () => {
 
   return (
     <CalculatorContainer>
-      <div style={{ marginTop: '20px', height: '40px' }}>{result}</div>
-      <button name="1" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        1
-      </button>
-      <button name="2" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        2
-      </button>
-      <button name="3" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        3
-      </button>
-      <button name="4" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        4
-      </button>
-      <button name="5" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        5
-      </button>
-      <button name="6" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        6
-      </button>
-      <button name="7" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        7
-      </button>
-      <button name="8" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        8
-      </button>
-      <button name="9" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        9
-      </button>
-      <button name="0" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        0
-      </button>
-      <button name="reset" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        reset
-      </button>
-      <button name="delete" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        delete
-      </button>
-      <button name="plus" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        plus
-      </button>
-      <button name="minus" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        minus
-      </button>
-      <button name="multiple" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        multiple
-      </button>
-      <button name="divide" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        divide
-      </button>
-      <button name="period" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        .
-      </button>
-      <button name="toggleSign" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        ±
-      </button>
-      <button name="equal" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-        equal
-      </button>
+      <ContentsMenubar></ContentsMenubar>
+      <Title>Calculator</Title>
+      <ResultContainer>
+        <ResultText>Result</ResultText>
+        <ResultNumber>{result}</ResultNumber>
+      </ResultContainer>
+      <CaculatorButtonRow>
+        <button name="reset" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          reset
+        </button>
+        <button name="delete" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          delete
+        </button>
+        <button name="toggleSign" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          ±
+        </button>
+        <button name="divide" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          divide
+        </button>
+      </CaculatorButtonRow>
+      <CaculatorButtonRow>
+        <button name="1" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          1
+        </button>
+        <button name="2" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          2
+        </button>
+        <button name="3" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          3
+        </button>
+        <button name="multiple" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          multiple
+        </button>
+      </CaculatorButtonRow>
+      <CaculatorButtonRow>
+        <button name="4" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          4
+        </button>
+        <button name="5" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          5
+        </button>
+        <button name="6" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          6
+        </button>
+        <button name="plus" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          plus
+        </button>
+      </CaculatorButtonRow>
+      <CaculatorButtonRow>
+        <button name="7" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          7
+        </button>
+        <button name="8" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          8
+        </button>
+        <button name="9" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          9
+        </button>
+        <button name="minus" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          minus
+        </button>
+      </CaculatorButtonRow>
+      <CaculatorButtonRow>
+        <button
+          className="flex2"
+          name="0"
+          type="button"
+          onClick={e => buttonClickHandler(e.target.name)}
+        >
+          0
+        </button>
+
+        <button name="period" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          .
+        </button>
+
+        <button name="equal" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+          equal
+        </button>
+      </CaculatorButtonRow>
     </CalculatorContainer>
   )
 }

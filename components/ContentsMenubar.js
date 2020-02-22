@@ -3,10 +3,9 @@ import styled from 'styled-components'
 import Link from 'next/link'
 
 const ContentsMenubarContainer = styled.div`
-  position: fixed;
   display: flex;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   height: 40px;
   top: 0;
   background: rgba(0, 0, 255, 0.3);
