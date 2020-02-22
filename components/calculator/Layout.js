@@ -49,6 +49,7 @@ const ResultNumber = styled.div`
 
 const CaculatorButtonRow = styled.div`
   display: flex;
+  justify-content: space-around;
   & > button {
     flex: 1 0 0;
     height: 50px;

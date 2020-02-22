@@ -101,6 +101,9 @@ button {
     -webkit-font-smoothing: inherit;
     -moz-osx-font-smoothing: inherit;
 
-    -webkit-appearance: none;
+	-webkit-appearance: none;
+	&:focus {
+		outline: none;
+	}
 }
 `
