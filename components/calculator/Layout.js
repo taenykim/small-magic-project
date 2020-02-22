@@ -25,11 +25,11 @@ const ResultContainer = styled.div`
 `
 
 const ResultText = styled.p`
-  font-family: escore8;
+  font-family: escore7;
+  color: #444;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background: #333;
   font-size: 26px;
   margin-top: 20px;
   margin-right: 20px;
@@ -40,10 +40,8 @@ const ResultNumber = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background: #555;
-  font-size: 26px;
-  margin-top: 10px;
-  margin-right: 20px;
+  font-size: 20px;
+  margin: 4px 20px 20px 0px;
   height: 40px;
 `
 
@@ -54,11 +52,18 @@ const CaculatorButtonRow = styled.div`
     flex: 1 0 0;
     height: 50px;
     width: 50px;
+    box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #dfe4ea;
+    border-radius: 8px;
+    padding: 3px;
+    margin: 3px;
   }
   & > button.flex2 {
     flex: 2 0 0;
     width: 100px;
     height: 50px;
+  }
+  & > button:hover {
+    cursor: pointer;
   }
 `
 
@@ -167,7 +172,7 @@ const Layout = () => {
           ±
         </button>
         <button name="divide" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-          divide
+          /
         </button>
       </CaculatorButtonRow>
       <CaculatorButtonRow>
@@ -181,7 +186,7 @@ const Layout = () => {
           3
         </button>
         <button name="multiple" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-          multiple
+          *
         </button>
       </CaculatorButtonRow>
       <CaculatorButtonRow>
@@ -195,7 +200,7 @@ const Layout = () => {
           6
         </button>
         <button name="plus" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-          plus
+          +
         </button>
       </CaculatorButtonRow>
       <CaculatorButtonRow>
@@ -209,7 +214,7 @@ const Layout = () => {
           9
         </button>
         <button name="minus" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-          minus
+          -
         </button>
       </CaculatorButtonRow>
       <CaculatorButtonRow>
