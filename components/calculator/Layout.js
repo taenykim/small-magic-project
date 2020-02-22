@@ -7,7 +7,6 @@ const CalculatorContainer = styled.div`
   flex-direction: column;
   width: 300px;
   height: 600px;
-  background: white;
   border-radius: 3px;
   box-shadow: -4px -2px 4px 0px white, 4px 2px 6px 0px #dfe4ea;
 `
@@ -48,6 +47,7 @@ const ResultNumber = styled.div`
 const CaculatorButtonRow = styled.div`
   display: flex;
   justify-content: space-around;
+  margin: 0px 6px 0px 6px;
   & > button {
     flex: 1 0 0;
     height: 50px;
@@ -64,6 +64,10 @@ const CaculatorButtonRow = styled.div`
   }
   & > button:hover {
     cursor: pointer;
+  }
+  & > button:active {
+    border-radius: 8px;
+    box-shadow: 2px 2px 2px 0px #dfe4ea inset, -2px -2px 2px 0px white inset;
   }
 `
 
@@ -233,7 +237,7 @@ const Layout = () => {
         </button>
 
         <button name="equal" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-          equal
+          =
         </button>
       </CaculatorButtonRow>
     </CalculatorContainer>

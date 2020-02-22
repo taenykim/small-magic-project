@@ -8,7 +8,7 @@ const BackgroundContainer = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background: rgba(255, 0, 0, 0.3);
+  background: #f5f6f7;
 `
 
 const Background = ({ children }) => {

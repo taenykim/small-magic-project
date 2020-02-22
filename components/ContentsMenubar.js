@@ -8,7 +8,6 @@ const ContentsMenubarContainer = styled.div`
   width: 100%;
   height: 40px;
   top: 0;
-  background: rgba(0, 0, 255, 0.3);
 `
 
 const ContentsMenubar = () => {
