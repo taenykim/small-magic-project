@@ -23,7 +23,6 @@ const ImageContainer = styled.div`
   box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #ddd;
   border-radius: 2px;
   padding: 2px;
-  margin: 2px 2px 2px 10px;
   &:hover {
     cursor: pointer;
   }
@@ -39,14 +38,14 @@ const ContentsMenubar = () => {
   return (
     <ContentsMenubarContainer>
       <Link href="/">
-        <a>
+        <a style={{ margin: '2px 2px 2px 10px' }}>
           <ImageContainer>
             <img src="cancel.png"></img>
           </ImageContainer>
         </a>
       </Link>
       <Link href="/">
-        <a>
+        <a style={{ margin: '2px 2px 2px 10px' }}>
           <ImageContainer>
             <img src="bottom_arrow.png"></img>
           </ImageContainer>
