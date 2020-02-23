@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Footer from './Footer'
+import Header from './Header'
 
 const BackgroundContainer = styled.div`
   display: flex;
@@ -16,8 +16,8 @@ const Background = ({ children }) => {
   return (
     <>
       <BackgroundContainer>
+        <Header></Header>
         {children}
-        <Footer></Footer>
       </BackgroundContainer>
     </>
   )

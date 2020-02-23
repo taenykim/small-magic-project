@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-const FooterContainer = styled.div`
+const HeaderContainer = styled.div`
   position: fixed;
-  bottom: 0;
-  margin-bottom: 10px;
+  top: 0;
+  margin-top: 10px;
   z-index: 5;
 `
 
@@ -13,7 +13,7 @@ const FullscreenText = styled.p`
   cursor: pointer;
 `
 
-const Footer = () => {
+const Header = () => {
   const [full, setToggleFull] = useState(false)
 
   const openFullScreen = () => {
@@ -27,13 +27,13 @@ const Footer = () => {
   }
 
   return (
-    <FooterContainer>
+    <HeaderContainer>
       <FullscreenText onClick={openFullScreen}>
         {full ? 'exit full screen' : 'full screen'}
       </FullscreenText>
       {}
-    </FooterContainer>
+    </HeaderContainer>
   )
 }
 
-export default Footer
+export default Header
