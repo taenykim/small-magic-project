@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Footer from './Footer'
 
 const BackgroundContainer = styled.div`
   display: flex;
@@ -12,7 +13,14 @@ const BackgroundContainer = styled.div`
 `
 
 const Background = ({ children }) => {
-  return <BackgroundContainer>{children}</BackgroundContainer>
+  return (
+    <>
+      <BackgroundContainer>
+        {children}
+        <Footer></Footer>
+      </BackgroundContainer>
+    </>
+  )
 }
 
 export default Background
