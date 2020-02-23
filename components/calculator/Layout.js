@@ -16,7 +16,7 @@ const Title = styled.p`
   font-size: 12px;
   align-self: center;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
   color: white;
   background: #555;
   border-radius: 3px;
