@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { useDispatch, useSelector } from 'react-redux'
+import { FULLSCREEN_TOGGLE } from '../reducers/wrapper'
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -16,7 +18,9 @@ const FullscreenText = styled.p`
 `
 
 const Header = () => {
-  const [full, setToggleFull] = useState(false)
+  const [full, setFull] = useState(document.fullscreenElement)
+  // const dispatch = useDispatch()
+  // const full = useSelector(state => state.full)
 
   const openFullScreen = () => {
     const html = document.documentElement
@@ -25,7 +29,10 @@ const Header = () => {
     } else {
       document.exitFullscreen()
     }
-    setToggleFull(!full)
+    setFull(!full)
+    // dispatch({
+    //   type: FULLSCREEN_TOGGLE
+    // })
   }
 
   return (
@@ -33,7 +40,6 @@ const Header = () => {
       <FullscreenText onClick={openFullScreen}>
         {full ? 'exit full screen' : 'full screen'}
       </FullscreenText>
-      {}
     </HeaderContainer>
   )
 }

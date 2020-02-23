@@ -8,7 +8,7 @@ const FooterContainer = styled.div`
   bottom: 0;
   width: 100%;
   height: 60px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.85);
   border-radius: 8px 8px 0px 0px;
 `
 
