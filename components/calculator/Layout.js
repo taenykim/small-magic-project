@@ -92,7 +92,6 @@ const Layout = () => {
   const [isFirstNumberTyping, setIsFirstNumberTyping] = useState(true)
 
   const buttonClickHandler = button_type => {
-    console.log(result)
     if (button_type === 'reset') {
       setResult('0')
       setTempResult('')
@@ -175,7 +174,9 @@ const Layout = () => {
 
   return (
     <CalculatorContainer>
-      <ContentsMenubar></ContentsMenubar>
+      <ContentsMenubar
+        data={{ result, tempResult, pressedOperator, isFirstNumberTyping }}
+      ></ContentsMenubar>
       <Title>
         {tempResult + (pressedOperator === 'equal' ? '' : pressedOperator) || 'Calculator'}
       </Title>

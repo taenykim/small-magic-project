@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
+import { STORE_CALCULATOR_DATA } from '../reducers/calculator'
+import { useDispatch } from 'react-redux'
 
 const ContentsMenubarContainer = styled.div`
   display: flex;
@@ -34,7 +36,15 @@ const ImageContainer = styled.div`
   }
 `
 
-const ContentsMenubar = () => {
+const ContentsMenubar = ({ data }) => {
+  const dispatch = useDispatch()
+  const storeHandler = () => {
+    dispatch({
+      type: STORE_CALCULATOR_DATA,
+      data: data
+    })
+  }
+
   return (
     <ContentsMenubarContainer>
       <Link href="/">
@@ -46,7 +56,7 @@ const ContentsMenubar = () => {
       </Link>
       <Link href="/">
         <a style={{ margin: '2px 2px 2px 10px' }}>
-          <ImageContainer>
+          <ImageContainer onClick={storeHandler}>
             <img src="bottom_arrow.png"></img>
           </ImageContainer>
         </a>

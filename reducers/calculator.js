@@ -1,12 +1,20 @@
-export const initialState = {}
+export const initialState = {
+  result: '0',
+  tempResult: '',
+  pressedOperator: '',
+  isFirstNumberTyping: true
+}
 
-export const TEST = 'TEST'
+export const STORE_CALCULATOR_DATA = 'STORE_CALCULATOR_DATA'
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case TEST: {
+    case STORE_CALCULATOR_DATA: {
       return {
-        ...state
+        result: action.data.result,
+        tempResult: action.data.tempResult,
+        pressedOperator: action.data.pressedOperator,
+        isFirstNumberTyping: action.data.isFirstNumberTyping
       }
     }
 
