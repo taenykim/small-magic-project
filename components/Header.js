@@ -18,21 +18,20 @@ const FullscreenText = styled.p`
 `
 
 const Header = () => {
-  const [full, setFull] = useState(document.fullscreenElement)
-  // const dispatch = useDispatch()
-  // const full = useSelector(state => state.full)
+  const [full, setFull] = useState(false)
+
+  useEffect(() => {
+    document.addEventListener('fullscreenchange', () => {
+      setFull(!full)
+    })
+  })
 
   const openFullScreen = () => {
-    const html = document.documentElement
-    if (!full) {
-      html.requestFullscreen()
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen()
     } else {
       document.exitFullscreen()
     }
-    setFull(!full)
-    // dispatch({
-    //   type: FULLSCREEN_TOGGLE
-    // })
   }
 
   return (

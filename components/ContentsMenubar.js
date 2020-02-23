@@ -41,7 +41,7 @@ const ContentsMenubar = () => {
       <Link href="/">
         <a>
           <ImageContainer>
-            <img src="left_arrow.png"></img>
+            <img src="cancel.png"></img>
           </ImageContainer>
         </a>
       </Link>
