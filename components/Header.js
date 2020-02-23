@@ -11,6 +11,8 @@ const HeaderContainer = styled.div`
 const FullscreenText = styled.p`
   font-size: 12px;
   cursor: pointer;
+  font-family: escore6;
+  color: #666;
 `
 
 const Header = () => {
