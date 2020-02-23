@@ -6,7 +6,7 @@ const CalculatorContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
-  height: 600px;
+  height: 540px;
   border-radius: 3px;
   box-shadow: -4px -2px 4px 0px white, 4px 2px 6px 0px #dfe4ea;
 `
@@ -15,7 +15,13 @@ const Title = styled.p`
   font-family: escore5;
   font-size: 12px;
   align-self: center;
+  text-align: center;
   margin-top: 20px;
+  color: white;
+  background: #555;
+  border-radius: 3px;
+  padding: 8px 0px 8px 0px;
+  width: 70%;
 `
 
 const ResultContainer = styled.div`
@@ -52,7 +58,7 @@ const CaculatorButtonRow = styled.div`
     flex: 1 0 0;
     height: 50px;
     width: 50px;
-    box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #dfe4ea;
+    box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #ddd;
     border-radius: 8px;
     padding: 3px;
     margin: 3px;
@@ -61,6 +67,14 @@ const CaculatorButtonRow = styled.div`
     flex: 2 0 0;
     width: 100px;
     height: 50px;
+  }
+  & > button.topButton {
+    font-family: escore5;
+    color: #999;
+  }
+  & > button.rightButton {
+    font-family: escore5;
+    color: #da7a7a;
   }
   & > button:hover {
     cursor: pointer;
@@ -82,6 +96,7 @@ const Layout = () => {
     if (button_type === 'reset') {
       setResult('0')
       setTempResult('')
+      setPressedOperator('')
     } else if (button_type === 'delete') {
       if (result === '0') return
       result.length === 1
@@ -161,22 +176,44 @@ const Layout = () => {
   return (
     <CalculatorContainer>
       <ContentsMenubar></ContentsMenubar>
-      <Title>Calculator</Title>
+      <Title>
+        {tempResult + (pressedOperator === 'equal' ? '' : pressedOperator) || 'Calculator'}
+      </Title>
       <ResultContainer>
         <ResultText>Result</ResultText>
         <ResultNumber>{result}</ResultNumber>
       </ResultContainer>
       <CaculatorButtonRow>
-        <button name="reset" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+        <button
+          className="topButton"
+          name="reset"
+          type="button"
+          onClick={e => buttonClickHandler(e.target.name)}
+        >
           reset
         </button>
-        <button name="delete" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+        <button
+          className="topButton"
+          name="delete"
+          type="button"
+          onClick={e => buttonClickHandler(e.target.name)}
+        >
           delete
         </button>
-        <button name="toggleSign" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+        <button
+          className="topButton"
+          name="toggleSign"
+          type="button"
+          onClick={e => buttonClickHandler(e.target.name)}
+        >
           ±
         </button>
-        <button name="divide" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+        <button
+          className="rightButton"
+          name="divide"
+          type="button"
+          onClick={e => buttonClickHandler(e.target.name)}
+        >
           /
         </button>
       </CaculatorButtonRow>
@@ -190,7 +227,12 @@ const Layout = () => {
         <button name="3" type="button" onClick={e => buttonClickHandler(e.target.name)}>
           3
         </button>
-        <button name="multiple" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+        <button
+          className="rightButton"
+          name="multiple"
+          type="button"
+          onClick={e => buttonClickHandler(e.target.name)}
+        >
           *
         </button>
       </CaculatorButtonRow>
@@ -204,7 +246,12 @@ const Layout = () => {
         <button name="6" type="button" onClick={e => buttonClickHandler(e.target.name)}>
           6
         </button>
-        <button name="plus" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+        <button
+          className="rightButton"
+          name="plus"
+          type="button"
+          onClick={e => buttonClickHandler(e.target.name)}
+        >
           +
         </button>
       </CaculatorButtonRow>
@@ -218,7 +265,12 @@ const Layout = () => {
         <button name="9" type="button" onClick={e => buttonClickHandler(e.target.name)}>
           9
         </button>
-        <button name="minus" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+        <button
+          className="rightButton"
+          name="minus"
+          type="button"
+          onClick={e => buttonClickHandler(e.target.name)}
+        >
           -
         </button>
       </CaculatorButtonRow>
@@ -236,7 +288,12 @@ const Layout = () => {
           .
         </button>
 
-        <button name="equal" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+        <button
+          className="rightButton"
+          name="equal"
+          type="button"
+          onClick={e => buttonClickHandler(e.target.name)}
+        >
           =
         </button>
       </CaculatorButtonRow>
