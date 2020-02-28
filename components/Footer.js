@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
+import DockerIcon from './DockerIcon'
 
 const FooterContainer = styled.div`
   display: flex;
@@ -17,23 +18,16 @@ const Docker = styled.div`
   display: flex;
   align-items: center;
   padding: 0px 20px 0px 20px;
-  & > div {
-    width: 40px;
-    height: 40px;
-    background: dodgerblue;
-    border-radius: 4px;
-    margin-right: 15px;
-  }
 `
 
 const Footer = () => {
-  const { docker } = useSelector()
+  const { docker } = useSelector(state => state.wrapper)
   return (
     <FooterContainer>
       <Docker>
-        <div></div>
-        <div></div>
-        <div></div>
+        {docker.map((item, i) => {
+          return <DockerIcon item={item} />
+        })}
       </Docker>
     </FooterContainer>
   )
