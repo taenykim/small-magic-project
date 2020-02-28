@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import ContentsMenubar from '../ContentsMenubar'
+import { useSelector } from 'react-redux'
 
 const CalculatorContainer = styled.div`
   display: flex;
@@ -86,10 +87,11 @@ const CaculatorButtonRow = styled.div`
 `
 
 const Layout = () => {
-  const [result, setResult] = useState('0')
-  const [tempResult, setTempResult] = useState('')
-  const [pressedOperator, setPressedOperator] = useState('')
-  const [isFirstNumberTyping, setIsFirstNumberTyping] = useState(true)
+  const data = useSelector(state => state.calculator)
+  const [result, setResult] = useState(data.result || '0')
+  const [tempResult, setTempResult] = useState(data.tempResult || '')
+  const [pressedOperator, setPressedOperator] = useState(data.pressedOperator || '')
+  const [isFirstNumberTyping, setIsFirstNumberTyping] = useState(data.isFirstNumberTyping || false)
 
   const buttonClickHandler = button_type => {
     if (button_type === 'reset') {

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
-import { STORE_CALCULATOR_DATA } from '../reducers/calculator'
+import { STORE_CALCULATOR_DATA, STORE_RESET_CALCULATOR } from '../reducers/calculator'
 import { useDispatch } from 'react-redux'
 
 const ContentsMenubarContainer = styled.div`
@@ -38,6 +38,7 @@ const ImageContainer = styled.div`
 
 const ContentsMenubar = ({ data }) => {
   const dispatch = useDispatch()
+
   const storeHandler = () => {
     dispatch({
       type: STORE_CALCULATOR_DATA,
@@ -45,11 +46,17 @@ const ContentsMenubar = ({ data }) => {
     })
   }
 
+  const storeReset = () => {
+    dispatch({
+      type: STORE_RESET_CALCULATOR
+    })
+  }
+
   return (
     <ContentsMenubarContainer>
       <Link href="/">
         <a style={{ margin: '2px 2px 2px 10px' }}>
-          <ImageContainer>
+          <ImageContainer onClick={storeReset}>
             <img src="cancel.png"></img>
           </ImageContainer>
         </a>
