@@ -4,9 +4,9 @@ import Layout from '../components/calculator/Layout'
 
 const calculator = () => {
   return (
-    <Background>
+    <>
       <Layout />
-    </Background>
+    </>
   )
 }
 

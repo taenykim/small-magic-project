@@ -4,13 +4,16 @@ import { Provider } from 'react-redux'
 import withRedux from 'next-redux-wrapper'
 import { applyMiddleware, compose, createStore } from 'redux'
 import reducer from '../reducers'
+import Background from '../components/Background.js'
 
 const _app = ({ Component, store }) => {
   return (
     <>
       <GlobalStyle />
       <Provider store={store}>
-        <Component />
+        <Background>
+          <Component />
+        </Background>
       </Provider>
     </>
   )

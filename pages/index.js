@@ -21,7 +21,7 @@ const AppContainer = styled.div`
 
 const index = () => {
   return (
-    <Background>
+    <>
       <IndexContainer>
         <AppContainer>
           <AppIcon />
@@ -36,7 +36,7 @@ const index = () => {
           <AppName name="calculator" />
         </AppContainer>
       </IndexContainer>
-    </Background>
+    </>
   )
 }
 
