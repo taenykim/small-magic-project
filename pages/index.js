@@ -9,7 +9,6 @@ const IndexContainer = styled.div`
   width: 90vw;
   height: 90vh;
   margin: 10px 10px 10px 10px;
-  background: rgba(0, 255, 0, 0.3);
 `
 
 const AppContainer = styled.div`

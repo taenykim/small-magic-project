@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import { STORE_CALCULATOR_DATA, STORE_RESET_CALCULATOR } from '../reducers/calculator'
 import { useDispatch } from 'react-redux'
+import { DOCKER_STORE } from '../reducers/wrapper'
 
 const ContentsMenubarContainer = styled.div`
   display: flex;
@@ -43,6 +44,10 @@ const ContentsMenubar = ({ data }) => {
     dispatch({
       type: STORE_CALCULATOR_DATA,
       data: data
+    })
+    dispatch({
+      type: DOCKER_STORE,
+      data: 'calculator'
     })
   }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 
 const FooterContainer = styled.div`
   display: flex;
@@ -26,6 +27,7 @@ const Docker = styled.div`
 `
 
 const Footer = () => {
+  const { docker } = useSelector()
   return (
     <FooterContainer>
       <Docker>
