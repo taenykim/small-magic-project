@@ -178,6 +178,7 @@ const Layout = () => {
     <CalculatorContainer>
       <ContentsMenubar
         data={{ result, tempResult, pressedOperator, isFirstNumberTyping }}
+        name="calculator"
       ></ContentsMenubar>
       <Title>
         {tempResult + (pressedOperator === 'equal' ? '' : pressedOperator) || 'Calculator'}

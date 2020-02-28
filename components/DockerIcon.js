@@ -21,13 +21,13 @@ const AppIconContainer = styled.div`
   }
 `
 
-const DockerIcon = item => {
-  const url = `/${item.item}`
+const DockerIcon = ({ item }) => {
+  const url = `/${item}`
   return (
     <Link href={url}>
       <a style={{ textDecoration: 'none' }}>
         <AppIconContainer>
-          <div>{item.item[0].toUpperCase()}</div>
+          <div>{item[0].toUpperCase()}</div>
         </AppIconContainer>
       </a>
     </Link>

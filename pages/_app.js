@@ -12,7 +12,6 @@ const _app = ({ Component, store }) => {
       <GlobalStyle />
       <Provider store={store}>
         <Background>
-          {' '}
           <Component />
         </Background>
       </Provider>

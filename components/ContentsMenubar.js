@@ -37,7 +37,7 @@ const ImageContainer = styled.div`
   }
 `
 
-const ContentsMenubar = ({ data }) => {
+const ContentsMenubar = ({ data, name }) => {
   const dispatch = useDispatch()
 
   const storeHandler = () => {
@@ -47,7 +47,7 @@ const ContentsMenubar = ({ data }) => {
     })
     dispatch({
       type: DOCKER_STORE,
-      data: 'calculator'
+      data: name
     })
   }
 
@@ -57,10 +57,11 @@ const ContentsMenubar = ({ data }) => {
     })
     dispatch({
       type: DOCKER_DELETE,
-      data: 'calculator'
+      data: name
     })
   }
 
+  console.log(name)
   return (
     <ContentsMenubarContainer>
       <Link href="/">
