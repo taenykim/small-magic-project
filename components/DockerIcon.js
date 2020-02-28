@@ -17,6 +17,7 @@ const AppIconContainer = styled.div`
   & > div {
     font-family: escore9;
     font-size: 20px;
+    text-shadow: 3px 3px #ccc;
   }
 `
 

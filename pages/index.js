@@ -1,5 +1,4 @@
 import React from 'react'
-import Background from '../components/Background'
 import styled from 'styled-components'
 import AppIcon from '../components/AppIcon'
 import AppName from '../components/AppName'
@@ -23,15 +22,15 @@ const index = () => {
     <>
       <IndexContainer>
         <AppContainer>
-          <AppIcon />
+          <AppIcon name="calculator" />
           <AppName name="calculator" />
         </AppContainer>
         <AppContainer>
-          <AppIcon />
-          <AppName name="calculator" />
+          <AppIcon name="graph" />
+          <AppName name="graph" />
         </AppContainer>
         <AppContainer>
-          <AppIcon />
+          <AppIcon name="calculator" />
           <AppName name="calculator" />
         </AppContainer>
       </IndexContainer>

@@ -26,7 +26,7 @@ const Footer = () => {
     <FooterContainer>
       <Docker>
         {docker.map((item, i) => {
-          return <DockerIcon item={item} />
+          return <DockerIcon key={i} item={item} />
         })}
       </Docker>
     </FooterContainer>

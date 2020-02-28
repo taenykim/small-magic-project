@@ -14,18 +14,24 @@ const AppIconContainer = styled.div`
   background: #f5f6f7;
   color: #666;
 
+  &:active {
+    box-shadow: 2px 2px 2px 0px #dfe4ea inset, -2px -2px 2px 0px white inset;
+  }
+
   & > div {
     font-family: escore9;
     font-size: 12px;
   }
 `
 
-const AppIcon = () => {
+const AppIcon = ({ name }) => {
+  const url = `/${name}`
+  const str = String(name).toUpperCase()
   return (
-    <Link href="/calculator">
+    <Link href={url}>
       <a style={{ textDecoration: 'none' }}>
         <AppIconContainer>
-          <div>CALCULATOR</div>
+          <div>{str}</div>
         </AppIconContainer>
       </a>
     </Link>
