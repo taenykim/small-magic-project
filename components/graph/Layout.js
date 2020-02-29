@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import styled, { withTheme } from 'styled-components'
+import React, { useEffect, useState, useCallback } from 'react'
+import styled from 'styled-components'
 
 const GraphContainer = styled.div`
   display: flex;
@@ -11,17 +11,19 @@ const GraphCanvas = styled.canvas`
   margin-bottom: 10px;
 `
 
-let data = {
-  Austrailia: 1000,
-  India: 2700,
-  USA: 500,
-  Brasil: 2100,
-  China: 3000
-}
-
-const entries = Object.entries(data)
-
 const Layout = () => {
+  const [data, setData] = useState({
+    Austrailia: 1000,
+    India: 2700,
+    USA: 500,
+    Brasil: 2100,
+    China: 3000
+  })
+  const entries = Object.entries(data)
+
+  const [country, setCountry] = useState('')
+  const [population, setPopulation] = useState('')
+
   useEffect(() => {
     let canvasElem = document.querySelector('canvas')
     canvasElem.width = 1000
@@ -87,12 +89,33 @@ const Layout = () => {
     ctx.stroke()
   }
 
+  const submitHandler = useCallback(
+    e => {
+      e.preventDefault()
+      data[country] = Number(population)
+      setData(data)
+      console.log(data)
+    },
+    [data, country, population]
+  )
+
   return (
     <GraphContainer>
       <GraphCanvas onClick={e => {}}></GraphCanvas>
-      <form>
-        <input />
-        <input />
+      <form onSubmit={submitHandler}>
+        <input
+          value={country}
+          onChange={e => {
+            setCountry(e.target.value)
+          }}
+        />
+        <input
+          value={population}
+          onChange={e => {
+            setPopulation(e.target.value)
+          }}
+        />
+        <button type="submit" />
       </form>
     </GraphContainer>
   )
