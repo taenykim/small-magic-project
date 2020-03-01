@@ -41,6 +41,11 @@ const GraphForm = styled.form`
   }
 `
 
+const ErrorMessageElem = styled.div`
+  color: red;
+  align-self: center;
+`
+
 const Layout = () => {
   const data = useSelector(state => state.graph)
   const [graphData, setGraphData] = useState(
@@ -57,6 +62,7 @@ const Layout = () => {
   const [country, setCountry] = useState(data.country || '')
   const [population, setPopulation] = useState(data.population || '')
   const [country2, setCountry2] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
   const inputRef1 = useRef()
   const inputRef2 = useRef()
 
@@ -133,26 +139,38 @@ const Layout = () => {
   }
 
   const submitHandler1 = e => {
+    console.log(graphData)
     e.preventDefault()
+
+    if (isNaN(Number(population)) || Number(population) > 3500 || Number(population) < 0) {
+      setErrorMessage('0~3500사이의 값을 입력하세요.')
+      return
+    }
     let obj = { ...graphData }
-    obj[country] = population
+    obj[country] = Number(population)
     // obj.county = population not same!!
     let graphData_temp = Object.assign({}, obj)
     setGraphData(graphData_temp)
     setCountry('')
     setPopulation('')
+    setErrorMessage('')
     inputRef1.current.focus()
   }
 
   const submitHandler2 = e => {
     e.preventDefault()
     let obj = { ...graphData }
+    if (Object.keys(obj).indexOf(country2) < 0) {
+      setErrorMessage('해당 키가 없습니다.')
+      return
+    }
     delete obj[country2]
     // obj.county = population not same!!
     let graphData_temp = Object.assign({}, obj)
     setGraphData(graphData_temp)
     setCountry2('')
     setPopulation('')
+    setErrorMessage('')
     inputRef2.current.focus()
     console.log(graphData_temp)
   }
@@ -196,6 +214,7 @@ const Layout = () => {
           }}
         />
       </GraphForm>
+      <ErrorMessageElem>{errorMessage}</ErrorMessageElem>
     </GraphContainer>
   )
 }
