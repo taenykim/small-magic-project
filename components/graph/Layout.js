@@ -13,7 +13,32 @@ const GraphContainer = styled.div`
 
 const GraphCanvas = styled.canvas`
   border: 1px solid black;
-  margin: 0px 30px 30px 30px;
+  margin: 0px 30px 0px 30px;
+`
+
+const GraphForm = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px 10px 0px;
+  & > button {
+    cursor: pointer;
+    font-size: 8px;
+    color: #fff;
+    font-family: escore5;
+    border-radius: 3px;
+    background: #888;
+    padding: 3px 6px 3px 6px;
+  }
+  & > label {
+    font-size: 10px;
+    margin: 0px 10px 0px 10px;
+    font-family: escore8;
+    color: black;
+  }
+  & > input {
+    border-radius: 3px;
+  }
 `
 
 const Layout = () => {
@@ -31,7 +56,9 @@ const Layout = () => {
 
   const [country, setCountry] = useState(data.country || '')
   const [population, setPopulation] = useState(data.population || '')
-  const inputRef = useRef()
+  const [country2, setCountry2] = useState('')
+  const inputRef1 = useRef()
+  const inputRef2 = useRef()
 
   useEffect(() => {
     let canvasElem = document.querySelector('canvas')
@@ -64,7 +91,7 @@ const Layout = () => {
       ctx.lineTo(yGrid, canvasElem.height)
       yGrid += cellSize
     }
-    ctx.strokeStyle = 'gray'
+    ctx.strokeStyle = '#ccc'
     ctx.stroke()
   }
 
@@ -91,12 +118,13 @@ const Layout = () => {
     ctx.beginPath()
     ctx.strokeStyle = 'black'
     ctx.moveTo(50, 400)
+    ctx.font = 'bold normal 10px Verdana'
 
     var xPlot = 100
 
     for (const [country, population] of entries) {
       var populationInBlocks = population / 10
-      ctx.strokeText(country, xPlot, 400 - populationInBlocks - 10)
+      ctx.fillText(country + '(' + population + ')', xPlot, 400 - populationInBlocks - 10)
       ctx.lineTo(xPlot, 400 - populationInBlocks)
       ctx.arc(xPlot, 400 - populationInBlocks, 2, 0, Math.PI * 2, true)
       xPlot += 50
@@ -104,39 +132,70 @@ const Layout = () => {
     ctx.stroke()
   }
 
-  const submitHandler = e => {
+  const submitHandler1 = e => {
     e.preventDefault()
     let obj = { ...graphData }
-    console.log(country)
     obj[country] = population
     // obj.county = population not same!!
     let graphData_temp = Object.assign({}, obj)
     setGraphData(graphData_temp)
     setCountry('')
     setPopulation('')
-    inputRef.current.focus()
+    inputRef1.current.focus()
+  }
+
+  const submitHandler2 = e => {
+    e.preventDefault()
+    let obj = { ...graphData }
+    delete obj[country2]
+    // obj.county = population not same!!
+    let graphData_temp = Object.assign({}, obj)
+    setGraphData(graphData_temp)
+    setCountry2('')
+    setPopulation('')
+    inputRef2.current.focus()
+    console.log(graphData_temp)
   }
 
   return (
     <GraphContainer>
       <ContentsMenubar data={{ graphData, country, population }} name="graph" />
       <GraphCanvas onClick={e => {}}></GraphCanvas>
-      <form onSubmit={submitHandler}>
+
+      <GraphForm onSubmit={submitHandler1}>
+        <button type="submit">추가/수정하기</button>
+
+        <label htmlFor="country">키</label>
         <input
-          ref={inputRef}
+          name="country"
+          ref={inputRef1}
           value={country}
           onChange={e => {
             setCountry(e.target.value)
           }}
         />
+        <label htmlFor="population">값</label>
         <input
+          name="population"
           value={population}
           onChange={e => {
             setPopulation(e.target.value)
           }}
         />
-        <button type="submit" />
-      </form>
+      </GraphForm>
+      <GraphForm onSubmit={submitHandler2}>
+        <button type="submit">삭제하기</button>
+
+        <label htmlFor="country">키</label>
+        <input
+          name="country"
+          ref={inputRef2}
+          value={country2}
+          onChange={e => {
+            setCountry2(e.target.value)
+          }}
+        />
+      </GraphForm>
     </GraphContainer>
   )
 }
