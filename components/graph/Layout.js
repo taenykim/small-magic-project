@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useRef } from 'react'
 import styled from 'styled-components'
 
 const GraphContainer = styled.div`
@@ -23,6 +23,7 @@ const Layout = () => {
 
   const [country, setCountry] = useState('')
   const [population, setPopulation] = useState('')
+  const inputRef = useRef()
 
   useEffect(() => {
     let canvasElem = document.querySelector('canvas')
@@ -95,20 +96,25 @@ const Layout = () => {
     ctx.stroke()
   }
 
-  const submitHandler = useCallback(
-    e => {
-      e.preventDefault()
-      let data_temp = { ...data, country: Number(population) }
-      setData(data_temp)
-    },
-    [data, country, population]
-  )
+  const submitHandler = e => {
+    e.preventDefault()
+    let obj = { ...data }
+    console.log(country)
+    obj[country] = population
+    // obj.county = population not same!!
+    let data_temp = Object.assign({}, obj)
+    setData(data_temp)
+    setCountry('')
+    setPopulation('')
+    inputRef.current.focus()
+  }
 
   return (
     <GraphContainer>
       <GraphCanvas onClick={e => {}}></GraphCanvas>
       <form onSubmit={submitHandler}>
         <input
+          ref={inputRef}
           value={country}
           onChange={e => {
             setCountry(e.target.value)
