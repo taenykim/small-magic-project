@@ -9,7 +9,7 @@ const GraphContainer = styled.div`
   width: 1000px;
   border-radius: 3px;
   box-shadow: -4px -2px 4px 0px white, 4px 2px 6px 0px #dfe4ea;
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     width: 100vw;
   }
 `
