@@ -1,10 +1,10 @@
 export const initialState = {
   graphData: {
-    Austrailia: 1000,
-    India: 2700,
+    Austrailia: 500,
+    India: 1800,
     USA: 500,
     Brasil: 2100,
-    China: 3000
+    China: 1500
   },
   country: '',
   population: ''
@@ -25,11 +25,11 @@ export default (state = initialState, action) => {
     case STORE_RESET_GRAPH: {
       return {
         graphData: {
-          Austrailia: 1000,
-          India: 2700,
+          Austrailia: 500,
+          India: 1800,
           USA: 500,
           Brasil: 2100,
-          China: 3000
+          China: 1500
         },
         country: '',
         population: ''

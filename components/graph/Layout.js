@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
 import ContentsMenubar from '../ContentsMenubar'
 import { useSelector } from 'react-redux'
@@ -6,14 +6,17 @@ import { useSelector } from 'react-redux'
 const GraphContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80vw;
+  width: 1000px;
   border-radius: 3px;
   box-shadow: -4px -2px 4px 0px white, 4px 2px 6px 0px #dfe4ea;
+  @media (max-width: 768px) {
+    width: 100vw;
+  }
 `
 
 const GraphCanvas = styled.canvas`
   border: 1px solid black;
-  margin: 0px 30px 0px 30px;
+  width: 100%;
 `
 
 const GraphForm = styled.form`
@@ -39,6 +42,12 @@ const GraphForm = styled.form`
   & > input {
     border-radius: 3px;
   }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    & > button {
+      margin-bottom: 3px;
+    }
+  }
 `
 
 const ErrorMessageElem = styled.div`
@@ -50,11 +59,11 @@ const Layout = () => {
   const data = useSelector(state => state.graph)
   const [graphData, setGraphData] = useState(
     data.graphData || {
-      Austrailia: 1000,
-      India: 2700,
+      Austrailia: 500,
+      India: 1800,
       USA: 500,
       Brasil: 2100,
-      China: 3000
+      China: 1500
     }
   )
   const entries = Object.entries(graphData)
@@ -69,7 +78,7 @@ const Layout = () => {
   useEffect(() => {
     let canvasElem = document.querySelector('canvas')
     canvasElem.width = 840
-    canvasElem.height = 420
+    canvasElem.height = 320
     const ctx = canvasElem.getContext('2d')
     drawGrid(canvasElem, ctx)
     drawAxis(ctx)
@@ -102,15 +111,15 @@ const Layout = () => {
   }
 
   const drawAxis = ctx => {
-    let yPlot = 400
+    let yPlot = 300
     let pop = 0
 
     ctx.beginPath()
     ctx.strokeStyle = 'black'
     ctx.moveTo(50, 50)
-    ctx.lineTo(50, 400)
-    ctx.lineTo(800, 400)
-    ctx.moveTo(50, 400)
+    ctx.lineTo(50, 300)
+    ctx.lineTo(800, 300)
+    ctx.moveTo(50, 300)
 
     for (let i = 0; i < 10; i++) {
       ctx.strokeText(pop, 20, yPlot)
@@ -123,17 +132,23 @@ const Layout = () => {
   const drawChart = ctx => {
     ctx.beginPath()
     ctx.strokeStyle = 'black'
-    ctx.moveTo(50, 400)
+    ctx.moveTo(50, 300)
     ctx.font = 'bold normal 10px Verdana'
 
     var xPlot = 100
+    let i = 0
 
     for (const [country, population] of entries) {
       var populationInBlocks = population / 10
-      ctx.fillText(country + '(' + population + ')', xPlot, 400 - populationInBlocks - 10)
-      ctx.lineTo(xPlot, 400 - populationInBlocks)
-      ctx.arc(xPlot, 400 - populationInBlocks, 2, 0, Math.PI * 2, true)
+      ctx.fillText(
+        country + '(' + population + ')',
+        xPlot,
+        i % 2 === 0 ? 300 - populationInBlocks - 10 : 300 - populationInBlocks - 10 + 30
+      )
+      ctx.lineTo(xPlot, 300 - populationInBlocks)
+      ctx.arc(xPlot, 300 - populationInBlocks, 2, 0, Math.PI * 2, true)
       xPlot += 50
+      i++
     }
     ctx.stroke()
   }
@@ -142,8 +157,8 @@ const Layout = () => {
     console.log(graphData)
     e.preventDefault()
 
-    if (isNaN(Number(population)) || Number(population) > 3500 || Number(population) < 0) {
-      setErrorMessage('0~3500사이의 값을 입력하세요.')
+    if (isNaN(Number(population)) || Number(population) > 2500 || Number(population) < 0) {
+      setErrorMessage('0~2500사이의 값을 입력하세요.')
       return
     }
     let obj = { ...graphData }
@@ -178,11 +193,18 @@ const Layout = () => {
   return (
     <GraphContainer>
       <ContentsMenubar data={{ graphData, country, population }} name="graph" />
-      <GraphCanvas onClick={e => {}}></GraphCanvas>
+      <div
+        style={{
+          width: '100%',
+          justifySelf: 'center',
+          alignSelf: 'center'
+        }}
+      >
+        <GraphCanvas></GraphCanvas>
+      </div>
 
       <GraphForm onSubmit={submitHandler1}>
         <button type="submit">추가/수정하기</button>
-
         <label htmlFor="country">키</label>
         <input
           name="country"

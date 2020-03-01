@@ -20,7 +20,6 @@ class _document extends Document {
     return (
       <Html>
         <Head>
-          <title>소마법프로젝트</title>
           {/* Step 5: Output the styles in the head  */}
           {this.props.styleTags}
         </Head>
