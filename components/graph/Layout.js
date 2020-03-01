@@ -29,15 +29,21 @@ const Layout = () => {
     canvasElem.width = 1000
     canvasElem.height = 500
     const ctx = canvasElem.getContext('2d')
+    drawGrid(canvasElem, ctx)
+    drawAxis(ctx)
+    drawChart(ctx)
+    // canvasElem.addEventListener('mousemove', e => {
+    //   if (e.clientX < 203 && e.clientX > 198 && e.clientY > 384 && e.clientY < 388) {
+    //     console.log('here')
+    //   }
+    //   console.log(e.clientX, e.clientY)
+    // })
+  })
+
+  const drawGrid = (canvasElem, ctx) => {
     let xGrid = 10
     let yGrid = 10
     let cellSize = 10
-    drawGrid(canvasElem, ctx, xGrid, yGrid, cellSize)
-    drawAxis(ctx)
-    drawChart(ctx)
-  })
-
-  const drawGrid = (canvasElem, ctx, xGrid, yGrid, cellSize) => {
     ctx.beginPath()
     while (xGrid < canvasElem.height) {
       ctx.moveTo(0, xGrid)
@@ -92,9 +98,8 @@ const Layout = () => {
   const submitHandler = useCallback(
     e => {
       e.preventDefault()
-      data[country] = Number(population)
-      setData(data)
-      console.log(data)
+      let data_temp = { ...data, country: Number(population) }
+      setData(data_temp)
     },
     [data, country, population]
   )
