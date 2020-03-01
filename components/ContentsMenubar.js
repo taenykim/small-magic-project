@@ -42,10 +42,8 @@ const ContentsMenubar = ({ data, name }) => {
   const dispatch = useDispatch()
 
   const storeHandler = () => {
-    console.log('this is ', name)
     switch (name) {
       case 'calculator': {
-        console.log('this')
         dispatch({
           type: STORE_CALCULATOR_DATA,
           data: data
@@ -109,7 +107,6 @@ const ContentsMenubar = ({ data, name }) => {
     }
   }
 
-  console.log(name)
   return (
     <ContentsMenubarContainer>
       <Link href="/">

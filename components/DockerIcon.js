@@ -11,7 +11,11 @@ const AppIconContainer = styled.div`
   box-sizing: border-box;
   border-radius: 15%;
   background: #f5f6f7;
-  color: #666;
+  color: ${props => {
+    if (props.name === 'calculator') return 'red'
+    else if (props.name === 'graph') return 'blue'
+    else return 'black'
+  }};
   margin-right: 10px;
 
   & > div {
@@ -26,7 +30,7 @@ const DockerIcon = ({ item }) => {
   return (
     <Link href={url}>
       <a style={{ textDecoration: 'none' }}>
-        <AppIconContainer>
+        <AppIconContainer name={item}>
           <div>{item[0].toUpperCase()}</div>
         </AppIconContainer>
       </a>
