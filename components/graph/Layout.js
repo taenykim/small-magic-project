@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import styled from 'styled-components'
 import ContentsMenubar from '../ContentsMenubar'
+import { useSelector } from 'react-redux'
 
 const GraphContainer = styled.div`
   display: flex;
@@ -16,17 +17,20 @@ const GraphCanvas = styled.canvas`
 `
 
 const Layout = () => {
-  const [graphData, setGraphData] = useState({
-    Austrailia: 1000,
-    India: 2700,
-    USA: 500,
-    Brasil: 2100,
-    China: 3000
-  })
+  const data = useSelector(state => state.graph)
+  const [graphData, setGraphData] = useState(
+    data.graphData || {
+      Austrailia: 1000,
+      India: 2700,
+      USA: 500,
+      Brasil: 2100,
+      China: 3000
+    }
+  )
   const entries = Object.entries(graphData)
 
-  const [country, setCountry] = useState('')
-  const [population, setPopulation] = useState('')
+  const [country, setCountry] = useState(data.country || '')
+  const [population, setPopulation] = useState(data.population || '')
   const inputRef = useRef()
 
   useEffect(() => {
