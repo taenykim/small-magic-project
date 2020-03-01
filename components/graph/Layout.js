@@ -1,25 +1,29 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import styled from 'styled-components'
+import ContentsMenubar from '../ContentsMenubar'
 
 const GraphContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 80vw;
+  border-radius: 3px;
+  box-shadow: -4px -2px 4px 0px white, 4px 2px 6px 0px #dfe4ea;
 `
 
 const GraphCanvas = styled.canvas`
   border: 1px solid black;
-  margin-bottom: 10px;
+  margin: 0px 30px 30px 30px;
 `
 
 const Layout = () => {
-  const [data, setData] = useState({
+  const [graphData, setGraphData] = useState({
     Austrailia: 1000,
     India: 2700,
     USA: 500,
     Brasil: 2100,
     China: 3000
   })
-  const entries = Object.entries(data)
+  const entries = Object.entries(graphData)
 
   const [country, setCountry] = useState('')
   const [population, setPopulation] = useState('')
@@ -27,8 +31,8 @@ const Layout = () => {
 
   useEffect(() => {
     let canvasElem = document.querySelector('canvas')
-    canvasElem.width = 1000
-    canvasElem.height = 500
+    canvasElem.width = 840
+    canvasElem.height = 420
     const ctx = canvasElem.getContext('2d')
     drawGrid(canvasElem, ctx)
     drawAxis(ctx)
@@ -98,12 +102,12 @@ const Layout = () => {
 
   const submitHandler = e => {
     e.preventDefault()
-    let obj = { ...data }
+    let obj = { ...graphData }
     console.log(country)
     obj[country] = population
     // obj.county = population not same!!
-    let data_temp = Object.assign({}, obj)
-    setData(data_temp)
+    let graphData_temp = Object.assign({}, obj)
+    setGraphData(graphData_temp)
     setCountry('')
     setPopulation('')
     inputRef.current.focus()
@@ -111,6 +115,7 @@ const Layout = () => {
 
   return (
     <GraphContainer>
+      <ContentsMenubar data={{ graphData, country, population }} name="graph" />
       <GraphCanvas onClick={e => {}}></GraphCanvas>
       <form onSubmit={submitHandler}>
         <input

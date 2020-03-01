@@ -27,7 +27,7 @@ const AppIconContainer = styled.div`
 const AppIcon = ({ name }) => {
   const url = `/${name}`
   const str = String(name).toUpperCase()
-  console.log(str)
+  // console.log(str)
   return (
     <Link href={url}>
       <a style={{ textDecoration: 'none' }}>

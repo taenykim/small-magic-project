@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
-import { STORE_CALCULATOR_DATA, STORE_RESET_CALCULATOR } from '../reducers/calculator'
 import { useDispatch } from 'react-redux'
+import { STORE_CALCULATOR_DATA, STORE_RESET_CALCULATOR } from '../reducers/calculator'
+import { STORE_GRAPH_DATA, STORE_RESET_GRAPH } from '../reducers/graph'
 import { DOCKER_STORE, DOCKER_DELETE } from '../reducers/wrapper'
 
 const ContentsMenubarContainer = styled.div`
@@ -41,24 +42,71 @@ const ContentsMenubar = ({ data, name }) => {
   const dispatch = useDispatch()
 
   const storeHandler = () => {
-    dispatch({
-      type: STORE_CALCULATOR_DATA,
-      data: data
-    })
-    dispatch({
-      type: DOCKER_STORE,
-      data: name
-    })
+    console.log('this is ', name)
+    switch (name) {
+      case 'calculator': {
+        console.log('this')
+        dispatch({
+          type: STORE_CALCULATOR_DATA,
+          data: data
+        })
+        dispatch({
+          type: DOCKER_STORE,
+          data: name
+        })
+        return
+      }
+      case 'graph': {
+        dispatch({
+          type: STORE_GRAPH_DATA,
+          data: data
+        })
+        dispatch({
+          type: DOCKER_STORE,
+          data: name
+        })
+        return
+      }
+      default: {
+        dispatch({
+          type: DOCKER_STORE,
+          data: name
+        })
+        return
+      }
+    }
   }
 
   const storeReset = () => {
-    dispatch({
-      type: STORE_RESET_CALCULATOR
-    })
-    dispatch({
-      type: DOCKER_DELETE,
-      data: name
-    })
+    switch (name) {
+      case 'calculator': {
+        dispatch({
+          type: STORE_RESET_CALCULATOR
+        })
+        dispatch({
+          type: DOCKER_DELETE,
+          data: name
+        })
+        return
+      }
+      case 'graph': {
+        dispatch({
+          type: STORE_RESET_GRAPH
+        })
+        dispatch({
+          type: DOCKER_DELETE,
+          data: name
+        })
+        return
+      }
+      default: {
+        dispatch({
+          type: DOCKER_DELETE,
+          data: name
+        })
+        return
+      }
+    }
   }
 
   console.log(name)
