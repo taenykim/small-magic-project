@@ -83,12 +83,6 @@ const Layout = () => {
     drawGrid(canvasElem, ctx)
     drawAxis(ctx)
     drawChart(ctx)
-    // canvasElem.addEventListener('mousemove', e => {
-    //   if (e.clientX < 203 && e.clientX > 198 && e.clientY > 384 && e.clientY < 388) {
-    //     console.log('here')
-    //   }
-    //   console.log(e.clientX, e.clientY)
-    // })
   })
 
   const drawGrid = (canvasElem, ctx) => {
