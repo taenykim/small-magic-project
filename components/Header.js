@@ -48,7 +48,7 @@ const Header = () => {
       </FullscreenText>
       &nbsp;&nbsp;|&nbsp;&nbsp;
       <a
-        href="https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/"
+        href="https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B81/"
         target="_blank"
       >
         <NoteText>note</NoteText>
