@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Header from './Header'
 import Footer from './Footer'
@@ -30,7 +30,7 @@ const Background = ({ children }) => {
   return (
     <>
       <BackgroundContainer>
-        <a href="https://github.com/taenykim/" target="_blank">
+        <a href="https://github.com/taenykim/small-magic-project" target="_blank">
           <FixedGithub>
             <img src="./github.png" width="28" height="28" />
           </FixedGithub>

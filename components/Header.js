@@ -10,6 +10,10 @@ const HeaderContainer = styled.div`
   font-size: 12px;
   font-family: escore6;
   color: #666;
+  & > a {
+    text-decoration: none;
+    color: #666;
+  }
 `
 
 const FullscreenText = styled.p`
@@ -42,7 +46,13 @@ const Header = () => {
       <FullscreenText onClick={openFullScreen}>
         {full ? 'exit full screen' : 'full screen'}
       </FullscreenText>
-      &nbsp;&nbsp;|&nbsp;&nbsp;<NoteText> note</NoteText>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <a
+        href="https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/"
+        target="_blank"
+      >
+        <NoteText>note</NoteText>
+      </a>
     </HeaderContainer>
   )
 }
