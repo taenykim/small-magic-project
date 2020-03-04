@@ -4,9 +4,13 @@ import ContentsMenubar from '../ContentsMenubar'
 
 const CrawlingContainer = styled.div`
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   top: 0;
   width: 100vw;
-  height: auto;
+  height: 100vh;
+  overflow-x: hidden;
 `
 
 const PageView = styled.div`
@@ -24,11 +28,80 @@ const PageView = styled.div`
   z-index: 10;
 `
 
+const SearchingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  width: 80vw;
+  height: 40px;
+  border-radius: 20px;
+  margin-top: 5%;
+  background: rgba(0, 0, 0, 0.7);
+`
+
+const SearchIcon = styled.img`
+  padding-left: 40px;
+  width: 20px;
+  height: 20px;
+`
+
+const SearchingForm = styled.form`
+  padding-left: 40px;
+  width: 100%;
+`
+
+const SearchingInput = styled.input`
+  width: 100%;
+  background: none;
+  border: none;
+  font-family: 'escore9';
+  color: white;
+  font-size: 13px;
+
+  &:focus {
+    outline: none;
+  }
+`
+
+const DescriptionContainer = styled.div`
+  color: black;
+  font-family: 'escore3';
+  font-size: 10px;
+  margin: 20px 10% 10px 10%;
+  text-align: center;
+  text-shadow: 1px 1px white;
+
+  & > div {
+    margin-bottom: 5px;
+  }
+`
+
 const Layout = () => {
   return (
     <CrawlingContainer>
       <ContentsMenubar style={{ position: 'fixed', top: '0px', left: '0px' }} name="crawling" />
       <PageView>1/1</PageView>
+      <SearchingContainer>
+        <SearchIcon src="search_icon.png" />
+        <SearchingForm>
+          <SearchingInput
+            autoFocus
+            name="searching_name"
+            type="text"
+            placeholder="Enter the keyword to find"
+          ></SearchingInput>
+        </SearchingForm>
+      </SearchingContainer>
+      <DescriptionContainer>
+        <div>
+          데스크탑 이용 시,{' '}
+          <span style={{ color: 'blue', fontFamily: 'escore7' }}>width가 1070 이상</span>이어야
+          원활한 사용이 가능합니다.
+        </div>
+        <div>
+          검색어는 <span style={{ color: 'red', fontFamily: 'escore7' }}>영어</span>로 입력하세요.
+        </div>
+      </DescriptionContainer>
     </CrawlingContainer>
   )
 }

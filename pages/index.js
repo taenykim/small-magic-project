@@ -8,6 +8,7 @@ const IndexContainer = styled.div`
   width: 90vw;
   height: 90vh;
   margin: 10px 10px 10px 10px;
+  flex-wrap: wrap;
 `
 
 const AppContainer = styled.div`
