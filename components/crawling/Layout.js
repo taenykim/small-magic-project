@@ -65,7 +65,7 @@ const SearchingInput = styled.input`
 
 const DescriptionContainer = styled.div`
   color: black;
-  font-family: 'escore3';
+  font-family: 'escore4';
   font-size: 10px;
   margin: 20px 10% 10px 10%;
   text-align: center;
@@ -73,6 +73,24 @@ const DescriptionContainer = styled.div`
 
   & > div {
     margin-bottom: 5px;
+  }
+
+  & > div:nth-child(3) {
+    margin-top: 15px;
+  }
+`
+
+const ButtonContainer = styled.div`
+  color: #333;
+  display: flex;
+
+  & > div {
+    font-family: 'escore6';
+    background: none;
+    border: 2px solid #333;
+    padding: 4px;
+    margin: 2px;
+    cursor: pointer;
   }
 `
 
@@ -101,7 +119,18 @@ const Layout = () => {
         <div>
           검색어는 <span style={{ color: 'red', fontFamily: 'escore7' }}>영어</span>로 입력하세요.
         </div>
+        <div>
+          FROM{' '}
+          <a style={{ fontFamily: 'escore7' }} href="https://wall.alphacoders.com/" target="_blank">
+            alphacoders.com
+          </a>
+        </div>
       </DescriptionContainer>
+      <ButtonContainer>
+        <div onClick={() => {}}>2개씩보기</div>
+        <div onClick={() => {}}>4개씩보기</div>
+        <div onClick={() => {}}>10개씩보기</div>
+      </ButtonContainer>
     </CrawlingContainer>
   )
 }
