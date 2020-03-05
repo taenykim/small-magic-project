@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import ContentsMenubar from '../ContentsMenubar'
 
@@ -95,18 +95,41 @@ const ButtonContainer = styled.div`
 `
 
 const Layout = () => {
+  const [searchingName, setSearchingName] = useState('')
+
+  const submitHandler = e => {
+    e.preventDefault()
+    crawling()
+  }
+
+  const crawling = () => {
+    console.log('searchingName', searchingName)
+    fetch(
+      `https://cors-anywhere.herokuapp.com/https://wall.alphacoders.com/search.php?search=${searchingName}`
+    )
+      .then(res => {
+        return res.text()
+      })
+      .then(text => console.log(text))
+      .catch(error => console.log(error))
+  }
+
   return (
     <CrawlingContainer>
       <ContentsMenubar style={{ position: 'fixed', top: '0px', left: '0px' }} name="crawling" />
       <PageView>1/1</PageView>
       <SearchingContainer>
         <SearchIcon src="search_icon.png" />
-        <SearchingForm>
+        <SearchingForm onSubmit={submitHandler}>
           <SearchingInput
             autoFocus
-            name="searching_name"
+            name="searchingName"
             type="text"
-            placeholder="Enter the keyword to find"
+            placeholder="keyword"
+            onChange={e => {
+              setSearchingName(e.target.value)
+            }}
+            value={searchingName}
           ></SearchingInput>
         </SearchingForm>
       </SearchingContainer>
