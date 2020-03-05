@@ -3,6 +3,17 @@ import styled from 'styled-components'
 import ContentsMenubar from '../ContentsMenubar'
 import { useSelector } from 'react-redux'
 
+const BackgroundContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height:100vh;
+  }};
+  background: #f5f6f7;
+`
+
 const GraphContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -185,53 +196,55 @@ const Layout = () => {
   }
 
   return (
-    <GraphContainer>
-      <ContentsMenubar data={{ graphData, country, population }} name="graph" />
-      <div
-        style={{
-          width: '100%',
-          justifySelf: 'center',
-          alignSelf: 'center'
-        }}
-      >
-        <GraphCanvas></GraphCanvas>
-      </div>
+    <BackgroundContainer>
+      <GraphContainer>
+        <ContentsMenubar data={{ graphData, country, population }} name="graph" />
+        <div
+          style={{
+            width: '100%',
+            justifySelf: 'center',
+            alignSelf: 'center'
+          }}
+        >
+          <GraphCanvas></GraphCanvas>
+        </div>
 
-      <GraphForm onSubmit={submitHandler1}>
-        <button type="submit">추가/수정하기</button>
-        <label htmlFor="country">키</label>
-        <input
-          name="country"
-          ref={inputRef1}
-          value={country}
-          onChange={e => {
-            setCountry(e.target.value)
-          }}
-        />
-        <label htmlFor="population">값</label>
-        <input
-          name="population"
-          value={population}
-          onChange={e => {
-            setPopulation(e.target.value)
-          }}
-        />
-      </GraphForm>
-      <GraphForm onSubmit={submitHandler2}>
-        <button type="submit">삭제하기</button>
+        <GraphForm onSubmit={submitHandler1}>
+          <button type="submit">추가/수정하기</button>
+          <label htmlFor="country">키</label>
+          <input
+            name="country"
+            ref={inputRef1}
+            value={country}
+            onChange={e => {
+              setCountry(e.target.value)
+            }}
+          />
+          <label htmlFor="population">값</label>
+          <input
+            name="population"
+            value={population}
+            onChange={e => {
+              setPopulation(e.target.value)
+            }}
+          />
+        </GraphForm>
+        <GraphForm onSubmit={submitHandler2}>
+          <button type="submit">삭제하기</button>
 
-        <label htmlFor="country">키</label>
-        <input
-          name="country"
-          ref={inputRef2}
-          value={country2}
-          onChange={e => {
-            setCountry2(e.target.value)
-          }}
-        />
-      </GraphForm>
-      <ErrorMessageElem>{errorMessage}</ErrorMessageElem>
-    </GraphContainer>
+          <label htmlFor="country">키</label>
+          <input
+            name="country"
+            ref={inputRef2}
+            value={country2}
+            onChange={e => {
+              setCountry2(e.target.value)
+            }}
+          />
+        </GraphForm>
+        <ErrorMessageElem>{errorMessage}</ErrorMessageElem>
+      </GraphContainer>
+    </BackgroundContainer>
   )
 }
 

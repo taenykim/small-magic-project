@@ -9,7 +9,7 @@ const BackgroundContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  }};
   background: #f5f6f7;
 `
 

@@ -3,6 +3,17 @@ import styled from 'styled-components'
 import ContentsMenubar from '../ContentsMenubar'
 import { useSelector } from 'react-redux'
 
+const BackgroundContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height:100vh;
+  }};
+  background: #f5f6f7;
+`
+
 const CalculatorContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -175,133 +186,135 @@ const Layout = () => {
   }
 
   return (
-    <CalculatorContainer>
-      <ContentsMenubar
-        data={{ result, tempResult, pressedOperator, isFirstNumberTyping }}
-        name="calculator"
-      ></ContentsMenubar>
-      <Title>
-        {tempResult + (pressedOperator === 'equal' ? '' : pressedOperator) || 'Calculator'}
-      </Title>
-      <ResultContainer>
-        <ResultText>Result</ResultText>
-        <ResultNumber>{result}</ResultNumber>
-      </ResultContainer>
-      <CaculatorButtonRow>
-        <button
-          className="topButton"
-          name="reset"
-          type="button"
-          onClick={e => buttonClickHandler(e.target.name)}
-        >
-          reset
-        </button>
-        <button
-          className="topButton"
-          name="delete"
-          type="button"
-          onClick={e => buttonClickHandler(e.target.name)}
-        >
-          delete
-        </button>
-        <button
-          className="topButton"
-          name="toggleSign"
-          type="button"
-          onClick={e => buttonClickHandler(e.target.name)}
-        >
-          ±
-        </button>
-        <button
-          className="rightButton"
-          name="divide"
-          type="button"
-          onClick={e => buttonClickHandler(e.target.name)}
-        >
-          /
-        </button>
-      </CaculatorButtonRow>
-      <CaculatorButtonRow>
-        <button name="1" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-          1
-        </button>
-        <button name="2" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-          2
-        </button>
-        <button name="3" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-          3
-        </button>
-        <button
-          className="rightButton"
-          name="multiple"
-          type="button"
-          onClick={e => buttonClickHandler(e.target.name)}
-        >
-          *
-        </button>
-      </CaculatorButtonRow>
-      <CaculatorButtonRow>
-        <button name="4" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-          4
-        </button>
-        <button name="5" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-          5
-        </button>
-        <button name="6" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-          6
-        </button>
-        <button
-          className="rightButton"
-          name="plus"
-          type="button"
-          onClick={e => buttonClickHandler(e.target.name)}
-        >
-          +
-        </button>
-      </CaculatorButtonRow>
-      <CaculatorButtonRow>
-        <button name="7" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-          7
-        </button>
-        <button name="8" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-          8
-        </button>
-        <button name="9" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-          9
-        </button>
-        <button
-          className="rightButton"
-          name="minus"
-          type="button"
-          onClick={e => buttonClickHandler(e.target.name)}
-        >
-          -
-        </button>
-      </CaculatorButtonRow>
-      <CaculatorButtonRow>
-        <button
-          className="flex2"
-          name="0"
-          type="button"
-          onClick={e => buttonClickHandler(e.target.name)}
-        >
-          0
-        </button>
+    <BackgroundContainer>
+      <CalculatorContainer>
+        <ContentsMenubar
+          data={{ result, tempResult, pressedOperator, isFirstNumberTyping }}
+          name="calculator"
+        ></ContentsMenubar>
+        <Title>
+          {tempResult + (pressedOperator === 'equal' ? '' : pressedOperator) || 'Calculator'}
+        </Title>
+        <ResultContainer>
+          <ResultText>Result</ResultText>
+          <ResultNumber>{result}</ResultNumber>
+        </ResultContainer>
+        <CaculatorButtonRow>
+          <button
+            className="topButton"
+            name="reset"
+            type="button"
+            onClick={e => buttonClickHandler(e.target.name)}
+          >
+            reset
+          </button>
+          <button
+            className="topButton"
+            name="delete"
+            type="button"
+            onClick={e => buttonClickHandler(e.target.name)}
+          >
+            delete
+          </button>
+          <button
+            className="topButton"
+            name="toggleSign"
+            type="button"
+            onClick={e => buttonClickHandler(e.target.name)}
+          >
+            ±
+          </button>
+          <button
+            className="rightButton"
+            name="divide"
+            type="button"
+            onClick={e => buttonClickHandler(e.target.name)}
+          >
+            /
+          </button>
+        </CaculatorButtonRow>
+        <CaculatorButtonRow>
+          <button name="1" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+            1
+          </button>
+          <button name="2" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+            2
+          </button>
+          <button name="3" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+            3
+          </button>
+          <button
+            className="rightButton"
+            name="multiple"
+            type="button"
+            onClick={e => buttonClickHandler(e.target.name)}
+          >
+            *
+          </button>
+        </CaculatorButtonRow>
+        <CaculatorButtonRow>
+          <button name="4" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+            4
+          </button>
+          <button name="5" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+            5
+          </button>
+          <button name="6" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+            6
+          </button>
+          <button
+            className="rightButton"
+            name="plus"
+            type="button"
+            onClick={e => buttonClickHandler(e.target.name)}
+          >
+            +
+          </button>
+        </CaculatorButtonRow>
+        <CaculatorButtonRow>
+          <button name="7" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+            7
+          </button>
+          <button name="8" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+            8
+          </button>
+          <button name="9" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+            9
+          </button>
+          <button
+            className="rightButton"
+            name="minus"
+            type="button"
+            onClick={e => buttonClickHandler(e.target.name)}
+          >
+            -
+          </button>
+        </CaculatorButtonRow>
+        <CaculatorButtonRow>
+          <button
+            className="flex2"
+            name="0"
+            type="button"
+            onClick={e => buttonClickHandler(e.target.name)}
+          >
+            0
+          </button>
 
-        <button name="period" type="button" onClick={e => buttonClickHandler(e.target.name)}>
-          .
-        </button>
+          <button name="period" type="button" onClick={e => buttonClickHandler(e.target.name)}>
+            .
+          </button>
 
-        <button
-          className="rightButton"
-          name="equal"
-          type="button"
-          onClick={e => buttonClickHandler(e.target.name)}
-        >
-          =
-        </button>
-      </CaculatorButtonRow>
-    </CalculatorContainer>
+          <button
+            className="rightButton"
+            name="equal"
+            type="button"
+            onClick={e => buttonClickHandler(e.target.name)}
+          >
+            =
+          </button>
+        </CaculatorButtonRow>
+      </CalculatorContainer>
+    </BackgroundContainer>
   )
 }
 
