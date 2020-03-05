@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import ContentsMenubar from '../ContentsMenubar'
 
@@ -113,6 +113,38 @@ const Layout = () => {
   const [imageNumber, setImageNumber] = useState(0)
   const [result_arr, setResult_arr] = useState([])
 
+  useEffect(() => {
+    window.addEventListener('scroll', throttle(onScroll, 3000))
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+    }
+  }, [searchingName, result_arr])
+
+  function throttle(fn, wait) {
+    var time = Date.now()
+    return function() {
+      if (time + wait - Date.now() < 0) {
+        fn()
+        time = Date.now()
+      }
+    }
+  }
+
+  const onScroll = () => {
+    // console.log(
+    //   window.scrollY, // 현재 스크롤 위치
+    //   document.documentElement.clientHeight, // 브라우저 화면 높이
+    //   document.documentElement.scrollHeight - 300 // 현재 페이지 총 길이
+    // )
+    if (
+      window.scrollY + document.documentElement.clientHeight >
+      document.documentElement.scrollHeight - 260
+    ) {
+      // setPage(String(page === '' ? 2 : Number(page) + 1))
+      crawling()
+    }
+  }
+
   const submitHandler = e => {
     e.preventDefault()
     crawling()
@@ -120,11 +152,9 @@ const Layout = () => {
 
   const crawling = () => {
     const cheerio = require('cheerio')
-
-    console.log('searchingName', searchingName)
-    fetch(
-      `https://cors-anywhere.herokuapp.com/https://wall.alphacoders.com/search.php?search=${searchingName}&page=${page}`
-    )
+    const url = `https://cors-anywhere.herokuapp.com/https://wall.alphacoders.com/search.php?search=${searchingName}&page=${page}`
+    console.log(url)
+    fetch(url)
       .then(res => {
         return res.text()
       })
