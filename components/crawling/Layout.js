@@ -206,7 +206,7 @@ class Layout extends Component {
           this.setState({
             result_arr: this.state.result_arr.concat(json),
             imageMaxNumber: maxNum,
-            imageNumber: this.state.imageNumber + 60
+            imageNumber: this.state.imageNumber + 30
           })
         }
       })
@@ -283,9 +283,13 @@ class Layout extends Component {
             </div>
             <div
               onClick={() => {
-                this.setState({
-                  gridmode: 10
-                })
+                this.setState(
+                  {
+                    gridmode: 10,
+                    page: this.state.page + 1
+                  },
+                  () => this.crawling()
+                )
               }}
             >
               10개씩보기
