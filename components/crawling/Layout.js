@@ -111,6 +111,7 @@ const ButtonContainer = styled.div`
 const ContentsContainer = styled.div`
   position: relative;
   margin-top: 20px;
+  height: 100vh;
 `
 
 class Layout extends Component {
