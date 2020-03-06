@@ -206,7 +206,7 @@ class Layout extends Component {
           this.setState({
             result_arr: this.state.result_arr.concat(json),
             imageMaxNumber: maxNum,
-            imageNumber: this.state.imageNumber + 30
+            imageNumber: this.state.imageNumber + 60
           })
         }
       })
