@@ -7,7 +7,7 @@ const IndexContainer = styled.div`
   display: flex;
   width: 90vw;
   height: 90vh;
-  margin: 10px 10px 10px 10px;
+  margin: 40px 10px 10px 10px;
   flex-wrap: wrap;
 `
 
