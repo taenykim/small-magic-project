@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import ContentsMenubar from '../ContentsMenubar'
+
+const _ = require('lodash')
 
 const BackgroundContainer = styled.div`
   display: flex;
@@ -19,6 +21,7 @@ const CrawlingContainer = styled.div`
   align-items: center;
   top: 0;
   width: 100vw;
+  z-index: 4;
 `
 
 const PageView = styled.div`
@@ -72,6 +75,7 @@ const SearchingInput = styled.input`
 `
 
 const DescriptionContainer = styled.div`
+  z-index: -1;
   color: black;
   font-family: 'escore4';
   font-size: 10px;
@@ -89,13 +93,15 @@ const DescriptionContainer = styled.div`
 `
 
 const ButtonContainer = styled.div`
-  color: #333;
+  color: black;
   display: flex;
+  text-shadow: 1px 1px white;
 
   & > div {
     font-family: 'escore6';
     background: none;
-    border: 2px solid #333;
+    border: 2px solid black;
+    box-shadow: 1px 1px white;
     padding: 4px;
     margin: 2px;
     cursor: pointer;
@@ -107,53 +113,57 @@ const ContentsContainer = styled.div`
   margin-top: 20px;
 `
 
-const Layout = () => {
-  const [searchingName, setSearchingName] = useState('')
-  const [page, setPage] = useState('')
-  const [imageNumber, setImageNumber] = useState(0)
-  const [result_arr, setResult_arr] = useState([])
-
-  useEffect(() => {
-    window.addEventListener('scroll', throttle(onScroll, 3000))
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-    }
-  }, [searchingName, result_arr])
-
-  function throttle(fn, wait) {
-    var time = Date.now()
-    return function() {
-      if (time + wait - Date.now() < 0) {
-        fn()
-        time = Date.now()
-      }
-    }
+class Layout extends Component {
+  state = {
+    searchingName: '',
+    page: 1,
+    imageNumber: 0,
+    imageMaxNumber: 0,
+    gridmode: 4,
+    result_arr: []
   }
 
-  const onScroll = () => {
-    // console.log(
-    //   window.scrollY, // 현재 스크롤 위치
-    //   document.documentElement.clientHeight, // 브라우저 화면 높이
-    //   document.documentElement.scrollHeight - 300 // 현재 페이지 총 길이
-    // )
-    if (
-      window.scrollY + document.documentElement.clientHeight >
-      document.documentElement.scrollHeight - 260
-    ) {
-      // setPage(String(page === '' ? 2 : Number(page) + 1))
-      crawling()
-    }
+  componentDidMount() {
+    window.addEventListener(
+      'scroll',
+      _.debounce(() => {
+        // console.log('imageNumber', imageNumber)
+        // console.log('imagemaxnumber', imageMaxNumber)
+        if (
+          window.scrollY + document.documentElement.clientHeight >
+            document.documentElement.scrollHeight - 260 &&
+          this.state.imageMaxNumber >= this.state.imageNumber
+        ) {
+          this.setState(
+            {
+              page: this.state.page + 1
+            },
+            () => this.crawling()
+          )
+        }
+      }, 1000)
+    )
   }
 
-  const submitHandler = e => {
+  submitHandler = e => {
     e.preventDefault()
-    crawling()
+    this.setState(
+      {
+        result_arr: [],
+        imageNumber: 0,
+        imageMaxNumber: 0,
+        page: 1
+      },
+      () => {
+        this.crawling()
+      }
+    )
   }
 
-  const crawling = () => {
+  crawling = () => {
     const cheerio = require('cheerio')
-    const url = `https://cors-anywhere.herokuapp.com/https://wall.alphacoders.com/search.php?search=${searchingName}&page=${page}`
-    console.log(url)
+    const url = `https://cors-anywhere.herokuapp.com/https://wall.alphacoders.com/search.php?search=${this.state.searchingName}&page=${this.state.page}`
+    // console.log(url)
     fetch(url)
       .then(res => {
         return res.text()
@@ -164,7 +174,7 @@ const Layout = () => {
           id,
           link,
           img
-        const image_max_number = Number(
+        const maxNum = Number(
           $('#page_container > h1')
             .text()
             .split(' ')[8]
@@ -192,68 +202,119 @@ const Layout = () => {
             json.push({ id: id, link: link, img: img })
           })
         }
-        console.log('json', json)
-        setResult_arr(result_arr.concat(json))
-        setImageNumber(imageNumber + 30)
+        if (this.state.imageMaxNumber >= this.state.imageNumber) {
+          this.setState({
+            result_arr: this.state.result_arr.concat(json),
+            imageMaxNumber: maxNum,
+            imageNumber: this.state.imageNumber + 30
+          })
+        }
       })
       .catch(error => console.log(error))
   }
-
-  return (
-    <BackgroundContainer>
-      <CrawlingContainer>
-        <ContentsMenubar style={{ position: 'fixed', top: '0px', left: '0px' }} name="crawling" />
-        <PageView>1/1</PageView>
-        <SearchingContainer>
-          <SearchIcon src="search_icon.png" />
-          <SearchingForm onSubmit={submitHandler}>
-            <SearchingInput
-              autoFocus
-              name="searchingName"
-              type="text"
-              placeholder="keyword"
-              onChange={e => {
-                setSearchingName(e.target.value)
+  render() {
+    return (
+      <BackgroundContainer>
+        <CrawlingContainer>
+          <ContentsMenubar name="crawling" />
+          <PageView>
+            {this.state.imageNumber <= this.state.imageMaxNumber ? (
+              <>{this.state.imageNumber + '/' + this.state.imageMaxNumber}</>
+            ) : (
+              <>Last</>
+            )}
+          </PageView>
+          <SearchingContainer>
+            <SearchIcon src="search_icon.png" />
+            <SearchingForm onSubmit={this.submitHandler}>
+              <SearchingInput
+                autoFocus
+                name="searchingName"
+                type="text"
+                placeholder="keyword"
+                onChange={e => {
+                  this.setState({
+                    searchingName: e.target.value
+                  })
+                }}
+                value={this.state.searchingName}
+              ></SearchingInput>
+            </SearchingForm>
+          </SearchingContainer>
+          <DescriptionContainer>
+            <div>
+              데스크탑 이용 시,{' '}
+              <span style={{ color: 'blue', fontFamily: 'escore7' }}>width가 1070 이상</span>이어야
+              원활한 사용이 가능합니다.
+            </div>
+            <div>
+              검색어는 <span style={{ color: 'red', fontFamily: 'escore7' }}>영어</span>로
+              입력하세요.
+            </div>
+            <div>
+              FROM{' '}
+              <a
+                style={{ fontFamily: 'escore7' }}
+                href="https://wall.alphacoders.com/"
+                target="_blank"
+              >
+                alphacoders.com
+              </a>
+            </div>
+          </DescriptionContainer>
+          <ButtonContainer>
+            <div
+              onClick={() => {
+                this.setState({
+                  gridmode: 2
+                })
               }}
-              value={searchingName}
-            ></SearchingInput>
-          </SearchingForm>
-        </SearchingContainer>
-        <DescriptionContainer>
-          <div>
-            데스크탑 이용 시,{' '}
-            <span style={{ color: 'blue', fontFamily: 'escore7' }}>width가 1070 이상</span>이어야
-            원활한 사용이 가능합니다.
-          </div>
-          <div>
-            검색어는 <span style={{ color: 'red', fontFamily: 'escore7' }}>영어</span>로 입력하세요.
-          </div>
-          <div>
-            FROM{' '}
-            <a
-              style={{ fontFamily: 'escore7' }}
-              href="https://wall.alphacoders.com/"
-              target="_blank"
             >
-              alphacoders.com
-            </a>
-          </div>
-        </DescriptionContainer>
-        <ButtonContainer>
-          <div onClick={() => {}}>2개씩보기</div>
-          <div onClick={() => {}}>4개씩보기</div>
-          <div onClick={() => {}}>10개씩보기</div>
-        </ButtonContainer>
-      </CrawlingContainer>
-      <ContentsContainer>
-        {result_arr.map((item, i) => (
-          <a key={i} href={'https://wall.alphacoders.com/' + item.link} target="_blank">
-            <img style={{ width: '25%' }} src={item.img} className="grid-item"></img>
-          </a>
-        ))}
-      </ContentsContainer>
-    </BackgroundContainer>
-  )
+              2개씩보기
+            </div>
+            <div
+              onClick={() => {
+                this.setState({
+                  gridmode: 4
+                })
+              }}
+            >
+              4개씩보기
+            </div>
+            <div
+              onClick={() => {
+                this.setState({
+                  gridmode: 10
+                })
+              }}
+            >
+              10개씩보기
+            </div>
+          </ButtonContainer>
+        </CrawlingContainer>
+        <ContentsContainer>
+          {this.state.gridmode === 2 &&
+            this.state.result_arr.map((item, i) => (
+              <a key={i} href={'https://wall.alphacoders.com/' + item.link} target="_blank">
+                <img style={{ width: '50%' }} src={item.img}></img>
+              </a>
+            ))}
+          {this.state.gridmode === 4 &&
+            this.state.result_arr.map((item, i) => (
+              <a key={i} href={'https://wall.alphacoders.com/' + item.link} target="_blank">
+                <img style={{ width: '25%' }} src={item.img}></img>
+              </a>
+            ))}
+          {this.state.gridmode === 10 &&
+            this.state.result_arr.map((item, i) => (
+              <a key={i} href={'https://wall.alphacoders.com/' + item.link} target="_blank">
+                <img style={{ width: '10%' }} src={item.img}></img>
+              </a>
+            ))}
+        </ContentsContainer>
+      </BackgroundContainer>
+    )
+  }
 }
 
 export default Layout

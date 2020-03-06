@@ -13,6 +13,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "immer": "^5.3.6",
+    "lodash": "^4.17.15",
     "next": "^9.2.2",
     "next-redux-wrapper": "^5.0.0",
     "react": "^16.12.0",
