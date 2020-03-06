@@ -34,6 +34,10 @@ const index = () => {
           <AppIcon name="crawling" />
           <AppName name="crawling" />
         </AppContainer>
+        <AppContainer>
+          <AppIcon name="today" />
+          <AppName name="today" />
+        </AppContainer>
       </IndexContainer>
     </>
   )
