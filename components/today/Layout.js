@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Weather from './weather'
+import Weather from './Weather'
 import Clock from './Clock'
 import ContentsMenubar from '../ContentsMenubar'
 
