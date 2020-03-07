@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import Weather from './weather'
+import Clock from './Clock'
 
 const BackgroundContainer = styled.div`
   display: flex;
@@ -15,7 +17,8 @@ const BackgroundContainer = styled.div`
 const Layout = () => {
   return (
     <BackgroundContainer>
-      <div>오늘</div>
+      <Clock />
+      <Weather />
     </BackgroundContainer>
   )
 }
