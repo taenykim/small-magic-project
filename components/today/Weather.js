@@ -15,7 +15,7 @@ const Weather = () => {
 
   const weather_clock = () => {
     const url =
-      'http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=5a852cca928001166e0c28dca72c5987'
+      'https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=5a852cca928001166e0c28dca72c5987'
     fetch(url)
       .then(res => {
         return res.json()
