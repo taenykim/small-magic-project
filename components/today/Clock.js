@@ -33,10 +33,10 @@ const Clock = () => {
 
   return (
     <>
-      <div>
+      <div style={{ marginTop: '5px', fontSize: '18px', fontFamily: 'escore7' }}>
         {year}년 {month + 1}월 {day}일 {weekArr[week]}요일
       </div>
-      <div style={{ marginTop: '10px', fontSize: '40px' }}>
+      <div style={{ marginTop: '10px', fontSize: '60px' }}>
         {hours < 10 ? `0${hours}` : hours}:{minutes < 10 ? `0${minutes}` : minutes}:
         {seconds < 10 ? `0${seconds}` : seconds}
       </div>
