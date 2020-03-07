@@ -3,10 +3,14 @@ import styled from 'styled-components'
 import AppIcon from '../components/AppIcon'
 import AppName from '../components/AppName'
 
+const BackgroundContainer = styled.div`
+  background: #f5f6f7;
+  height: 100vh;
+`
+
 const IndexContainer = styled.div`
   display: flex;
   width: 90vw;
-  height: 90vh;
   margin: 40px 10px 10px 10px;
   flex-wrap: wrap;
 `
@@ -16,11 +20,12 @@ const AppContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 5px 20px 10px 20px;
+  height: fit-content;
 `
 
 const index = () => {
   return (
-    <>
+    <BackgroundContainer>
       <IndexContainer>
         <AppContainer>
           <AppIcon name="calculator" />
@@ -39,7 +44,7 @@ const index = () => {
           <AppName name="today" />
         </AppContainer>
       </IndexContainer>
-    </>
+    </BackgroundContainer>
   )
 }
 
