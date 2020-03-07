@@ -21,7 +21,7 @@ const TodayContainer = styled.div`
   align-items: center;
   border-radius: 3px;
   box-shadow: -4px -2px 4px 0px white, 4px 2px 6px 0px #dfe4ea;
-  padding: 12px 40px 60px 40px;
+  padding: 0px 40px 60px 40px;
 `
 
 const Layout = () => {

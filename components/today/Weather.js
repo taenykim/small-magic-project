@@ -32,9 +32,13 @@ const Weather = () => {
   }
 
   return (
-    <div style={{ marginTop: '10px', fontSize: '10px' }}>
-      현재온도 : {temp}, 현재습도 : {humidity}, 날씨 : {weather}, {country}, {city}, 구름 : {cloud}
-    </div>
+    <>
+      <div style={{ marginTop: '10px', fontSize: '10px' }}>
+        현재온도 : {temp}, 현재습도 : {humidity}, 날씨 : {weather}, {country}, {city}, 구름 :{' '}
+        {cloud}
+      </div>
+      <div style={{ marginTop: '10px', fontSize: '10px' }}>현재 날씨 API error code : 429</div>
+    </>
   )
 }
 
