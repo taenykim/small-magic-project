@@ -14,21 +14,21 @@ const Weather = () => {
   })
 
   const weather_clock = () => {
-    const url =
-      //   'http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=5a852cca928001166e0c28dca72c5987'
-      fetch(url)
-        .then(res => {
-          return res.json()
-        })
-        .then(json => {
-          setTemp(json.main.temp - 273.15)
-          setHumidity(json.main.humidity)
-          setWeather(json.weather[0].main)
-          setWeatherIcon(json.weather[0].icon)
-          setCountry(json.sys.country)
-          setCity(json.name)
-          setCloud(json.clouds.all + '%')
-        })
+    // const url =
+    //     'http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=5a852cca928001166e0c28dca72c5987'
+    //   fetch(url)
+    //     .then(res => {
+    //       return res.json()
+    //     })
+    //     .then(json => {
+    //       setTemp(json.main.temp - 273.15)
+    //       setHumidity(json.main.humidity)
+    //       setWeather(json.weather[0].main)
+    //       setWeatherIcon(json.weather[0].icon)
+    //       setCountry(json.sys.country)
+    //       setCity(json.name)
+    //       setCloud(json.clouds.all + '%')
+    //     })
   }
 
   return (
