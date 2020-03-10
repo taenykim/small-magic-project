@@ -28,7 +28,7 @@ const Title = styled.p`
   font-size: 12px;
   align-self: center;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 40px;
   color: white;
   background: #555;
   border-radius: 3px;
@@ -187,11 +187,11 @@ const Layout = () => {
 
   return (
     <BackgroundContainer>
+      <ContentsMenubar
+        data={{ result, tempResult, pressedOperator, isFirstNumberTyping }}
+        name="calculator"
+      />
       <CalculatorContainer>
-        <ContentsMenubar
-          data={{ result, tempResult, pressedOperator, isFirstNumberTyping }}
-          name="calculator"
-        ></ContentsMenubar>
         <Title>
           {tempResult + (pressedOperator === 'equal' ? '' : pressedOperator) || 'Calculator'}
         </Title>

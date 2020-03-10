@@ -14,6 +14,7 @@ const BackgroundContainer = styled.div`
 `
 
 const CrawlingContainer = styled.div`
+  margin-top: 60px;
   position: sticky;
   display: flex;
   flex-direction: column;
@@ -214,8 +215,8 @@ class Layout extends Component {
   render() {
     return (
       <BackgroundContainer>
+        <ContentsMenubar name="crawling" />
         <CrawlingContainer>
-          <ContentsMenubar name="crawling" />
           <PageView>
             {this.state.imageNumber <= this.state.imageMaxNumber ? (
               <>{this.state.imageNumber + '/' + this.state.imageMaxNumber}</>

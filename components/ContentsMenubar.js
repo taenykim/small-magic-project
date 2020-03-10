@@ -8,7 +8,7 @@ import { DOCKER_STORE, DOCKER_DELETE } from '../reducers/wrapper'
 
 const ContentsMenubarContainer = styled.div`
   display: flex;
-  z-index: 10;
+  z-index: 1;
   align-items: center;
   width: 100%;
   height: 60px;
@@ -18,6 +18,7 @@ const ContentsMenubarContainer = styled.div`
     height: 17px;
   }
   background: #f5f6f7;
+  position: absolute;
 `
 
 const ImageContainer = styled.div`

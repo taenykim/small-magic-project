@@ -197,8 +197,8 @@ const Layout = () => {
 
   return (
     <BackgroundContainer>
+      <ContentsMenubar data={{ graphData, country, population }} name="graph" />
       <GraphContainer>
-        <ContentsMenubar data={{ graphData, country, population }} name="graph" />
         <div
           style={{
             width: '100%',
