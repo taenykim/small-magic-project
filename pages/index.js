@@ -43,6 +43,10 @@ const index = () => {
           <AppIcon name="today" />
           <AppName name="today" />
         </AppContainer>
+        <AppContainer>
+          <AppIcon name="jjal" />
+          <AppName name="jjal" />
+        </AppContainer>
       </IndexContainer>
     </BackgroundContainer>
   )
