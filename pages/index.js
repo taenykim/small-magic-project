@@ -47,6 +47,10 @@ const index = () => {
           <AppIcon name="jjal" />
           <AppName name="jjal" />
         </AppContainer>
+        <AppContainer>
+          <AppIcon name="avengers" />
+          <AppName name="avengers" />
+        </AppContainer>
       </IndexContainer>
     </BackgroundContainer>
   )

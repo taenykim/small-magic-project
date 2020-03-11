@@ -18,6 +18,7 @@ const AppIconContainer = styled.div`
     else if (props.name === 'crawling') return 'purple'
     else if (props.name === 'today') return 'orange'
     else if (props.name === 'jjal') return 'green'
+    else if (props.name === 'avengers') return 'navy'
     else return 'black'
   }};
 
