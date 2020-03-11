@@ -121,8 +121,8 @@ const Layout = () => {
   useEffect(() => {
     var canvas = document.getElementById('imageCanvas')
     const ctx = canvas.getContext('2d')
-    ctx.textAlign = 'center' // 가로 가운데 정렬
-    ctx.textBaseline = 'middle' // 세로 가운데 정렬
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
     ctx.font = `${textFontSize}px Gulim`
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     if (imageOn) {
@@ -175,10 +175,6 @@ const Layout = () => {
     reader.readAsDataURL(e.target.files[0])
   }
 
-  const textChangeHandler = e => {
-    setText(e.target.value)
-  }
-
   return (
     <BackgroundContainer>
       <ContentsMenubar
@@ -198,11 +194,11 @@ const Layout = () => {
 
           <canvas id="imageCanvas"></canvas>
         </JJalForm>
-        {/* {text} */}
         <input
-          onChange={textChangeHandler}
+          onChange={e => {
+            setText(e.target.value)
+          }}
           type="text"
-          size="40"
           value={text}
           placeholder="문구를 입력하세요"
         />
