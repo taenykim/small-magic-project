@@ -2,7 +2,7 @@
 
 ## 프로젝트 사이트
 
-[사이트 ](https://small-magic-project.now.sh/)
+[사이트 링크](https://small-magic-project.now.sh/)
 
 ## 제작노트
 
