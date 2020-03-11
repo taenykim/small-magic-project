@@ -184,7 +184,7 @@ const Layout = () => {
         <JJalForm>
           <div>
             <label htmlFor="imageLoader">사진 업로드</label>
-            <a href={downloadHref} download="sample.png">
+            <a href={downloadHref} download="jjalbang.png">
               짤방 다운로드
             </a>
           </div>
