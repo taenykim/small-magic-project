@@ -35,21 +35,21 @@ const BackgroundContainer = styled.div`
 const Layout = () => {
   const [dndData, setDndData] = useState(initialData)
 
+  const onDrageStartHandler = () => {
+    document.body.style.color = 'orange'
+    document.body.style.transition = 'background-color 0.2s ease'
+  }
+
+  const onDrageUpdateHandler = update => {
+    const { destination } = update
+    const opacity = destination ? destination.index / Object.keys(dndData.tasks).length : 0
+    document.body.style.background = `rgba(153,141,217,${opacity})`
+  }
+
   const onDrageEndHandler = result => {
-    // TODO: reorder our column
-    // const result = {
-    //     draggableId: 'task-1',
-    //     type: 'TYPE',
-    //     reason: 'DROP',
-    //     source: {
-    //       droppableId: 'column-1',
-    //       index: 0
-    //     },
-    //     destination: {
-    //       droppableId: 'column-1',
-    //       index: 1
-    //     }
-    //   }
+    document.body.style.color = 'inherit'
+    document.body.style.background = 'inherit'
+
     const { destination, source, draggableId } = result
     if (!destination) {
       return
@@ -74,10 +74,15 @@ const Layout = () => {
     }
     setDndData(newDndData)
   }
+
   return (
     <BackgroundContainer>
       <ContentsMenubar name="avengers" />
-      <DragDropContext onDragEnd={onDrageEndHandler}>
+      <DragDropContext
+        onDragStart={onDrageStartHandler}
+        onDragUpdate={onDrageUpdateHandler}
+        onDragEnd={onDrageEndHandler}
+      >
         {dndData.columnOrder.map(columnId => {
           const column = dndData.columns[columnId]
           const tasks = column.taskIds.map(taskId => dndData.tasks[taskId])
