@@ -3,7 +3,8 @@ export const initialState = {
   imageOn: '',
   imageOnWidth: '',
   imageOnHeight: '',
-  downloadHref: ''
+  downloadHref: '',
+  textFontSize: ''
 }
 
 export const STORE_JJAL_DATA = 'STORE_JJAL_DATA'
@@ -18,7 +19,8 @@ export default (state = initialState, action) => {
         imageOn: action.data.imageOn,
         imageOnWidth: action.data.imageOnWidth,
         imageOnHeight: action.data.imageOnHeight,
-        downloadHref: action.data.downloadHref
+        downloadHref: action.data.downloadHref,
+        textFontSize: action.data.textFontSize
       }
     }
     case STORE_RESET_JJAL: {
@@ -27,7 +29,8 @@ export default (state = initialState, action) => {
         imageOn: '',
         imageOnWidth: '',
         imageOnHeight: '',
-        downloadHref: ''
+        downloadHref: '',
+        textFontSize: ''
       }
     }
 

@@ -35,8 +35,11 @@ const JJalContainer = styled.div`
     border: 0px;
     width: 80vw;
     margin-top: 30px;
-    margin-bottom: 100px;
+    margin-bottom: 30px;
     max-width: 600px;
+  }
+  & > div {
+    margin-bottom: 100px;
   }
 `
 
@@ -113,13 +116,14 @@ const Layout = () => {
   const [imageOnWidth, setImageOnWidth] = useState(data.imageOnWidth || '')
   const [imageOnHeight, setImageOnHeight] = useState(data.imageOnHeight || '')
   const [downloadHref, setDownloadHref] = useState(data.downloadHref || '')
+  const [textFontSize, setTextFontSize] = useState('20')
 
   useEffect(() => {
     var canvas = document.getElementById('imageCanvas')
     const ctx = canvas.getContext('2d')
     ctx.textAlign = 'center' // 가로 가운데 정렬
     ctx.textBaseline = 'middle' // 세로 가운데 정렬
-    ctx.font = '20px Gulim'
+    ctx.font = `${textFontSize}px Gulim`
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     if (imageOn) {
       ctx.drawImage(imageOn, 0, 0, imageOnWidth, imageOnHeight)
@@ -129,9 +133,9 @@ const Layout = () => {
     }
     ctx.lineWidth = 5
     ctx.strokeStyle = `black`
-    ctx.strokeText(text, canvas.width / 2, canvas.height - 30)
+    ctx.strokeText(text, canvas.width / 2, canvas.height - 40)
     ctx.fillStyle = `white`
-    ctx.fillText(text, canvas.width / 2, canvas.height - 30)
+    ctx.fillText(text, canvas.width / 2, canvas.height - 40)
 
     const href = canvas.toDataURL()
     setDownloadHref(href)
@@ -185,7 +189,7 @@ const Layout = () => {
     <BackgroundContainer>
       <ContentsMenubar
         name="jjal"
-        data={{ text, imageOn, imageOnWidth, imageOnHeight, downloadHref }}
+        data={{ text, imageOn, imageOnWidth, imageOnHeight, downloadHref, textFontSize }}
       />
       <JJalContainer>
         <JJalForm>
@@ -208,6 +212,26 @@ const Layout = () => {
           value={text}
           placeholder="문구를 입력하세요"
         />
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <label
+            style={{ marginRight: '10px', fontFamily: 'escore7', fontSize: '12px', color: '#555' }}
+            htmlFor="textFontSize"
+          >
+            글자 크기
+          </label>
+
+          <select
+            id="textFontSize"
+            onChange={e => {
+              setTextFontSize(e.target.value)
+            }}
+          >
+            <option value="20">20</option>
+            <option value="28">28</option>
+            <option value="36">36</option>
+            <option value="44">44</option>
+          </select>
+        </div>
       </JJalContainer>
     </BackgroundContainer>
   )
