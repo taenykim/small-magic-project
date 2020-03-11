@@ -8,7 +8,7 @@ const BackgroundContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  margin-top:60px;
+  margin-top:70px;
   }};
   background: #f5f6f7;
 `
@@ -22,9 +22,20 @@ const JJalContainer = styled.div`
     border: 2px solid pink;
     border-radius: 3px;
   }
-  & > a {
-    margin-top: 10px;
+  & > input {
+    font-size: 12px;
+    font-family: escore6;
+    color: white;
+    background: #555;
+    padding-left: 10px;
+    width: 220px;
+    height: 30px;
+    border-radius: 5px;
+    border: 0px;
+    width: 80vw;
+    margin-top: 30px;
     margin-bottom: 100px;
+    max-width: 600px;
   }
 `
 
@@ -33,9 +44,66 @@ const JJalForm = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  & > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px;
+
+    & > label {
+      font-size: 12px;
+      font-family: escore6;
+      color: purple;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 220px;
+      height: 30px;
+      box-sizing: border-box;
+      box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #ddd;
+      border-radius: 5px;
+      background: #f5f6f7;
+      cursor: pointer;
+      margin: 10px;
+    }
+    & > label:active {
+      box-shadow: 2px 2px 2px 0px #dfe4ea inset, -2px -2px 2px 0px white inset;
+    }
+    & > a {
+      font-size: 12px;
+      font-family: escore6;
+      color: orange;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 220px;
+      height: 30px;
+      box-sizing: border-box;
+      box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #ddd;
+      border-radius: 5px;
+      background: #f5f6f7;
+      cursor: pointer;
+      text-decoration: none;
+      margin: 10px;
+    }
+    & > a:active {
+      box-shadow: 2px 2px 2px 0px #dfe4ea inset, -2px -2px 2px 0px white inset;
+    }
+  }
+
+  & > canvas {
+    width: 90%;
+  }
 `
 
 const Layout = () => {
+  const [text, setText] = useState('welcome to my page')
+  const [imageOn, setImageOn] = useState('')
+  const [imageOnWidth, setImageOnWidth] = useState('')
+  const [imageOnHeight, setImageOnHeight] = useState('')
+  const [downloadHref, setDownloadHref] = useState('')
+
   useEffect(() => {
     var canvas = document.getElementById('imageCanvas')
     const ctx = canvas.getContext('2d')
@@ -45,6 +113,9 @@ const Layout = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     if (imageOn) {
       ctx.drawImage(imageOn, 0, 0, imageOnWidth, imageOnHeight)
+    } else {
+      ctx.fillStyle = 'dodgerblue'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
     }
     ctx.lineWidth = 5
     ctx.strokeStyle = `black`
@@ -55,12 +126,6 @@ const Layout = () => {
     const href = canvas.toDataURL()
     setDownloadHref(href)
   })
-
-  const [text, setText] = useState('짤 문구입력')
-  const [imageOn, setImageOn] = useState('')
-  const [imageOnWidth, setImageOnWidth] = useState('')
-  const [imageOnHeight, setImageOnHeight] = useState('')
-  const [downloadHref, setDownloadHref] = useState('')
 
   const handleImage = e => {
     var canvas = document.getElementById('imageCanvas')
@@ -111,14 +176,24 @@ const Layout = () => {
       <ContentsMenubar name="jjal" />
       <JJalContainer>
         <JJalForm>
-          <input type="file" id="imageLoader" name="imageLoader" onChange={handleImage} />
+          <div>
+            <label for="imageLoader">사진 업로드</label>
+            <a href={downloadHref} download="sample.png">
+              짤방 다운로드
+            </a>
+          </div>
+          <input type="file" id="imageLoader" name="imageLoader" hidden onChange={handleImage} />
+
           <canvas id="imageCanvas"></canvas>
         </JJalForm>
         {/* {text} */}
-        <input onChange={textChangeHandler} type="text" size="40" value={text} />
-        <a href={downloadHref} download="sample.png">
-          Download
-        </a>
+        <input
+          onChange={textChangeHandler}
+          type="text"
+          size="40"
+          value={text}
+          placeholder="문구를 입력하세요"
+        />
       </JJalContainer>
     </BackgroundContainer>
   )
