@@ -145,23 +145,19 @@ const Layout = () => {
     var canvas = document.getElementById('imageCanvas')
     var ctx = canvas.getContext('2d')
     var reader = new FileReader()
-    // onload 의 실행시점!
     reader.onload = event => {
       var img = new Image()
       img.onload = () => {
         let max_size = 1280,
-          // 최대 기준
           width = img.width,
           height = img.height
 
         if (width > height) {
-          // 가로가 길 경우
           if (width > max_size) {
             height *= max_size / width
             width = max_size
           }
         } else {
-          // 세로가 길 경우
           if (height > max_size) {
             width *= max_size / height
             height = max_size
@@ -174,11 +170,9 @@ const Layout = () => {
         setImageOnHeight(height)
       }
       img.src = event.target.result
-      console.log('result', event.target.result)
       setImageOn(img)
     }
     reader.readAsDataURL(e.target.files[0])
-    console.log('files[0]', e.target.files[0])
   }
 
   const textChangeHandler = e => {
