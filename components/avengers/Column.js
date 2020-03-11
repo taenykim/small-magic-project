@@ -7,6 +7,10 @@ const Container = styled.div`
   margin: 8px;
   border: 1px solid lightgrey;
   border-radius: 2px;
+  width: 25vw;
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
 `
 const Title = styled.div`
   font-size: 20px;
