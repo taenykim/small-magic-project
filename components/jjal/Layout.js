@@ -46,6 +46,13 @@ const JJalForm = styled.form`
   justify-content: center;
   align-items: center;
 
+  & > p {
+    font-size: 12px;
+    font-family: escore7;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
   & > div {
     display: flex;
     flex-wrap: wrap;
@@ -138,7 +145,7 @@ const Layout = () => {
     reader.onload = event => {
       var img = new Image()
       img.onload = () => {
-        let max_size = 800,
+        let max_size = 1280,
           // 최대 기준
           width = img.width,
           height = img.height
@@ -182,8 +189,9 @@ const Layout = () => {
       />
       <JJalContainer>
         <JJalForm>
+          <p>이미지는 width 1280 이하로 리사이징 됩니다.</p>
           <div>
-            <label htmlFor="imageLoader">사진 업로드</label>
+            <label htmlFor="imageLoader">이미지 업로드</label>
             <a href={downloadHref} download="jjalbang.png">
               짤방 다운로드
             </a>
