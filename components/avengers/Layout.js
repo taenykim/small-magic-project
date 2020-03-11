@@ -41,12 +41,23 @@ const BackgroundContainer = styled.div`
   background: #f5f6f7;
 `
 
+const Description = styled.div`
+  margin-bottom: 20px;
+  font-family: escore6;
+  font-size: 13px;
+  color: white;
+  background: orange;
+  width: 100vw;
+  text-align: center;
+  padding: 4px 0px 4px 0px;
+`
+
 const TopContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
   width: 100vw;
-  height: 400px;
+  height: 480px;
 `
 
 const BottomContainer = styled.div`
@@ -142,8 +153,9 @@ const Layout = () => {
 
   return (
     <BackgroundContainer>
+      <ContentsMenubar name="avengers" />
+      <Description>Try Drag & Drop</Description>
       <TopContainer>
-        <ContentsMenubar name="avengers" />
         <DragDropContext
           onDragStart={onDrageStartHandler}
           onDragUpdate={onDrageUpdateHandler}
