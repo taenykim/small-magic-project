@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { STORE_CALCULATOR_DATA, STORE_RESET_CALCULATOR } from '../reducers/calculator'
 import { STORE_GRAPH_DATA, STORE_RESET_GRAPH } from '../reducers/graph'
 import { DOCKER_STORE, DOCKER_DELETE } from '../reducers/wrapper'
+import { STORE_JJAL_DATA, STORE_RESET_JJAL } from '../reducers/jjal'
 
 const ContentsMenubarContainer = styled.div`
   display: flex;
@@ -68,6 +69,17 @@ const ContentsMenubar = ({ data, name }) => {
         })
         return
       }
+      case 'jjal': {
+        dispatch({
+          type: STORE_JJAL_DATA,
+          data: data
+        })
+        dispatch({
+          type: DOCKER_STORE,
+          data: name
+        })
+        return
+      }
       default: {
         dispatch({
           type: DOCKER_STORE,
@@ -93,6 +105,16 @@ const ContentsMenubar = ({ data, name }) => {
       case 'graph': {
         dispatch({
           type: STORE_RESET_GRAPH
+        })
+        dispatch({
+          type: DOCKER_DELETE,
+          data: name
+        })
+        return
+      }
+      case 'jjal': {
+        dispatch({
+          type: STORE_RESET_JJAL
         })
         dispatch({
           type: DOCKER_DELETE,

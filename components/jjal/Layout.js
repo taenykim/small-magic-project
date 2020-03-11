@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import ContentsMenubar from '../ContentsMenubar'
+import { useSelector } from 'react-redux'
 
 const BackgroundContainer = styled.div`
   display: flex;
@@ -98,11 +99,13 @@ const JJalForm = styled.form`
 `
 
 const Layout = () => {
-  const [text, setText] = useState('welcome to my page')
-  const [imageOn, setImageOn] = useState('')
-  const [imageOnWidth, setImageOnWidth] = useState('')
-  const [imageOnHeight, setImageOnHeight] = useState('')
-  const [downloadHref, setDownloadHref] = useState('')
+  const data = useSelector(state => state.jjal)
+
+  const [text, setText] = useState(data.text || 'welcome to my page')
+  const [imageOn, setImageOn] = useState(data.imageOn || '')
+  const [imageOnWidth, setImageOnWidth] = useState(data.imageOnWidth || '')
+  const [imageOnHeight, setImageOnHeight] = useState(data.imageOnHeight || '')
+  const [downloadHref, setDownloadHref] = useState(data.downloadHref || '')
 
   useEffect(() => {
     var canvas = document.getElementById('imageCanvas')
@@ -173,11 +176,14 @@ const Layout = () => {
 
   return (
     <BackgroundContainer>
-      <ContentsMenubar name="jjal" />
+      <ContentsMenubar
+        name="jjal"
+        data={{ text, imageOn, imageOnWidth, imageOnHeight, downloadHref }}
+      />
       <JJalContainer>
         <JJalForm>
           <div>
-            <label for="imageLoader">사진 업로드</label>
+            <label htmlFor="imageLoader">사진 업로드</label>
             <a href={downloadHref} download="sample.png">
               짤방 다운로드
             </a>
