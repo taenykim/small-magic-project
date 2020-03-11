@@ -2,7 +2,7 @@
 
 ## 프로젝트 사이트
 
-[소마법 프로젝트](https://small-magic-project.now.sh/)
+[](https://small-magic-project.now.sh/)
 
 ## 제작노트
 
