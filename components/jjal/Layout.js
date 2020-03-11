@@ -8,7 +8,7 @@ const BackgroundContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height:100vh;
+  margin-top:60px;
   }};
   background: #f5f6f7;
 `
@@ -38,7 +38,7 @@ const Layout = () => {
     ctx.font = '20px Gulim'
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     if (imageOn) {
-      ctx.drawImage(imageOn, 0, 0)
+      ctx.drawImage(imageOn, 0, 0, imageOnWidth, imageOnHeight)
     }
     ctx.lineWidth = 5
     ctx.strokeStyle = `black`
@@ -50,20 +50,43 @@ const Layout = () => {
     setDownloadHref(href)
   })
 
-  const [text, setText] = useState('')
+  const [text, setText] = useState('짤 문구입력')
   const [imageOn, setImageOn] = useState('')
+  const [imageOnWidth, setImageOnWidth] = useState('')
+  const [imageOnHeight, setImageOnHeight] = useState('')
   const [downloadHref, setDownloadHref] = useState('')
 
   const handleImage = e => {
     var canvas = document.getElementById('imageCanvas')
     var ctx = canvas.getContext('2d')
     var reader = new FileReader()
+    // onload 의 실행시점!
     reader.onload = event => {
       var img = new Image()
       img.onload = () => {
-        canvas.width = img.width / 5
-        canvas.height = img.height / 5
-        ctx.drawImage(img, 0, 0)
+        let max_size = 800,
+          // 최대 기준
+          width = img.width,
+          height = img.height
+
+        if (width > height) {
+          // 가로가 길 경우
+          if (width > max_size) {
+            height *= max_size / width
+            width = max_size
+          }
+        } else {
+          // 세로가 길 경우
+          if (height > max_size) {
+            width *= max_size / height
+            height = max_size
+          }
+        }
+        canvas.width = width
+        canvas.height = height
+        ctx.drawImage(img, 0, 0, width, height)
+        setImageOnWidth(width)
+        setImageOnHeight(height)
       }
       img.src = event.target.result
       console.log('result', event.target.result)
@@ -86,7 +109,7 @@ const Layout = () => {
           <canvas id="imageCanvas"></canvas>
         </JJalForm>
         {/* {text} */}
-        <input onChange={textChangeHandler} type="text" size="40" placeholder="Type text here!" />
+        <input onChange={textChangeHandler} type="text" size="40" value={text} />
       </JJalContainer>
       <a href={downloadHref} download="sample.png">
         Download
