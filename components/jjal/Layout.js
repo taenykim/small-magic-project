@@ -16,9 +16,15 @@ const BackgroundContainer = styled.div`
 const JJalContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   & > button {
+    margin-top: 10px;
     border: 2px solid pink;
     border-radius: 3px;
+  }
+  & > a {
+    margin-top: 10px;
+    margin-bottom: 100px;
   }
 `
 
@@ -110,10 +116,10 @@ const Layout = () => {
         </JJalForm>
         {/* {text} */}
         <input onChange={textChangeHandler} type="text" size="40" value={text} />
+        <a href={downloadHref} download="sample.png">
+          Download
+        </a>
       </JJalContainer>
-      <a href={downloadHref} download="sample.png">
-        Download
-      </a>
     </BackgroundContainer>
   )
 }
