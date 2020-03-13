@@ -62,16 +62,28 @@ const TopContainer = styled.div`
 
 const BottomContainer = styled.div`
   display: flex;
-  width: 100vw;
-  height: 600px;
+  width: 90%;
+  max-width: 1200px;
+  height: 100px;
   margin-bottom: 100px;
-  background: orange;
+  border-radius: 10px;
+  background: lightgrey;
+  overflow: scroll;
   & > div {
     display: flex;
-    flex-direction: column;
-    width: 50%;
     height: 100%;
   }
+`
+
+const VSContainer = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: white;
+  text-shadow: 2px 2px 0px #888;
+  padding: 0px 20px 0px 20px;
 `
 
 const Container = styled.div`
@@ -171,27 +183,36 @@ const Layout = () => {
           </Container>
         </DragDropContext>
       </TopContainer>
+      <Description>mobile : scroll</Description>
       <BottomContainer>
         <div>
           {dndData.columns['column-1'].taskIds.map((v, i) => {
-            const heightRate = 100 / dndData.columns['column-1'].taskIds.length
+            // const heightRate = 100 / dndData.columns['column-1'].taskIds.length
             return (
               <img
                 key={i}
-                style={{ width: '100%', height: `${heightRate}%` }}
+                style={{ borderRadius: '10px', width: '90px', height: '90px', padding: '5px' }}
                 src={dndData.tasks[v].src}
               />
             )
           })}
         </div>
+        {dndData.columns['column-1'].taskIds.length === 0 ||
+        dndData.columns['column-2'].taskIds.length ? (
+          <VSContainer>vs</VSContainer>
+        ) : (
+          <VSContainer>
+            Friend <span>❤️</span>
+          </VSContainer>
+        )}
         <div>
           {dndData.columns['column-2'].taskIds.map((v, i) => {
-            const heightRate = 100 / dndData.columns['column-2'].taskIds.length
+            // const heightRate = 100 / dndData.columns['column-2'].taskIds.length
 
             return (
               <img
                 key={i}
-                style={{ width: '100%', height: `${heightRate}%` }}
+                style={{ borderRadius: '10px', width: '90px', height: '90px', padding: '5px' }}
                 src={dndData.tasks[v].src}
               />
             )
