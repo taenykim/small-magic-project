@@ -29,3 +29,7 @@
 6. [소마법 프로젝트 - 6 (jjal)](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B86/)
 
 > 짤방 생성기 어플리케이션 `fileReader`, `canvas`
+
+7. [소마법 프로젝트 - 7 (avengers)](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B87/)
+
+> 드래그 앤 드랍 (DnD) 어플리케이션 `react-beautiful-dnd`
