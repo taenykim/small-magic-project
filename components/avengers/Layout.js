@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import ContentsMenubar from '../ContentsMenubar'
 import { DragDropContext } from 'react-beautiful-dnd'
@@ -68,6 +68,19 @@ const Container = styled.div`
 const Layout = () => {
   const data = useSelector(state => state.avengers)
   const [dndData, setDndData] = useState(data)
+
+  useEffect(() => {
+    console.log(window.innerWidth)
+    if (window.innerWidth < 1000) {
+      document
+        .querySelector('.mobile_description')
+        .setAttribute('style', 'display:block; margin-bottom:20px;')
+    } else {
+      document
+        .querySelector('.mobile_description')
+        .setAttribute('style', 'display:none;margin-bottom:20px;')
+    }
+  })
 
   const onDrageStartHandler = () => {
     // document.body.style.transition = 'background-color 0.2s ease'
@@ -164,6 +177,8 @@ const Layout = () => {
         </DragDropContext>
       </TopContainer>
       <Description>Make them friends</Description>
+      <div className="mobile_description">scroll >>> </div>
+
       <BottomContainer>
         <div>
           {dndData.columns['column-1'].taskIds.map((v, i) => {
