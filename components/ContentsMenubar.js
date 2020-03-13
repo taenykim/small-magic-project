@@ -6,6 +6,7 @@ import { STORE_CALCULATOR_DATA, STORE_RESET_CALCULATOR } from '../reducers/calcu
 import { STORE_GRAPH_DATA, STORE_RESET_GRAPH } from '../reducers/graph'
 import { DOCKER_STORE, DOCKER_DELETE } from '../reducers/wrapper'
 import { STORE_JJAL_DATA, STORE_RESET_JJAL } from '../reducers/jjal'
+import { STORE_RESET_AVENGERS, STORE_AVENGERS_DATA } from '../reducers/avengers'
 
 const ContentsMenubarContainer = styled.div`
   display: flex;
@@ -80,6 +81,17 @@ const ContentsMenubar = ({ data, name }) => {
         })
         return
       }
+      case 'avengers': {
+        dispatch({
+          type: STORE_AVENGERS_DATA,
+          data: data
+        })
+        dispatch({
+          type: DOCKER_STORE,
+          data: name
+        })
+        return
+      }
       default: {
         dispatch({
           type: DOCKER_STORE,
@@ -115,6 +127,16 @@ const ContentsMenubar = ({ data, name }) => {
       case 'jjal': {
         dispatch({
           type: STORE_RESET_JJAL
+        })
+        dispatch({
+          type: DOCKER_DELETE,
+          data: name
+        })
+        return
+      }
+      case 'avengers': {
+        dispatch({
+          type: STORE_RESET_AVENGERS
         })
         dispatch({
           type: DOCKER_DELETE,

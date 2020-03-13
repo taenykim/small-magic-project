@@ -3,32 +3,7 @@ import styled from 'styled-components'
 import ContentsMenubar from '../ContentsMenubar'
 import { DragDropContext } from 'react-beautiful-dnd'
 import Column from './Column'
-
-const initialData = {
-  tasks: {
-    'task-1': { id: 'task-1', content: 'Captain America', src: 'captain.jpg' },
-    'task-2': { id: 'task-2', content: 'IonMan', src: 'ironman.jpg' },
-    'task-3': { id: 'task-3', content: 'Thor', src: 'thor.jpg' },
-    'task-4': { id: 'task-4', content: 'Hulk', src: 'hulk.jpg' },
-    'task-5': { id: 'task-5', content: 'Spiderman', src: 'spider.jpg' },
-    'task-6': { id: 'task-6', content: 'Groot', src: 'groot.jpg' },
-    'task-7': { id: 'task-7', content: 'Rocket', src: 'rocket.jpg' },
-    'task-8': { id: 'task-8', content: 'Thanos', src: 'thanos.png' }
-  },
-  columns: {
-    'column-1': {
-      id: 'column-1',
-      title: 'Heros',
-      taskIds: ['task-1', 'task-2', 'task-3', 'task-4', 'task-5', 'task-6', 'task-7']
-    },
-    'column-2': {
-      id: 'column-2',
-      title: 'villain',
-      taskIds: ['task-8']
-    }
-  },
-  columnOrder: ['column-1', 'column-2']
-}
+import { useSelector } from 'react-redux'
 
 const BackgroundContainer = styled.div`
   display: flex;
@@ -91,7 +66,8 @@ const Container = styled.div`
 `
 
 const Layout = () => {
-  const [dndData, setDndData] = useState(initialData)
+  const data = useSelector(state => state.avengers)
+  const [dndData, setDndData] = useState(data)
 
   const onDrageStartHandler = () => {
     // document.body.style.transition = 'background-color 0.2s ease'
@@ -169,7 +145,7 @@ const Layout = () => {
 
   return (
     <BackgroundContainer>
-      <ContentsMenubar name="avengers" />
+      <ContentsMenubar name="avengers" data={dndData} />
       <Description>Try Drag & Drop</Description>
       <TopContainer>
         <DragDropContext
