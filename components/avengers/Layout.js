@@ -94,8 +94,10 @@ const Layout = () => {
   const [dndData, setDndData] = useState(initialData)
 
   const onDrageStartHandler = () => {
-    document.body.style.color = 'orange'
-    document.body.style.transition = 'background-color 0.2s ease'
+    // document.body.style.transition = 'background-color 0.2s ease'
+    for (let i = 0; i < document.querySelectorAll('.droppable_table').length; i++) {
+      document.querySelectorAll('.droppable_table')[i].style.background = `rgba(255,141,217,0.2)`
+    }
   }
 
   const onDrageUpdateHandler = update => {
@@ -107,7 +109,9 @@ const Layout = () => {
   const onDrageEndHandler = result => {
     document.body.style.color = 'inherit'
     document.body.style.background = 'inherit'
-
+    for (let i = 0; i < document.querySelectorAll('.droppable_table').length; i++) {
+      document.querySelectorAll('.droppable_table')[i].style.background = `inherit`
+    }
     const { destination, source, draggableId } = result
     if (!destination) {
       return
@@ -183,7 +187,7 @@ const Layout = () => {
           </Container>
         </DragDropContext>
       </TopContainer>
-      <Description>mobile : scroll</Description>
+      <Description>Make them friends</Description>
       <BottomContainer>
         <div>
           {dndData.columns['column-1'].taskIds.map((v, i) => {
@@ -198,12 +202,12 @@ const Layout = () => {
           })}
         </div>
         {dndData.columns['column-1'].taskIds.length === 0 ||
-        dndData.columns['column-2'].taskIds.length ? (
-          <VSContainer>vs</VSContainer>
-        ) : (
+        dndData.columns['column-2'].taskIds.length === 0 ? (
           <VSContainer>
             Friend <span>❤️</span>
           </VSContainer>
+        ) : (
+          <VSContainer>vs</VSContainer>
         )}
         <div>
           {dndData.columns['column-2'].taskIds.map((v, i) => {
