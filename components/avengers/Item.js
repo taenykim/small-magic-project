@@ -12,9 +12,9 @@ const Container = styled.div`
   display: flex;
 `
 
-const Task = ({ task, index }) => {
+const Item = ({ item, index }) => {
   return (
-    <Draggable draggableId={task.id} index={index}>
+    <Draggable draggableId={item.id} index={index}>
       {(provided, snapshot) => (
         <Container
           {...provided.draggableProps}
@@ -22,11 +22,11 @@ const Task = ({ task, index }) => {
           ref={provided.innerRef}
           isDragging={snapshot.isDragging}
         >
-          {task.content}
+          {item.content}
         </Container>
       )}
     </Draggable>
   )
 }
 
-export default Task
+export default Item

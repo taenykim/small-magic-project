@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Droppable } from 'react-beautiful-dnd'
-import Task from './Task'
+import Item from './Item'
 
 const Container = styled.div`
   margin: 8px;
@@ -17,26 +17,26 @@ const Title = styled.div`
   font-family: escore7;
   padding: 8px;
 `
-const TaskList = styled.div`
+const ItemList = styled.div`
   padding: 8px;
 `
 
-const Column = ({ column, tasks }) => {
+const Column = ({ column, items }) => {
   return (
     <Container>
       <Title>{column.title}</Title>
       <Droppable droppableId={column.id}>
         {provided => (
-          <TaskList
+          <ItemList
             className="droppable_table"
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
-            {tasks.map((task, i) => (
-              <Task key={task.id} task={task} index={i} />
+            {items.map((item, i) => (
+              <Item key={item.id} item={item} index={i} />
             ))}
             {provided.placeholder}
-          </TaskList>
+          </ItemList>
         )}
       </Droppable>
     </Container>

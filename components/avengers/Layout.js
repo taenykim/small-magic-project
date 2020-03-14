@@ -61,7 +61,7 @@ const VSContainer = styled.div`
   padding: 0px 20px 0px 20px;
 `
 
-const Container = styled.div`
+const DndContainer = styled.div`
   display: flex;
 `
 
@@ -91,7 +91,7 @@ const Layout = () => {
 
   const onDrageUpdateHandler = update => {
     const { destination } = update
-    const opacity = destination ? destination.index / Object.keys(dndData.tasks).length : 0
+    const opacity = destination ? destination.index / Object.keys(dndData.items).length : 0
     document.body.style.background = `rgba(153,141,217,${opacity})`
   }
 
@@ -112,12 +112,12 @@ const Layout = () => {
     const finish = dndData.columns[destination.droppableId]
 
     if (start === finish) {
-      const newTaskIds = Array.from(start.taskIds)
-      newTaskIds.splice(source.index, 1)
-      newTaskIds.splice(destination.index, 0, draggableId)
+      const newItemIds = Array.from(start.itemIds)
+      newItemIds.splice(source.index, 1)
+      newItemIds.splice(destination.index, 0, draggableId)
       const newColumn = {
         ...start,
-        taskIds: newTaskIds
+        itemIds: newItemIds
       }
       const newDndData = {
         ...dndData,
@@ -130,18 +130,18 @@ const Layout = () => {
       return
     }
 
-    const startTaskIds = Array.from(start.taskIds)
-    startTaskIds.splice(source.index, 1)
+    const startItemIds = Array.from(start.itemIds)
+    startItemIds.splice(source.index, 1)
     const newStart = {
       ...start,
-      taskIds: startTaskIds
+      itemIds: startItemIds
     }
 
-    const finishTaskIds = Array.from(finish.taskIds)
-    finishTaskIds.splice(destination.index, 0, draggableId)
+    const finishItemIds = Array.from(finish.itemIds)
+    finishItemIds.splice(destination.index, 0, draggableId)
     const newFinish = {
       ...finish,
-      taskIds: finishTaskIds
+      itemIds: finishItemIds
     }
 
     const newDndData = {
@@ -166,14 +166,14 @@ const Layout = () => {
           onDragUpdate={onDrageUpdateHandler}
           onDragEnd={onDrageEndHandler}
         >
-          <Container>
+          <DndContainer>
             {dndData.columnOrder.map(columnId => {
               const column = dndData.columns[columnId]
-              const tasks = column.taskIds.map(taskId => dndData.tasks[taskId])
+              const items = column.itemIds.map(itemId => dndData.items[itemId])
 
-              return <Column key={column.id} column={column} tasks={tasks} />
+              return <Column key={column.id} column={column} items={items} />
             })}
-          </Container>
+          </DndContainer>
         </DragDropContext>
       </TopContainer>
       <Description>Make them friends</Description>
@@ -181,19 +181,19 @@ const Layout = () => {
 
       <BottomContainer>
         <div>
-          {dndData.columns['column-1'].taskIds.map((v, i) => {
-            // const heightRate = 100 / dndData.columns['column-1'].taskIds.length
+          {dndData.columns['column-1'].itemIds.map((v, i) => {
+            // const heightRate = 100 / dndData.columns['column-1'].itemIds.length
             return (
               <img
                 key={i}
                 style={{ borderRadius: '10px', width: '90px', height: '90px', padding: '5px' }}
-                src={dndData.tasks[v].src}
+                src={dndData.items[v].src}
               />
             )
           })}
         </div>
-        {dndData.columns['column-1'].taskIds.length === 0 ||
-        dndData.columns['column-2'].taskIds.length === 0 ? (
+        {dndData.columns['column-1'].itemIds.length === 0 ||
+        dndData.columns['column-2'].itemIds.length === 0 ? (
           <VSContainer>
             Friend <span>❤️</span>
           </VSContainer>
@@ -201,14 +201,14 @@ const Layout = () => {
           <VSContainer>vs</VSContainer>
         )}
         <div>
-          {dndData.columns['column-2'].taskIds.map((v, i) => {
-            // const heightRate = 100 / dndData.columns['column-2'].taskIds.length
+          {dndData.columns['column-2'].itemIds.map((v, i) => {
+            // const heightRate = 100 / dndData.columns['column-2'].itemIds.length
 
             return (
               <img
                 key={i}
                 style={{ borderRadius: '10px', width: '90px', height: '90px', padding: '5px' }}
-                src={dndData.tasks[v].src}
+                src={dndData.items[v].src}
               />
             )
           })}

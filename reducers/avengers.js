@@ -1,24 +1,24 @@
 const initialState = {
-  tasks: {
-    'task-1': { id: 'task-1', content: 'Captain America', src: 'captain.jpg' },
-    'task-2': { id: 'task-2', content: 'IonMan', src: 'ironman.jpg' },
-    'task-3': { id: 'task-3', content: 'Thor', src: 'thor.jpg' },
-    'task-4': { id: 'task-4', content: 'Hulk', src: 'hulk.jpg' },
-    'task-5': { id: 'task-5', content: 'Spiderman', src: 'spider.jpg' },
-    'task-6': { id: 'task-6', content: 'Groot', src: 'groot.jpg' },
-    'task-7': { id: 'task-7', content: 'Rocket', src: 'rocket.jpg' },
-    'task-8': { id: 'task-8', content: 'Thanos', src: 'thanos.png' }
+  items: {
+    'item-1': { id: 'item-1', content: 'Captain America', src: 'captain.jpg' },
+    'item-2': { id: 'item-2', content: 'IonMan', src: 'ironman.jpg' },
+    'item-3': { id: 'item-3', content: 'Thor', src: 'thor.jpg' },
+    'item-4': { id: 'item-4', content: 'Hulk', src: 'hulk.jpg' },
+    'item-5': { id: 'item-5', content: 'Spiderman', src: 'spider.jpg' },
+    'item-6': { id: 'item-6', content: 'Groot', src: 'groot.jpg' },
+    'item-7': { id: 'item-7', content: 'Rocket', src: 'rocket.jpg' },
+    'item-8': { id: 'item-8', content: 'Thanos', src: 'thanos.png' }
   },
   columns: {
     'column-1': {
       id: 'column-1',
       title: 'Heros',
-      taskIds: ['task-1', 'task-2', 'task-3', 'task-4', 'task-5', 'task-6', 'task-7']
+      itemIds: ['item-1', 'item-2', 'item-3', 'item-4', 'item-5', 'item-6', 'item-7']
     },
     'column-2': {
       id: 'column-2',
       title: 'villain',
-      taskIds: ['task-8']
+      itemIds: ['item-8']
     }
   },
   columnOrder: ['column-1', 'column-2']
