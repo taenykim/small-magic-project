@@ -5,7 +5,7 @@ import AppName from '../components/AppName'
 
 const BackgroundContainer = styled.div`
   background: #f5f6f7;
-  height: 100vh;
+  min-height: 100vh;
 `
 
 const IndexContainer = styled.div`
@@ -13,6 +13,7 @@ const IndexContainer = styled.div`
   width: 90vw;
   margin: 40px 10px 10px 10px;
   flex-wrap: wrap;
+  margin-bottom: 100px;
 `
 
 const AppContainer = styled.div`
