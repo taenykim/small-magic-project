@@ -90,9 +90,9 @@ const Layout = () => {
   }
 
   const onDrageUpdateHandler = update => {
-    const { destination } = update
-    const opacity = destination ? destination.index / Object.keys(dndData.items).length : 0
-    document.body.style.background = `rgba(153,141,217,${opacity})`
+    // const { destination } = update
+    // const opacity = destination ? destination.index / Object.keys(dndData.items).length : 0
+    // document.querySelector('.droppable_table').style.background = `rgba(153,141,217,${opacity})`
   }
 
   const onDrageEndHandler = result => {
@@ -108,6 +108,8 @@ const Layout = () => {
     if (destination.droppableId === source.droppableId && destination.index === source.index) {
       return
     }
+    console.log(result)
+
     const start = dndData.columns[source.droppableId] // 'column-1'
     const finish = dndData.columns[destination.droppableId]
 
