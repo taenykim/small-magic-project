@@ -18,6 +18,7 @@ const Docker = styled.div`
   display: flex;
   align-items: center;
   padding: 0px 20px 0px 20px;
+  overflow-x: scroll;
 `
 
 const Footer = () => {
