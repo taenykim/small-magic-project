@@ -15,6 +15,10 @@ class _document extends Document {
         <Head>{this.props.styleTags}</Head>
         <body style={{ fontFamily: 'escore3' }}>
           <Main />
+          <script
+            type="text/javascript"
+            src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=kzmvremi5d"
+          ></script>
           <NextScript />
         </body>
       </Html>
