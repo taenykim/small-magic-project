@@ -57,7 +57,7 @@
 
 > [링크](https://small-magic-project.now.sh/avengers)
 
-### 8. 코로나 마스크 판매처 찾기 어플리케이션
+### 8. 코로나 마스크 맵 App
 
 `네이버 지도 API`, `공적 마스크 판매 현황 조회 API`
 
