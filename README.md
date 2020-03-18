@@ -28,6 +28,8 @@
 
 `fetch`, `cheerio`, `lodash`
 
+<img src="./public/crawling2.png" width="400px"></img>
+
 > [제작노트](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B84/)
 
 > [링크](https://small-magic-project.now.sh/crawling)
@@ -44,6 +46,8 @@
 
 `fileReader`, `canvas`
 
+<img src="./public/jjal2.png" width="400px"></img>
+
 > [제작노트](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B86/)
 
 > [링크](https://small-magic-project.now.sh/jjal)
@@ -53,6 +57,8 @@
 
 `react-beautiful-dnd`
 
+<img src="./public/avengers.png" width="400px"></img>
+
 > [제작노트](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B87/)
 
 > [링크](https://small-magic-project.now.sh/avengers)
@@ -60,6 +66,8 @@
 ### 8. 코로나 마스크 맵 App
 
 `네이버 지도 API`, `공적 마스크 판매 현황 조회 API`
+
+<img src="./public/maskmap.png" width="400px"></img>
 
 > [제작노트](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B88/)
 
