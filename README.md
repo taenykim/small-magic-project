@@ -1,6 +1,6 @@
 # 🔮 소마법 프로젝트
 
-:apple: [프로젝트 사이트](https://small-magic-project.now.sh/) 
+:apple: [프로젝트 사이트(https://small-magic-project.now.sh/)](https://small-magic-project.now.sh/) 
 
 ## 1. 프로젝트 전체 컨셉, 레이아웃 구상
 
