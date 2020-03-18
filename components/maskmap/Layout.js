@@ -18,28 +18,84 @@ const MapContainer = styled.div`
   height: 100%;
 `
 
-const MylocationButton = styled.button`
+const Description = styled.div`
+  display: flex;
+  flex-direction: column;
   font-family: escore8;
   z-index: 20;
   position: fixed;
   top: 70px;
   left: 10px;
-  border: 2px solid lightgrey;
-  border-radius: 7px;
-  color: white;
-  background: dodgerblue;
-  padding: 8px;
+  & > button {
+    margin-bottom: 8px;
+    width: 80px;
+    cursor: pointer;
+    border: 2px solid lightgrey;
+    border-radius: 7px;
+    color: white;
+    background: dodgerblue;
+    padding: 8px;
+  }
+  & > div {
+    margin-left: -10px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    padding: 11px 11px 11px 0px;
+    border-radius: 0px 3px 3px 0px;
+    font-family: escore7;
+    & > span {
+      width: 80px;
+      color: white;
+      font-family: escore6;
+      margin: 8px 0px 8px 0px;
+      border-radius: 0px 3px 3px 0px;
+      padding: 6px;
+    }
+  }
 `
 
 const Layout = () => {
   var map
-  const [mapObj, setMapObj] = useState('')
+  const weekArr = ['일', '월', '화', '수', '목', '금', '토']
+  const weekMask = ['누구나', '1,6년생', '2,7년생', '3,8년생', '4,9년생', '5,0년생', '누구나']
+  const [week, setWeek] = useState(new Date().getDay())
 
   useEffect(() => {
     map = new naver.maps.Map('map', {
       center: new naver.maps.LatLng(37.5666805, 126.9784147),
       zoom: 10,
       mapTypeId: naver.maps.MapTypeId.NORMAL
+    })
+
+    naver.maps.Event.addListener(map, 'mousedown', function(e) {
+      const url = 'https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json'
+      const query = `?lat=${map.getCenter().y}&lng=${map.getCenter().x}`
+      fetch(url + query)
+        .then(res => {
+          return res.json()
+        })
+        .then(json => {
+          console.log(json)
+          const remain_stat = {
+            plenty: 'green',
+            some: 'orange',
+            few: 'red',
+            empty: 'black',
+            break: 'black'
+          }
+          for (let i = 0; i < json.count; i++) {
+            var marker = new naver.maps.Marker({
+              icon: {
+                content: `<div style="font-size:10px; font-family:escore6; border:1px solid lightgrey; color:white; background:${
+                  remain_stat[json.stores[i].remain_stat]
+                }; border-radius:5px; padding:4px;">${json.stores[i].name}</div>`
+              },
+              position: new naver.maps.LatLng(json.stores[i].lat, json.stores[i].lng),
+              map: map
+            })
+          }
+        })
     })
   })
 
@@ -88,7 +144,21 @@ const Layout = () => {
   return (
     <BackgroundContainer>
       <ContentsMenubar name="maskmap" />
-      <MylocationButton onClick={mylocationHandler}>내 위치</MylocationButton>
+      <Description>
+        <button onClick={mylocationHandler}>내 위치</button>
+        <div>
+          <span
+            style={{ textAlign: 'center', color: 'black', background: 'rgba(255,255,255,0.7)' }}
+          >
+            <div style={{ fontSize: '20px', fontFamily: 'escore8' }}>{weekArr[week]}요일</div>
+            <div style={{ marginTop: '5px' }}>{weekMask[week]}</div>
+          </span>
+          <span style={{ background: 'green' }}>100개이상</span>
+          <span style={{ background: 'orange' }}>30~100개</span>
+          <span style={{ background: 'red' }}>2~30개</span>
+          <span style={{ background: 'black' }}>없음</span>
+        </div>
+      </Description>
       <MapContainer id="map"></MapContainer>
     </BackgroundContainer>
   )
