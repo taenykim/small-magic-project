@@ -33,3 +33,7 @@
 7. [소마법 프로젝트 - 7 (avengers)](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B87/)
 
 > 드래그 앤 드랍 (DnD) 어플리케이션 `react-beautiful-dnd`
+
+8. [소마법 프로젝트 - 8 (maskmap)](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B88/)
+
+> 코로나 마스크 판매처 찾기 어플리케이션 `네이버 지도 API`와 `공적 마스크 판매 현황 조회 API`
