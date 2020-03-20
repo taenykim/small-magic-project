@@ -56,10 +56,10 @@ const Description = styled.div`
 `
 
 const Layout = () => {
-  var map
+  let map = null
+  const week = new Date().getDay()
   const weekArr = ['일', '월', '화', '수', '목', '금', '토']
   const weekMask = ['누구나', '1,6년생', '2,7년생', '3,8년생', '4,9년생', '5,0년생', '누구나']
-  const [week, setWeek] = useState(new Date().getDay())
 
   useEffect(() => {
     map = new naver.maps.Map('map', {
