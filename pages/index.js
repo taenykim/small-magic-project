@@ -56,6 +56,10 @@ const index = () => {
           <AppIcon name="maskmap" />
           <AppName name="maskmap" />
         </AppContainer>
+        <AppContainer>
+          <AppIcon name="loading" />
+          <AppName name="loading" />
+        </AppContainer>
       </IndexContainer>
     </BackgroundContainer>
   )

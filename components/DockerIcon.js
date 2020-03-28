@@ -18,7 +18,8 @@ const AppIconContainer = styled.div`
     else if (props.name === 'today') return 'orange'
     else if (props.name === 'jjal') return 'green'
     else if (props.name === 'avengers') return 'navy'
-    else if (props.name === 'maskmap') return 'rgb(0, 122, 106);'
+    else if (props.name === 'maskmap') return 'darkgoldenrod'
+    else if (props.name === 'loading') return 'darkcyan'
     else return 'black'
   }};
   margin-right: 10px;
