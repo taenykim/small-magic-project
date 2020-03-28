@@ -174,6 +174,7 @@ const Layout = () => {
       <ContentsMenubar name="loading" />
       <Loader id="first_loader"></Loader>
       <ButtonContainer>
+        <div>미완성앱</div>
         <button id="cat_button">고양이(default)</button>
         <button id="dog_button">강아지</button>
       </ButtonContainer>
