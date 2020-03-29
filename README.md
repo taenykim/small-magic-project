@@ -27,4 +27,4 @@
 
 - [소마법 프로젝트 - 9 (loading)](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B89/)
 
-> 로딩화면 구현 크롤링 어플리케이션 `fetch`, `cheerio`
+> 로딩화면 구현 이미지크롤링 어플리케이션 `fetch`, `cheerio`
