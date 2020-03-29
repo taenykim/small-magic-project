@@ -23,7 +23,45 @@ const spin = keyframes`
 const positionbottom = keyframes`
   from{ top:100px; opacity:0 } 
   to{ top:0; opacity:1 }
+`
 
+const customAni = keyframes`
+0%, 100% {
+  transform: translatey(0); 
+ }
+ 50% {
+  transform: translatey(20px);
+ }
+`
+
+const MainLoader = styled.div`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: darkviolet;
+  z-index: 20;
+`
+
+const MainLoaderText = styled.div`
+  position: absolute;
+  font-size: 32px;
+  text-shadow: 2px 2px 4px black;
+  font-family: escore9;
+  color: ${props => {
+    return props.color
+  }};
+  animation: ${customAni} 1.5s ease-in-out infinite;
+  animation-delay: ${props => {
+    return props.delay
+  }};
+  margin-left: ${props => {
+    return props.transX
+  }};
 `
 
 const Loader = styled.div`
@@ -39,9 +77,17 @@ const Loader = styled.div`
   animation: ${spin} 2s linear infinite;
 `
 
+const Description = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  padding: 20px;
+`
+
 const ButtonContainer = styled.div`
   display: flex;
-  margin-top: 100px;
+  margin-top: 10px;
   & > button {
     border: 2px solid pink;
     border-radius: 4px;
@@ -159,6 +205,13 @@ const Layout = () => {
       .catch(error => console.log(error))
   }, [])
 
+  const showFull = () => {
+    document.getElementById('main_loader').style.display = 'none'
+    document.body.style.display = 'flex'
+    crawling_cat()
+    setImgLoadToggle(true)
+  }
+
   const loadPage = () => {
     document.getElementById('first_loader').style.display = 'block'
     document.getElementById('myDiv').style.display = 'none'
@@ -169,8 +222,7 @@ const Layout = () => {
   }
   useEffect(() => {
     if (!imgLoadToggle) {
-      crawling_cat()
-      setImgLoadToggle(true)
+      setTimeout(showFull, 3000)
     }
     document.getElementById('cat_button').addEventListener('click', e => {
       e.stopImmediatePropagation()
@@ -187,9 +239,47 @@ const Layout = () => {
   return (
     <BackgroundContainer>
       <ContentsMenubar name="loading" />
+      <MainLoader id="main_loader">
+        <MainLoaderText transX="12px" delay="0.35s" color="firebrick">
+          LOADING
+        </MainLoaderText>
+        <MainLoaderText transX="10px" delay="0.28s" color="darkgoldenrod">
+          LOADING
+        </MainLoaderText>
+        <MainLoaderText transX="8px" delay="0.21s" color="darkolivegreen">
+          LOADING
+        </MainLoaderText>
+        <MainLoaderText transX="6px" delay="0.14s" color="darksalmon">
+          LOADING
+        </MainLoaderText>
+        <MainLoaderText transX="4px" delay="0.07s" color="cornflowerblue">
+          LOADING
+        </MainLoaderText>
+        <MainLoaderText delay="0s" color="white">
+          LOADING
+        </MainLoaderText>
+      </MainLoader>
       <Loader id="first_loader"></Loader>
+      <Description>
+        <p
+          style={{
+            fontSize: '20px',
+            fontFamily: 'escore7',
+            color: 'pink',
+            textShadow: '2px 2px 4px black',
+            textAlign: 'center'
+          }}
+        >
+          버튼을 클릭하여 크롤링데이터를 불러오세요
+        </p>
+        <p style={{ fontSize: '10px', fontFamily: 'escore5', marginTop: '10px' }}>
+          Image data from{'  '}
+          <a href="https://wall.alphacoders.com/" target="_blank">
+            alphacoders.com
+          </a>
+        </p>
+      </Description>
       <ButtonContainer>
-        <div>미완성앱</div>
         <button id="cat_button">고양이(default)</button>
         <button id="dog_button">강아지</button>
       </ButtonContainer>
