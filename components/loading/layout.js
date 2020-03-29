@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import styled, { keyframes } from 'styled-components'
 import ContentsMenubar from '../ContentsMenubar'
 
@@ -64,7 +64,8 @@ const Layout = () => {
   const [imgLoadToggle, setImgLoadToggle] = useState(false)
   const [imgArr, setImgArr] = useState([])
 
-  const crawling_cat = () => {
+  const crawling_cat = useCallback(() => {
+    console.log('this')
     const cheerio = require('cheerio')
     const url = `https://cors-anywhere.herokuapp.com/https://wall.alphacoders.com/search.php?search=$cat`
     fetch(url)
@@ -72,7 +73,7 @@ const Layout = () => {
         return res.text()
       })
       .then(text => {
-        setTimeout(showPage, 500)
+        console.log('고양이')
         const $ = cheerio.load(text)
         let json = [],
           id,
@@ -101,11 +102,17 @@ const Layout = () => {
             json.push({ id: id, link: link, img: img })
           })
         }
+        console.log(json)
+        return json
+      })
+      .then(json => {
         setImgArr(json)
+        showPage()
       })
       .catch(error => console.log(error))
-  }
-  const crawling_dog = () => {
+  }, [])
+
+  const crawling_dog = useCallback(() => {
     const cheerio = require('cheerio')
     const url = `https://cors-anywhere.herokuapp.com/https://wall.alphacoders.com/search.php?search=$dog`
     fetch(url)
@@ -113,7 +120,7 @@ const Layout = () => {
         return res.text()
       })
       .then(text => {
-        setTimeout(showPage, 500)
+        console.log('강아지')
         const $ = cheerio.load(text)
         let json = [],
           id,
@@ -142,10 +149,15 @@ const Layout = () => {
             json.push({ id: id, link: link, img: img })
           })
         }
+        console.log(json)
+        return json
+      })
+      .then(json => {
         setImgArr(json)
+        showPage()
       })
       .catch(error => console.log(error))
-  }
+  }, [])
 
   const loadPage = () => {
     document.getElementById('first_loader').style.display = 'block'
@@ -160,11 +172,14 @@ const Layout = () => {
       crawling_cat()
       setImgLoadToggle(true)
     }
-    document.getElementById('cat_button').addEventListener('click', () => {
+    document.getElementById('cat_button').addEventListener('click', e => {
+      e.stopImmediatePropagation()
       loadPage()
       crawling_cat()
     })
-    document.getElementById('dog_button').addEventListener('click', () => {
+    document.getElementById('dog_button').addEventListener('click', e => {
+      e.stopImmediatePropagation()
+
       loadPage()
       crawling_dog()
     })
