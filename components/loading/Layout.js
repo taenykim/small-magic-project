@@ -21,8 +21,8 @@ const spin = keyframes`
 `
 
 const positionbottom = keyframes`
-  from{ top:100px; opacity:0 } 
-  to{ top:0; opacity:1 }
+  from{ margin-top:150px; opacity:0 } 
+  to{ margin-top:100px; opacity:1 }
 `
 
 const customAni = keyframes`
@@ -102,8 +102,7 @@ const TextContainer = styled.div`
   width: 100vw;
   justify-content: center;
   flex-wrap: wrap;
-  animation-name: ${positionbottom};
-  animation-duration: 1s;
+  animation: ${positionbottom} 1s linear;
 `
 
 const Layout = () => {
@@ -197,7 +196,6 @@ const Layout = () => {
 
   const showFull = () => {
     document.getElementById('main_loader').style.display = 'none'
-    document.body.style.display = 'flex'
     setImgLoadToggle(true)
   }
 
@@ -221,7 +219,6 @@ const Layout = () => {
     })
     document.getElementById('dog_button').addEventListener('click', (e) => {
       e.stopImmediatePropagation()
-
       loadPage()
       crawling_dog()
     })
