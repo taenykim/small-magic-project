@@ -52,14 +52,14 @@ const MainLoaderText = styled.div`
   font-size: 32px;
   text-shadow: 2px 2px 4px black;
   font-family: escore9;
-  color: ${props => {
+  color: ${(props) => {
     return props.color
   }};
   animation: ${customAni} 1.5s ease-in-out infinite;
-  animation-delay: ${props => {
+  animation-delay: ${(props) => {
     return props.delay
   }};
-  margin-left: ${props => {
+  margin-left: ${(props) => {
     return props.transX
   }};
 `
@@ -115,10 +115,10 @@ const Layout = () => {
     const cheerio = require('cheerio')
     const url = `https://cors-anywhere.herokuapp.com/https://wall.alphacoders.com/search.php?search=$cat`
     fetch(url)
-      .then(res => {
+      .then((res) => {
         return res.text()
       })
-      .then(text => {
+      .then((text) => {
         console.log('고양이')
         const $ = cheerio.load(text)
         let json = [],
@@ -126,46 +126,41 @@ const Layout = () => {
           link,
           img
         if (window.innerWidth < 1070) {
-          $('#page_container > div:nth-child(6) > div.thumb-container').each(function(i, elem) {
+          $('#page_container > div:nth-child(6) > div.thumb-container').each(function (i, elem) {
             id = i
-            link = $(this)
-              .find('div.thumb-container > a')
-              .attr('href')
-            img = $(this)
-              .find('div.thumb-container > a.wallpaper-thumb > img')
-              .attr('data-src')
+            link = $(this).find('div.thumb-container > a').attr('href')
+            img = $(this).find('div.thumb-container > a.wallpaper-thumb > img').attr('data-src')
             json.push({ id: id, link: link, img: img })
           })
         } else {
-          $('#page_container > div:nth-child(6) > div.thumb-container-big').each(function(i, elem) {
+          $('#page_container > div:nth-child(6) > div.thumb-container-big').each(function (
+            i,
+            elem
+          ) {
             id = i
-            link = $(this)
-              .find('div.thumb-container > div.boxgrid > a')
-              .attr('href')
-            img = $(this)
-              .find('div.thumb-container > div.boxgrid > a > img')
-              .attr('data-src')
+            link = $(this).find('div.thumb-container > div.boxgrid > a').attr('href')
+            img = $(this).find('div.thumb-container > div.boxgrid > a > img').attr('data-src')
             json.push({ id: id, link: link, img: img })
           })
         }
         console.log(json)
         return json
       })
-      .then(json => {
+      .then((json) => {
         setImgArr(json)
         showPage()
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error))
   }, [])
 
   const crawling_dog = useCallback(() => {
     const cheerio = require('cheerio')
     const url = `https://cors-anywhere.herokuapp.com/https://wall.alphacoders.com/search.php?search=$dog`
     fetch(url)
-      .then(res => {
+      .then((res) => {
         return res.text()
       })
-      .then(text => {
+      .then((text) => {
         console.log('강아지')
         const $ = cheerio.load(text)
         let json = [],
@@ -173,42 +168,36 @@ const Layout = () => {
           link,
           img
         if (window.innerWidth < 1070) {
-          $('#page_container > div:nth-child(6) > div.thumb-container').each(function(i, elem) {
+          $('#page_container > div:nth-child(6) > div.thumb-container').each(function (i, elem) {
             id = i
-            link = $(this)
-              .find('div.thumb-container > a')
-              .attr('href')
-            img = $(this)
-              .find('div.thumb-container > a.wallpaper-thumb > img')
-              .attr('data-src')
+            link = $(this).find('div.thumb-container > a').attr('href')
+            img = $(this).find('div.thumb-container > a.wallpaper-thumb > img').attr('data-src')
             json.push({ id: id, link: link, img: img })
           })
         } else {
-          $('#page_container > div:nth-child(6) > div.thumb-container-big').each(function(i, elem) {
+          $('#page_container > div:nth-child(6) > div.thumb-container-big').each(function (
+            i,
+            elem
+          ) {
             id = i
-            link = $(this)
-              .find('div.thumb-container > div.boxgrid > a')
-              .attr('href')
-            img = $(this)
-              .find('div.thumb-container > div.boxgrid > a > img')
-              .attr('data-src')
+            link = $(this).find('div.thumb-container > div.boxgrid > a').attr('href')
+            img = $(this).find('div.thumb-container > div.boxgrid > a > img').attr('data-src')
             json.push({ id: id, link: link, img: img })
           })
         }
         console.log(json)
         return json
       })
-      .then(json => {
+      .then((json) => {
         setImgArr(json)
         showPage()
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error))
   }, [])
 
   const showFull = () => {
     document.getElementById('main_loader').style.display = 'none'
     document.body.style.display = 'flex'
-    crawling_cat()
     setImgLoadToggle(true)
   }
 
@@ -222,14 +211,15 @@ const Layout = () => {
   }
   useEffect(() => {
     if (!imgLoadToggle) {
+      crawling_cat()
       setTimeout(showFull, 3000)
     }
-    document.getElementById('cat_button').addEventListener('click', e => {
+    document.getElementById('cat_button').addEventListener('click', (e) => {
       e.stopImmediatePropagation()
       loadPage()
       crawling_cat()
     })
-    document.getElementById('dog_button').addEventListener('click', e => {
+    document.getElementById('dog_button').addEventListener('click', (e) => {
       e.stopImmediatePropagation()
 
       loadPage()
@@ -267,7 +257,7 @@ const Layout = () => {
             fontFamily: 'escore7',
             color: 'pink',
             textShadow: '2px 2px 4px black',
-            textAlign: 'center'
+            textAlign: 'center',
           }}
         >
           버튼을 클릭하여 크롤링데이터를 불러오세요
