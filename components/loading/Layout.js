@@ -109,58 +109,17 @@ const Layout = () => {
   const [imgLoadToggle, setImgLoadToggle] = useState(false)
   const [imgArr, setImgArr] = useState([])
 
-  const crawling_cat = useCallback(() => {
-    console.log('this')
-    const cheerio = require('cheerio')
-    const url = `https://cors-anywhere.herokuapp.com/https://wall.alphacoders.com/search.php?search=$cat`
-    fetch(url)
-      .then((res) => {
-        return res.text()
-      })
-      .then((text) => {
-        console.log('고양이')
-        const $ = cheerio.load(text)
-        let json = [],
-          id,
-          link,
-          img
-        if (window.innerWidth < 1070) {
-          $('#page_container > div:nth-child(6) > div.thumb-container').each(function (i, elem) {
-            id = i
-            link = $(this).find('div.thumb-container > a').attr('href')
-            img = $(this).find('div.thumb-container > a.wallpaper-thumb > img').attr('data-src')
-            json.push({ id: id, link: link, img: img })
-          })
-        } else {
-          $('#page_container > div:nth-child(6) > div.thumb-container-big').each(function (
-            i,
-            elem
-          ) {
-            id = i
-            link = $(this).find('div.thumb-container > div.boxgrid > a').attr('href')
-            img = $(this).find('div.thumb-container > div.boxgrid > a > img').attr('data-src')
-            json.push({ id: id, link: link, img: img })
-          })
-        }
-        console.log(json)
-        return json
-      })
-      .then((json) => {
-        setImgArr(json)
-        showPage()
-      })
-      .catch((error) => console.log(error))
-  }, [])
+  console.log('this')
 
-  const crawling_dog = useCallback(() => {
+  const crawling = useCallback((animal) => {
     const cheerio = require('cheerio')
-    const url = `https://cors-anywhere.herokuapp.com/https://wall.alphacoders.com/search.php?search=$dog`
+    const url = `https://cors-anywhere.herokuapp.com/https://wall.alphacoders.com/search.php?search=${animal}`
     fetch(url)
       .then((res) => {
         return res.text()
       })
       .then((text) => {
-        console.log('강아지')
+        console.log('크롤링실행')
         const $ = cheerio.load(text)
         let json = [],
           id,
@@ -196,33 +155,36 @@ const Layout = () => {
 
   const showFull = () => {
     document.getElementById('main_loader').style.display = 'none'
-    setImgLoadToggle(true)
   }
 
   const loadPage = () => {
     document.getElementById('first_loader').style.display = 'block'
     document.getElementById('myDiv').style.display = 'none'
   }
+
   const showPage = () => {
     document.getElementById('first_loader').style.display = 'none'
     document.getElementById('myDiv').style.display = 'flex'
   }
+
   useEffect(() => {
     if (!imgLoadToggle) {
-      crawling_cat()
+      crawling('cat')
+      setImgLoadToggle(true)
       setTimeout(showFull, 3000)
     }
     document.getElementById('cat_button').addEventListener('click', (e) => {
       e.stopImmediatePropagation()
       loadPage()
-      crawling_cat()
+      crawling('cat')
     })
     document.getElementById('dog_button').addEventListener('click', (e) => {
       e.stopImmediatePropagation()
       loadPage()
-      crawling_dog()
+      crawling('dog')
     })
   })
+
   return (
     <BackgroundContainer>
       <ContentsMenubar name="loading" />
