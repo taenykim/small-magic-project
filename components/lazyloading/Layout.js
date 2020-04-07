@@ -138,7 +138,7 @@ const Layout = () => {
   })
   return (
     <BackgroundContainer>
-      <ContentsMenubar name="loading" />
+      <ContentsMenubar name="lazyloading" />
       <Contents style={{ marginTop: '100px' }}>
         <p>1초의 지연로딩(lazy loading) 구현</p>
         <div>흐린 이미지로 지연</div>

@@ -19,6 +19,7 @@ const AppIconContainer = styled.div`
     else if (props.name === 'jjal') return 'green'
     else if (props.name === 'avengers') return 'navy'
     else if (props.name === 'maskmap') return 'darkgoldenrod'
+    else if (props.name === 'loading') return 'darkcyan'
     else if (props.name === 'lazyloading') return 'darkmagenta'
     else return 'black'
   }};
