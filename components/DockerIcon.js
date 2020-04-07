@@ -11,7 +11,7 @@ const AppIconContainer = styled.div`
   box-sizing: border-box;
   border-radius: 15%;
   background: #f5f6f7;
-  color: ${props => {
+  color: ${(props) => {
     if (props.name === 'calculator') return 'red'
     else if (props.name === 'graph') return 'blue'
     else if (props.name === 'crawling') return 'purple'
@@ -19,7 +19,7 @@ const AppIconContainer = styled.div`
     else if (props.name === 'jjal') return 'green'
     else if (props.name === 'avengers') return 'navy'
     else if (props.name === 'maskmap') return 'darkgoldenrod'
-    else if (props.name === 'loading') return 'darkcyan'
+    else if (props.name === 'lazyloading') return 'darkmagenta'
     else return 'black'
   }};
   margin-right: 10px;
