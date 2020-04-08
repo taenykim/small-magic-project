@@ -168,22 +168,18 @@ const Layout = () => {
   }
 
   useEffect(() => {
-    if (!imgLoadToggle) {
-      crawling('cat')
-      setImgLoadToggle(true)
-      setTimeout(showFull, 3000)
-    }
+    console.log('useEffect')
+    crawling('cat')
+    setTimeout(showFull, 3000)
     document.getElementById('cat_button').addEventListener('click', (e) => {
-      e.stopImmediatePropagation()
       loadPage()
       crawling('cat')
     })
     document.getElementById('dog_button').addEventListener('click', (e) => {
-      e.stopImmediatePropagation()
       loadPage()
       crawling('dog')
     })
-  })
+  }, [])
 
   return (
     <BackgroundContainer>
