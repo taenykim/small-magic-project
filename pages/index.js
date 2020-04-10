@@ -64,6 +64,10 @@ const index = () => {
           <AppIcon name="lazyloading" />
           <AppName name="lazyloading" />
         </AppContainer>
+        <AppContainer>
+          <AppIcon name="music" />
+          <AppName name="music" />
+        </AppContainer>
       </IndexContainer>
     </BackgroundContainer>
   )
