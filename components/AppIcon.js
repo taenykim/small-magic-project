@@ -22,7 +22,7 @@ const AppIconContainer = styled.div`
     else if (props.name === 'maskmap') return 'darkgoldenrod'
     else if (props.name === 'loading') return 'darkcyan'
     else if (props.name === 'lazyloading') return 'darkmagenta'
-    else if (props.name === 'music') return 'blue'
+    else if (props.name === 'music') return 'black'
     else return 'black'
   }};
 
