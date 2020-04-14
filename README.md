@@ -45,3 +45,7 @@
 10. [소마법 프로젝트 - 10 (lazyloading)](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B810/)
 
 > 지연로딩화면(lazy loading) 구현 이미지열람 어플리케이션 `scroll`, `getBoundingClientRect`, `setTimeout`
+
+11. [소마법 프로젝트 - 11 (music)](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B811/)
+
+> 웹 뮤직 플레이어 어플리케이션 `audio`, `OOP`, `animation`
