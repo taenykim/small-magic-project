@@ -1,6 +1,6 @@
 export default class Sound {
-  sound
-  name
+  sound = null // HTMLAuioElement
+  name = ''
   constructor(src) {
     this.sound = document.querySelector('audio')
     this.name = src
