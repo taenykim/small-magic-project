@@ -22,6 +22,7 @@ const AppIconContainer = styled.div`
     else if (props.name === 'loading') return 'darkcyan'
     else if (props.name === 'lazyloading') return 'darkmagenta'
     else if (props.name === 'music') return 'black'
+    else if (props.name === 'share') return 'green'
     else return 'black'
   }};
   margin-right: 10px;
