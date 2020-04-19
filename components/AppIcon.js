@@ -38,7 +38,10 @@ const AppIconContainer = styled.div`
 `
 
 const AppIcon = ({ name }) => {
-  const url = `/${name}`
+  let url
+  name[0] === '_'
+    ? ((name = name.slice(1)), (url = `https://small-magic-project2.now.sh/${name}`))
+    : (url = `/${name}`)
   const str = String(name).toUpperCase()
 
   return (

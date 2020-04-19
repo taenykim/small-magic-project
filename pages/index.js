@@ -69,8 +69,8 @@ const index = () => {
           <AppName name="music" />
         </AppContainer>
         <AppContainer>
-          <AppIcon name="share" />
-          <AppName name="share" />
+          <AppIcon name="_share" />
+          <AppName name="_share" />
         </AppContainer>
       </IndexContainer>
     </BackgroundContainer>
