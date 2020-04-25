@@ -7,11 +7,16 @@
     "dev": "next -p 3001",
     "build": "next build",
     "start": "next start",
-    "deploy": "next build && next export"
+    "deploy": "next build && next export",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/jest": "^25.2.1",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
+    "@types/styled-components": "^5.1.0",
     "cheerio": "^1.0.0-rc.3",
     "immer": "^5.3.6",
     "jest": "^25.4.0",
@@ -23,7 +28,8 @@
     "react-dom": "^16.12.0",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.7",

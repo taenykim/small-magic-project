@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import ContentsMenubar from '../ContentsMenubar'
+import App from './containers/App'
 
 const BackgroundContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  margin-top: 80px;
   align-items: center;
   width: 100vw;
   height: 100vh;
@@ -17,7 +18,7 @@ const Layout = () => {
     <>
       <BackgroundContainer>
         <ContentsMenubar name="racingcar" />
-        <div>준비중</div>
+        <App />
       </BackgroundContainer>
     </>
   )
