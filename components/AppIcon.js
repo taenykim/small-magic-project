@@ -21,9 +21,9 @@ const AppIconContainer = styled.div`
     else if (props.name === 'avengers') return 'navy'
     else if (props.name === 'maskmap') return 'darkgoldenrod'
     else if (props.name === 'loading') return 'darkcyan'
-    else if (props.name === 'lazyloading') return 'darkmagenta'
-    else if (props.name === 'music') return 'black'
-    else if (props.name === 'share') return 'green'
+    else if (props.name === 'lazyloading') return 'black'
+    else if (props.name === 'music') return 'red'
+    else if (props.name === 'racingcar') return 'blue'
     else return 'black'
   }};
 
@@ -38,10 +38,7 @@ const AppIconContainer = styled.div`
 `
 
 const AppIcon = ({ name }) => {
-  let url
-  name[0] === '_'
-    ? ((name = name.slice(1)), (url = `https://small-magic-project2.now.sh/${name}`))
-    : (url = `/${name}`)
+  let url = `/${name}`
   const str = String(name).toUpperCase()
 
   return (
