@@ -16,7 +16,7 @@ const Layout = () => {
   return (
     <>
       <BackgroundContainer>
-        <ContentsMenubar name="today" />
+        <ContentsMenubar name="racingcar" />
         <div>준비중</div>
       </BackgroundContainer>
     </>
