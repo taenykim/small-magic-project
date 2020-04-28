@@ -46,7 +46,7 @@ const makeProcess = (index: number, cars: Car[]) => {
 const makeResult = (cars: Car[]) => {
   return (
     <div style={{ marginTop: '20px', fontWeight: 'bold' }}>
-      {getWinner(cars)}가 최종 우승했습니다.
+      {getWinner(cars)}(이)가 최종 우승했습니다.
     </div>
   )
 }
