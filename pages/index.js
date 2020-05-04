@@ -72,6 +72,10 @@ const index = () => {
           <AppIcon name="racingcar" />
           <AppName name="racingcar" />
         </AppContainer>
+        <AppContainer>
+          <AppIcon name="lotto" />
+          <AppName name="lotto" />
+        </AppContainer>
       </IndexContainer>
     </BackgroundContainer>
   )

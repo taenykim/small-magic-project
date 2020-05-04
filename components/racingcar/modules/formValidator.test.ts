@@ -10,7 +10,7 @@ describe('validateInput 함수', () => {
     expect(validateInput('', '')).toBe('CAR_NAME_IS_BLANK_ERROR')
   })
   it('자동차이름길이가 5초과할 경우 잘 걸러내는지 확인', () => {
-    expect(validateInput('123456', '')).toBe('CAR_NAME_LENGTH_ERROR')
+    expect(validateInput('123456', '2')).toBe('CAR_NAME_LENGTH_ERROR')
   })
   it('시도할 횟수가 숫자가 아닐 경우 잘 제거되는지 확인', () => {
     expect(validateInput('126,a', 'aa')).toBe('COUNT_IS_NOT_NUMBER_ERROR')

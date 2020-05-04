@@ -24,6 +24,7 @@ const AppIconContainer = styled.div`
     else if (props.name === 'lazyloading') return 'black'
     else if (props.name === 'music') return 'red'
     else if (props.name === 'racingcar') return 'blue'
+    else if (props.name === 'lotto') return 'purple'
     else return 'black'
   }};
 
