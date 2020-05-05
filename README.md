@@ -53,3 +53,7 @@
 12. [소마법 프로젝트 - 12 (racingcar)](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B812/)
 
 > 자동차 경주게임 어플리케이션 `OOP`, `setTimeout`, `typescript`, `test`
+
+13. [소마법 프로젝트 - 13 (lotto)](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B813/)
+
+> 로또 어플리케이션 `OOP`, `typescript`, `test`
