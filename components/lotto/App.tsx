@@ -42,62 +42,11 @@ const App = () => {
     MISS: 0,
   }
 
-  const [purchaseAmountIsBlankError, setPurchaseAmountIsBlankError] = useState(false)
-  const [purchaseAmountIsNotNumberError, setPurchaseAmountIsNotNumberError] = useState(false)
-  const [
-    purchaseAmountIsLessThanMinimumAmountError,
-    setPurchaseAmountIsLessThanMinimumAmountError,
-  ] = useState(false)
-  const [manualLottoCountIsBlankError, setManualLottoCountIsBlankError] = useState(false)
-  const [manualLottoCountIsNotNumberError, setManualLottoCountIsNotNumberError] = useState(false)
-  const [
-    manualLottoCountIsGreaterThanLottoCountError,
-    setManualLottoCountIsGreaterThanLottoCountError,
-  ] = useState(false)
-  const [manualLottoNumberIsBlankError, setManualLottoNumberIsBlankError] = useState(false)
-  const [
-    manualLottoNumberIsGreaterThanLottoCountError,
-    setManualLottoNumberIsGreaterThanLottoCountError,
-  ] = useState(false)
-  const [
-    manualLottoNumberIsLessThanLottoCountError,
-    setManualLottoNumberIsLessThanLottoCountError,
-  ] = useState(false)
-  const [manualLottoNumberIsNotNumberError, setManualLottoNumberIsNotNumberError] = useState(false)
-  const [
-    manualLottoNumberIsNotBeInLottoScopeError,
-    setManualLottoNumberIsNotBeInLottoScopeError,
-  ] = useState(false)
-  const [
-    manualLottoNumberHasDuplicationNumberError,
-    setManualLottoNumberHasDuplicationNumberError,
-  ] = useState(false)
-  const [winningLottoNumberIsBlankError, setWinningLottoNumberIsBlankError] = useState(false)
-  const [
-    winningLottoNumberIsGreaterThanLottoCountError,
-    setWinningLottoNumberIsGreaterThanLottoCountError,
-  ] = useState(false)
-  const [
-    winningLottoNumberIsLessThanLottoCountError,
-    setWinningLottoNumberIsLessThanLottoCountError,
-  ] = useState(false)
-  const [winningLottoNumberIsNotNumberError, setWinningLottoNumberIsNotNumberError] = useState(
-    false
-  )
-  const [
-    winningLottoNumberIsNotBeInLottoScopeError,
-    setWinningLottoNumberIsNotBeInLottoScopeError,
-  ] = useState(false)
-  const [
-    winningLottoNumberHasDuplicationNumberError,
-    setWinningLottoNumberHasDuplicationNumberError,
-  ] = useState(false)
-  const [bonusBallIsBlankError, setBonusBallIsBlankError] = useState(false)
-  const [bonusBallIsNotNumberError, setBonusBallIsNotNumberError] = useState(false)
-  const [bonusBallIsNotBeInLottoSopeError, setBonusBallIsNotBeInLottoSopeError] = useState(false)
-  const [winningLottoNumberHasBounsBallError, setWinningLottoNumberHasBounsBallError] = useState(
-    false
-  )
+  const [purchaseAmountError, setPurchaseAmountError] = useState('')
+  const [manualLottoCountError, setManualLottoCountError] = useState('')
+  const [manualLottoNumberError, setManualLottoNumberError] = useState('')
+  const [winningLottoNumberError, setWinningLottoNumberError] = useState('')
+  const [bonusBallError, setBonusBallError] = useState('')
 
   const [purchaseAmount, setPurchaseAmount] = useState('')
   const [lottoCount, setLottoCount] = useState(0)
@@ -129,20 +78,18 @@ const App = () => {
 
   const onSubmitPurchaseAmount = (e: any) => {
     e.preventDefault()
-    setPurchaseAmountIsBlankError(false)
-    setPurchaseAmountIsNotNumberError(false)
-    setPurchaseAmountIsLessThanMinimumAmountError(false)
+    setPurchaseAmountError('')
     setGotALottoCount(false)
 
     const validatedPurchaseAmount = validatePurchaseAmountInput(purchaseAmount, LOTTO_PRICE)
     if (validatedPurchaseAmount === 'PURCHASE_AMOUNT_IS_BLANK_ERROR') {
-      return setPurchaseAmountIsBlankError(true)
+      return setPurchaseAmountError('PURCHASE_AMOUNT_IS_BLANK_ERROR')
     }
     if (validatedPurchaseAmount === 'PURCHASE_AMOUNT_IS_NOT_NUMBER_ERROR') {
-      return setPurchaseAmountIsNotNumberError(true)
+      return setPurchaseAmountError('PURCHASE_AMOUNT_IS_NOT_NUMBER_ERROR')
     }
     if (validatedPurchaseAmount === 'PURCHASE_AMOUNT_IS_LESS_THAN_MINIMUM_AMOUNT_ERROR') {
-      return setPurchaseAmountIsLessThanMinimumAmountError(true)
+      return setPurchaseAmountError('PURCHASE_AMOUNT_IS_LESS_THAN_MINIMUM_AMOUNT_ERROR')
     }
     const _purchaseAmount = Number(validatedPurchaseAmount)
     const lottoCount = Math.floor(_purchaseAmount / LOTTO_PRICE)
@@ -152,19 +99,17 @@ const App = () => {
 
   const onSubmitManualLottoCount = (e: any) => {
     e.preventDefault()
-    setManualLottoCountIsBlankError(false)
-    setManualLottoCountIsNotNumberError(false)
-    setManualLottoCountIsGreaterThanLottoCountError(false)
+    setManualLottoCountError('')
 
     const validatedManualLottoCount = validateManualLottoCountInput(manualLottoCount, lottoCount)
     if (validatedManualLottoCount === 'MANUAL_LOTTO_COUNT_IS_BLANK_ERROR') {
-      return setManualLottoCountIsBlankError(true)
+      return setManualLottoCountError('MANUAL_LOTTO_COUNT_IS_BLANK_ERROR')
     }
     if (validatedManualLottoCount === 'MANUAL_LOTTO_COUNT_IS_NOT_NUMBER_ERROR') {
-      return setManualLottoCountIsNotNumberError(true)
+      return setManualLottoCountError('MANUAL_LOTTO_COUNT_IS_NOT_NUMBER_ERROR')
     }
     if (validatedManualLottoCount === 'MAMUAL_LOTTO_COUNT_IS_GREATER_THAN_LOTTO_COUNT_ERROR') {
-      return setManualLottoCountIsGreaterThanLottoCountError(true)
+      return setManualLottoCountError('MAMUAL_LOTTO_COUNT_IS_GREATER_THAN_LOTTO_COUNT_ERROR')
     }
     const _manualLottos = []
     for (let i = 0; i < Number(manualLottoCount); i++) {
@@ -190,11 +135,7 @@ const App = () => {
 
   const onSubmitManualLottos = (e: any) => {
     e.preventDefault()
-    setManualLottoNumberIsBlankError(false)
-    setManualLottoNumberIsGreaterThanLottoCountError(false)
-    setManualLottoNumberIsLessThanLottoCountError(false)
-    setManualLottoNumberIsNotNumberError(false)
-    setManualLottoNumberIsNotBeInLottoScopeError(false)
+    setManualLottoNumberError('')
 
     for (let i = 0; i < manualLottos.length; i++) {
       const validatedManualLottoNumber = validateLottoNumber(
@@ -203,22 +144,22 @@ const App = () => {
         LOTTO_NUMBERS
       )
       if (validatedManualLottoNumber === 'LOTTO_NUMBER_IS_BLANK_ERROR') {
-        return setManualLottoNumberIsBlankError(true)
+        return setManualLottoNumberError('LOTTO_NUMBER_IS_BLANK_ERROR')
       }
       if (validatedManualLottoNumber === 'LOTTO_NUMBER_IS_GREATER_THAN_LOTTO_COUNT') {
-        return setManualLottoNumberIsGreaterThanLottoCountError(true)
+        return setManualLottoNumberError('LOTTO_NUMBER_IS_GREATER_THAN_LOTTO_COUNT')
       }
       if (validatedManualLottoNumber === 'LOTTO_NUMBER_IS_LESS_THAN_LOTTO_COUNT') {
-        return setManualLottoNumberIsLessThanLottoCountError(true)
+        return setManualLottoNumberError('LOTTO_NUMBER_IS_LESS_THAN_LOTTO_COUNT')
       }
       if (validatedManualLottoNumber === 'LOTTO_NUMBER_IS_NOT_NUMBER_ERROR') {
-        return setManualLottoNumberIsNotNumberError(true)
+        return setManualLottoNumberError('LOTTO_NUMBER_IS_NOT_NUMBER_ERROR')
       }
       if (validatedManualLottoNumber === 'LOTTO_NUMBER_IS_NOT_BE_IN_LOTTO_SCOPE_ERROR') {
-        return setManualLottoNumberIsNotBeInLottoScopeError(true)
+        return setManualLottoNumberError('LOTTO_NUMBER_IS_NOT_BE_IN_LOTTO_SCOPE_ERROR')
       }
       if (validatedManualLottoNumber === 'LOTTO_NUMBER_HAS_DUPLICATION_NUMBER_ERROR') {
-        return setManualLottoNumberHasDuplicationNumberError(true)
+        return setManualLottoNumberError('LOTTO_NUMBER_HAS_DUPLICATION_NUMBER_ERROR')
       }
     }
     setGotUserLottos(true)
@@ -239,15 +180,8 @@ const App = () => {
 
   const onSubmitWinningLotto = (e: any) => {
     e.preventDefault()
-    setWinningLottoNumberIsBlankError(false)
-    setWinningLottoNumberIsGreaterThanLottoCountError(false)
-    setWinningLottoNumberIsLessThanLottoCountError(false)
-    setWinningLottoNumberIsNotNumberError(false)
-    setWinningLottoNumberIsNotBeInLottoScopeError(false)
-    setWinningLottoNumberHasDuplicationNumberError(false)
-    setBonusBallIsBlankError(false)
-    setBonusBallIsNotNumberError(false)
-    setBonusBallIsNotBeInLottoSopeError(false)
+    setWinningLottoNumberError('')
+    setBonusBallError('')
 
     const validatedWinningLottoNumber = validateLottoNumber(
       winningLottoNumbers,
@@ -255,22 +189,22 @@ const App = () => {
       LOTTO_NUMBERS
     )
     if (validatedWinningLottoNumber === 'LOTTO_NUMBER_IS_BLANK_ERROR') {
-      return setWinningLottoNumberIsBlankError(true)
+      return setWinningLottoNumberError('LOTTO_NUMBER_IS_BLANK_ERROR')
     }
     if (validatedWinningLottoNumber === 'LOTTO_NUMBER_IS_GREATER_THAN_LOTTO_COUNT') {
-      return setWinningLottoNumberIsGreaterThanLottoCountError(true)
+      return setWinningLottoNumberError('LOTTO_NUMBER_IS_GREATER_THAN_LOTTO_COUNT')
     }
     if (validatedWinningLottoNumber === 'LOTTO_NUMBER_IS_LESS_THAN_LOTTO_COUNT') {
-      return setWinningLottoNumberIsLessThanLottoCountError(true)
+      return setWinningLottoNumberError('LOTTO_NUMBER_IS_LESS_THAN_LOTTO_COUNT')
     }
     if (validatedWinningLottoNumber === 'LOTTO_NUMBER_IS_NOT_NUMBER_ERROR') {
-      return setWinningLottoNumberIsNotNumberError(true)
+      return setWinningLottoNumberError('LOTTO_NUMBER_IS_NOT_NUMBER_ERROR')
     }
     if (validatedWinningLottoNumber === 'LOTTO_NUMBER_IS_NOT_BE_IN_LOTTO_SCOPE_ERROR') {
-      return setWinningLottoNumberIsNotBeInLottoScopeError(true)
+      return setWinningLottoNumberError('LOTTO_NUMBER_IS_NOT_BE_IN_LOTTO_SCOPE_ERROR')
     }
     if (validatedWinningLottoNumber === 'LOTTO_NUMBER_HAS_DUPLICATION_NUMBER_ERROR') {
-      return setWinningLottoNumberHasDuplicationNumberError(true)
+      return setWinningLottoNumberError('LOTTO_NUMBER_HAS_DUPLICATION_NUMBER_ERROR')
     }
 
     const validatedBonusBall = validateBonusBallInput(
@@ -279,16 +213,16 @@ const App = () => {
       LOTTO_NUMBERS
     )
     if (validatedBonusBall === 'BONUS_BALL_IS_BLANK_ERROR') {
-      return setBonusBallIsBlankError(true)
+      return setBonusBallError('BONUS_BALL_IS_BLANK_ERROR')
     }
     if (validatedBonusBall === 'BONUS_BALL_IS_NOT_NUMBER_ERROR') {
-      return setBonusBallIsNotNumberError(true)
+      return setBonusBallError('BONUS_BALL_IS_NOT_NUMBER_ERROR')
     }
     if (validatedBonusBall === 'BONUS_BALL_IS_NOT_BE_IN_LOTTO_SCOPE_ERROR') {
-      return setBonusBallIsNotBeInLottoSopeError(true)
+      return setBonusBallError('BONUS_BALL_IS_NOT_BE_IN_LOTTO_SCOPE_ERROR')
     }
     if (validatedBonusBall === 'WINNING_LOTTO_NUMBER_HAS_BONUS_BALL_ERROR') {
-      return setWinningLottoNumberHasBounsBallError(true)
+      return setBonusBallError('WINNING_LOTTO_NUMBER_HAS_BONUS_BALL_ERROR')
     }
 
     const winningLotto = new WinningLotto(
@@ -314,13 +248,13 @@ const App = () => {
         ></input>
         <button type="submit">입력</button>
       </form>
-      {purchaseAmountIsBlankError && (
+      {purchaseAmountError === 'PURCHASE_AMOUNT_IS_BLANK_ERROR' && (
         <div style={{ color: 'red' }}>구입 금액을 입력하지 않았습니다.</div>
       )}
-      {purchaseAmountIsNotNumberError && (
+      {purchaseAmountError === 'PURCHASE_AMOUNT_IS_NOT_NUMBER_ERROR' && (
         <div style={{ color: 'red' }}>구입 금액은 숫자로 입력해주세요.</div>
       )}
-      {purchaseAmountIsLessThanMinimumAmountError && (
+      {purchaseAmountError === 'PURCHASE_AMOUNT_IS_LESS_THAN_MINIMUM_AMOUNT_ERROR' && (
         <div style={{ color: 'red' }}>로또 최소 구입 가격은 {LOTTO_PRICE}원입니다.</div>
       )}
       {gotALottoCount && (
@@ -335,13 +269,13 @@ const App = () => {
           <button type="submit">입력</button>
         </form>
       )}
-      {manualLottoCountIsBlankError && (
+      {manualLottoCountError === 'MANUAL_LOTTO_COUNT_IS_BLANK_ERROR' && (
         <div style={{ color: 'red' }}>수동으로 구매할 로또 수를 입력하지 않았습니다.</div>
       )}
-      {manualLottoCountIsNotNumberError && (
+      {manualLottoCountError === 'MANUAL_LOTTO_COUNT_IS_NOT_NUMBER_ERROR' && (
         <div style={{ color: 'red' }}>수동으로 구매할 로또 수는 숫자로 입력해주세요.</div>
       )}
-      {manualLottoCountIsGreaterThanLottoCountError && (
+      {manualLottoCountError === 'MAMUAL_LOTTO_COUNT_IS_GREATER_THAN_LOTTO_COUNT_ERROR' && (
         <div style={{ color: 'red' }}>{lottoCount}개보다 작게 입력해주세요.</div>
       )}
       {manualLottos.length > 0 && (
@@ -364,24 +298,24 @@ const App = () => {
           <button type="submit">입력</button>
         </form>
       )}
-      {manualLottoNumberIsBlankError && (
+      {manualLottoNumberError === 'LOTTO_NUMBER_IS_BLANK_ERROR' && (
         <div style={{ color: 'red' }}>입력하지 않은 번호가 있습니다.</div>
       )}
-      {manualLottoNumberIsGreaterThanLottoCountError && (
+      {manualLottoNumberError === 'LOTTO_NUMBER_IS_GREATER_THAN_LOTTO_COUNT' && (
         <div style={{ color: 'red' }}>로또 개수는 {LOTTO_COUNT}개로 입력해주세요.</div>
       )}
-      {manualLottoNumberIsLessThanLottoCountError && (
+      {manualLottoNumberError === 'LOTTO_NUMBER_IS_LESS_THAN_LOTTO_COUNT' && (
         <div style={{ color: 'red' }}>로또 개수는 {LOTTO_COUNT}개로 입력해주세요.</div>
       )}
-      {manualLottoNumberIsNotNumberError && (
+      {manualLottoNumberError === 'LOTTO_NUMBER_IS_NOT_NUMBER_ERROR' && (
         <div style={{ color: 'red' }}>수동으로 구매할 번호는 숫자와 ,로 입력해주세요.</div>
       )}
-      {manualLottoNumberIsNotBeInLottoScopeError && (
+      {manualLottoNumberError === 'LOTTO_NUMBER_IS_NOT_BE_IN_LOTTO_SCOPE_ERROR' && (
         <div style={{ color: 'red' }}>
           로또는 1부터 {LOTTO_MAX_NUMBER} 사이의 숫자를 입력해주세요.
         </div>
       )}
-      {manualLottoNumberHasDuplicationNumberError && (
+      {manualLottoNumberError === 'LOTTO_NUMBER_HAS_DUPLICATION_NUMBER_ERROR' && (
         <div style={{ color: 'red' }}>중복된 로또 번호가 있습니다.</div>
       )}
       {gotUserLottos && (
@@ -421,36 +355,38 @@ const App = () => {
           </form>
         </div>
       )}
-      {winningLottoNumberIsBlankError && (
+      {winningLottoNumberError === 'LOTTO_NUMBER_IS_BLANK_ERROR' && (
         <div style={{ color: 'red' }}>입력하지 않은 번호가 있습니다.</div>
       )}
-      {winningLottoNumberIsGreaterThanLottoCountError && (
+      {winningLottoNumberError === 'LOTTO_NUMBER_IS_GREATER_THAN_LOTTO_COUNT' && (
         <div style={{ color: 'red' }}>당첨 번호는 {LOTTO_COUNT}개로 입력해주세요.</div>
       )}
-      {winningLottoNumberIsLessThanLottoCountError && (
+      {winningLottoNumberError === 'LOTTO_NUMBER_IS_LESS_THAN_LOTTO_COUNT' && (
         <div style={{ color: 'red' }}>당첨 번호는 {LOTTO_COUNT}개로 입력해주세요.</div>
       )}
-      {winningLottoNumberIsNotNumberError && (
+      {winningLottoNumberError === 'LOTTO_NUMBER_IS_NOT_NUMBER_ERROR' && (
         <div style={{ color: 'red' }}>당첨 번호는 숫자와 ,로 입력해주세요.</div>
       )}
-      {winningLottoNumberIsNotBeInLottoScopeError && (
+      {winningLottoNumberError === 'LOTTO_NUMBER_IS_NOT_BE_IN_LOTTO_SCOPE_ERROR' && (
         <div style={{ color: 'red' }}>
           로또는 1부터 {LOTTO_MAX_NUMBER} 사이의 숫자를 입력해주세요.
         </div>
       )}
-      {winningLottoNumberHasDuplicationNumberError && (
+      {winningLottoNumberError === 'LOTTO_NUMBER_HAS_DUPLICATION_NUMBER_ERROR' && (
         <div style={{ color: 'red' }}>중복된 로또 번호가 있습니다.</div>
       )}
-      {bonusBallIsBlankError && <div style={{ color: 'blue' }}>보너스볼을 입력해주세요.</div>}
-      {bonusBallIsNotNumberError && (
+      {bonusBallError === 'BONUS_BALL_IS_BLANK_ERROR' && (
+        <div style={{ color: 'blue' }}>보너스볼을 입력해주세요.</div>
+      )}
+      {bonusBallError === 'BONUS_BALL_IS_NOT_NUMBER_ERROR' && (
         <div style={{ color: 'blue' }}>보너스볼은 숫자로 입력해주세요.</div>
       )}
-      {bonusBallIsNotBeInLottoSopeError && (
+      {bonusBallError === 'BONUS_BALL_IS_NOT_BE_IN_LOTTO_SCOPE_ERROR' && (
         <div style={{ color: 'blue' }}>
           보너스볼은 1부터 {LOTTO_MAX_NUMBER} 사이의 숫자를 입력해주세요.
         </div>
       )}
-      {winningLottoNumberHasBounsBallError && (
+      {bonusBallError === 'WINNING_LOTTO_NUMBER_HAS_BONUS_BALL_ERROR' && (
         <div style={{ color: 'blue' }}>보너스볼은 당첨 번호와 다른 숫자로 입력해주세요.</div>
       )}
       {gotResult && (
