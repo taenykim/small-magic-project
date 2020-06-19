@@ -1,84 +1,68 @@
-import React from 'react'
-import styled from 'styled-components'
-import AppIcon from '../components/AppIcon'
-import AppName from '../components/AppName'
+import React from "react";
+import styled from "styled-components";
+import AppIcon from "../components/AppIcon";
 
-const BackgroundContainer = styled.div`
-  background: #f5f6f7;
-  min-height: 100vh;
-`
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const IndexContainer = styled.div`
   display: flex;
-  width: 90vw;
-  margin: 40px 10px 10px 10px;
+  width: 84vw;
+  margin: 100px 0px 0px 0px;
   flex-wrap: wrap;
-  margin-bottom: 100px;
-`
+`;
 
 const AppContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 5px 20px 10px 20px;
-  height: fit-content;
-`
+  margin: 20px;
+`;
 
 const index = () => {
   return (
-    <BackgroundContainer>
+    <Container>
       <IndexContainer>
         <AppContainer>
           <AppIcon name="calculator" />
-          <AppName name="calculator" />
         </AppContainer>
         <AppContainer>
           <AppIcon name="graph" />
-          <AppName name="graph" />
         </AppContainer>
         <AppContainer>
           <AppIcon name="crawling" />
-          <AppName name="crawling" />
         </AppContainer>
         <AppContainer>
           <AppIcon name="today" />
-          <AppName name="today" />
         </AppContainer>
         <AppContainer>
           <AppIcon name="jjal" />
-          <AppName name="jjal" />
         </AppContainer>
         <AppContainer>
           <AppIcon name="avengers" />
-          <AppName name="avengers" />
         </AppContainer>
         <AppContainer>
           <AppIcon name="maskmap" />
-          <AppName name="maskmap" />
         </AppContainer>
         <AppContainer>
           <AppIcon name="loading" />
-          <AppName name="loading" />
         </AppContainer>
         <AppContainer>
           <AppIcon name="lazyloading" />
-          <AppName name="lazyloading" />
         </AppContainer>
         <AppContainer>
           <AppIcon name="music" />
-          <AppName name="music" />
         </AppContainer>
         <AppContainer>
           <AppIcon name="racingcar" />
-          <AppName name="racingcar" />
         </AppContainer>
         <AppContainer>
           <AppIcon name="lotto" />
-          <AppName name="lotto" />
         </AppContainer>
       </IndexContainer>
-    </BackgroundContainer>
-  )
-}
+    </Container>
+  );
+};
 
-export default index
+export default index;
