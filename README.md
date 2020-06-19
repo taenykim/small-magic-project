@@ -1,6 +1,19 @@
 # 🔮 소마법 프로젝트
 
-## 🛠 리뉴얼 중.. [issue/3](https://github.com/taenykim/small-magic-project/issues/3)
+<br/>
+
+<br/>
+
+<br/>
+
+**리뉴얼 중..**🔥🔥🔥 [issue/3](https://github.com/taenykim/small-magic-project/issues/3)
+
+<br/>
+
+<br/>
+
+<br/>
+
 
 ## 📒 제작노트
 
