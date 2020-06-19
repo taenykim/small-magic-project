@@ -4,11 +4,6 @@
 
 ## 📒 제작노트
 
-<details>
-<summary>제작노트 보기[접기/펼치기]</summary>
-<div markdown="1">
-
-
 1. [소마법 프로젝트 - 1 (container)](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B81/)
 
 > 프로젝트 전체 컨셉, 레이아웃 구상 `nextJS`, `React`, `Redux`, `styled-component`
@@ -60,7 +55,3 @@
 13. [소마법 프로젝트 - 13 (lotto)](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B813/)
 
 > 로또 어플리케이션 `OOP`, `typescript`, `test`
-
-
-  </div>
-  </details>
