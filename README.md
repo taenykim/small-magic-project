@@ -1,10 +1,13 @@
 # 🔮 소마법 프로젝트
 
-## 1. 프로젝트 사이트
+## 🛠 리뉴얼 중.. [issue/3](https://github.com/taenykim/small-magic-project/issues/3)
 
-[사이트 링크](https://small-magic-project.now.sh/) :apple:
+## 📒 제작노트
 
-## 2. 제작노트
+<details>
+<summary>제작노트 보기[접기/펼치기]</summary>
+<div markdown="1">
+
 
 1. [소마법 프로젝트 - 1 (container)](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B81/)
 
@@ -57,3 +60,7 @@
 13. [소마법 프로젝트 - 13 (lotto)](https://taeny.dev/project/%EC%86%8C%EB%A7%88%EB%B2%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B813/)
 
 > 로또 어플리케이션 `OOP`, `typescript`, `test`
+
+
+  </div>
+  </details>
