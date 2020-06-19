@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import withRedux from "next-redux-wrapper";
 import { createStore } from "redux";
 import reducer from "../reducers";
-import Background from "../components/Background.js";
+import Background from "../components/Background";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 interface _appProps {
