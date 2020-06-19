@@ -6,7 +6,7 @@
 
 <br/>
 
-### 리뉴얼 중..🔥🔥🔥 [issue/3](https://github.com/taenykim/small-magic-project/issues/3)
+리뉴얼 중..🔥🔥🔥 [issue/3](https://github.com/taenykim/small-magic-project/issues/3)
 
 <br/>
 
