@@ -11,6 +11,7 @@ const Container = styled.div`
 
 const IndexContainer = styled.div`
   display: flex;
+  justify-content: center;
   width: 84vw;
   margin: 100px 0px 0px 0px;
   flex-wrap: wrap;
