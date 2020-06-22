@@ -7,6 +7,7 @@ const scale = keyframes`
   }
   100% {
     transform: perspective(500px) scale(1.05) ;
+    background:dodgerblue;
   }
 `;
 
@@ -46,7 +47,6 @@ const AppIconContainer = styled.div`
   &:hover {
     animation: ${scale} 0.6s ease;
     animation-fill-mode: forwards;
-    background: green;
   }
 
   & > div {

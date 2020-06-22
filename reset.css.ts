@@ -2,6 +2,10 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 @font-face {
+	font-family:"harry";
+	src:url(/harry.ttf) format("truetype");
+}
+@font-face {
 	font-family: "escore1"; 
 	src: url(/SCDream1.otf) format("opentype");
 }
