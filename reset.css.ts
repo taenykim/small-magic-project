@@ -41,7 +41,7 @@ export const GlobalStyle = createGlobalStyle`
 	font-family: "escore9"; 
 	src: url(/SCDream9.otf) format("opentype");
 }
-  
+
 
 
 html, body, div, span, applet, object, iframe,

@@ -1,30 +1,14 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import Link from "next/link";
-
-const scale = keyframes`
-  0% {
-  }
-  100% {
-    transform: perspective(500px) scale(1.05) ;
-    background:dodgerblue;
-  }
-`;
 
 interface AppIconContainerProps {
   name: string;
 }
 
 const AppIconContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 258px;
-  height: 437px;
-  box-sizing: border-box;
-  box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #ddd;
-  border-radius: 5px;
-  background: #f5f6f7;
+  position: relative;
+  height: 300px;
   color: ${(props: AppIconContainerProps) => {
     if (props.name === "calculator") return "red";
     else if (props.name === "graph") return "blue";
@@ -40,19 +24,6 @@ const AppIconContainer = styled.div`
     else if (props.name === "lotto") return "purple";
     else return "black";
   }};
-
-  &:active {
-    box-shadow: 2px 2px 2px 0px #dfe4ea inset, -2px -2px 2px 0px white inset;
-  }
-  &:hover {
-    animation: ${scale} 0.6s ease;
-    animation-fill-mode: forwards;
-  }
-
-  & > div {
-    font-family: escore9;
-    font-size: 12px;
-  }
 `;
 
 interface AppIconProps {
@@ -64,13 +35,18 @@ const AppIcon: React.FC<AppIconProps> = ({ name }) => {
   const str = String(name).toUpperCase();
 
   return (
-    <Link href={url}>
-      <a style={{ textDecoration: "none" }}>
-        <AppIconContainer className="ff" name={name}>
-          <div>{str}</div>
-        </AppIconContainer>
-      </a>
-    </Link>
+    <AppIconContainer name={name}>
+      <Link href={url}>
+        <a style={{ textDecoration: "none" }}>
+          <img className="app-icon-image" style={{ filter: "grayscale(100%)", transition: "1s ease", position: "absolute", top: 0, maxWidth: "100%", opacity: "100%" }} src="captain.jpg" />
+          <video style={{ objectFit: "cover", transition: "1s ease", position: "absolute", top: 0, height: "100%", opacity: "0%", width: "196px" }} playsInline muted loop autoPlay>
+            <source src="http://www.w3schools.com/html/movie.ogg" type="video/ogg" />
+            Your browser does not support the video tag.
+          </video>
+        </a>
+      </Link>
+      <div style={{ fontFamily: "escore9", fontSize: "18px", width: "-webkit-fill-available", position: "absolute", top: "200px", textAlign: "center", margin: "11px 11px 11px 11px" }}>{str}</div>
+    </AppIconContainer>
   );
 };
 
