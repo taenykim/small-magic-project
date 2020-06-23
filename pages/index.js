@@ -1,84 +1,146 @@
-import React from 'react'
-import styled from 'styled-components'
-import AppIcon from '../components/AppIcon'
-import AppName from '../components/AppName'
+import React, { useEffect } from "react";
+import styled, { keyframes } from "styled-components";
+import AppIcon from "../components/AppIcon";
+import Header from "../components/Header";
 
-const BackgroundContainer = styled.div`
-  background: #f5f6f7;
-  min-height: 100vh;
-`
+const scale = keyframes`
+  0% {
+  }
+  100% {
+    transform: perspective(500px) scale(1.05) ;
+    background:#fff;
+    background-image: url("https://www.transparenttextures.com/patterns/checkered-pattern.png");
 
-const IndexContainer = styled.div`
-  display: flex;
-  width: 90vw;
-  margin: 40px 10px 10px 10px;
-  flex-wrap: wrap;
-  margin-bottom: 100px;
-`
+  }
+`;
 
-const AppContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 5px 20px 10px 20px;
-  height: fit-content;
-`
+`;
+
+const IndexContainer = styled.div`
+  width: 84vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
+const AppContainer = styled.div`
+  margin: 10px;
+  width: 200px;
+  overflow-wrap: anywhere;
+  border: 2px solid black;
+  box-sizing: border-box;
+  &:hover {
+    animation: ${scale} 0.6s ease;
+    animation-fill-mode: forwards;
+  }
+`;
+
+const Description = styled.div`
+  padding: 11px 11px 11px 11px;
+`;
 
 const index = () => {
+  useEffect(() => {
+    const figure = document.querySelectorAll(".app-container");
+    const vid = document.querySelectorAll("video");
+    const appIconImage = document.querySelectorAll(".app-icon-image");
+
+    [].forEach.call(figure, function (item, index) {
+      item.addEventListener("mouseover", hoverVideo.bind(item, index), false);
+      item.addEventListener("mouseout", hideVideo.bind(item, index), false);
+    });
+
+    function hoverVideo(index, e) {
+      vid[index].style.opacity = "100%";
+      const playPromise = vid[index].play();
+
+      if (playPromise !== undefined) {
+        playPromise
+          .then((_) => {
+            // Automatic playback started!
+            // Show playing UI.
+            console.log("audio played auto");
+          })
+          .catch((error) => {
+            // Auto-play was prevented
+            // Show paused UI.
+            console.log("playback prevented");
+          });
+      }
+      appIconImage[index].style.opacity = "0%";
+    }
+
+    function hideVideo(index, e) {
+      vid[index].style.opacity = "0%";
+      var playPromise = vid[index].pause();
+
+      if (playPromise !== undefined) {
+        playPromise
+          .then((_) => {
+            // Automatic playback started!
+            // Show playing UI.
+            console.log("audio played auto");
+          })
+          .catch((error) => {
+            // Auto-play was prevented
+            // Show paused UI.
+            console.log("playback prevented");
+          });
+      }
+      appIconImage[index].style.opacity = "100%";
+    }
+  }, []);
   return (
-    <BackgroundContainer>
+    <Container>
+      <Header></Header>
       <IndexContainer>
-        <AppContainer>
+        <AppContainer className="app-container">
+          <AppIcon name="Welcome to Small magic project" />
+        </AppContainer>
+        <AppContainer className="app-container">
           <AppIcon name="calculator" />
-          <AppName name="calculator" />
         </AppContainer>
-        <AppContainer>
+        <AppContainer className="app-container">
           <AppIcon name="graph" />
-          <AppName name="graph" />
         </AppContainer>
-        <AppContainer>
+        <AppContainer className="app-container">
           <AppIcon name="crawling" />
-          <AppName name="crawling" />
         </AppContainer>
-        <AppContainer>
+        <AppContainer className="app-container">
           <AppIcon name="today" />
-          <AppName name="today" />
         </AppContainer>
-        <AppContainer>
+        <AppContainer className="app-container">
           <AppIcon name="jjal" />
-          <AppName name="jjal" />
         </AppContainer>
-        <AppContainer>
+        <AppContainer className="app-container">
           <AppIcon name="avengers" />
-          <AppName name="avengers" />
         </AppContainer>
-        <AppContainer>
+        <AppContainer className="app-container">
           <AppIcon name="maskmap" />
-          <AppName name="maskmap" />
         </AppContainer>
-        <AppContainer>
+        <AppContainer className="app-container">
           <AppIcon name="loading" />
-          <AppName name="loading" />
         </AppContainer>
-        <AppContainer>
+        <AppContainer className="app-container">
           <AppIcon name="lazyloading" />
-          <AppName name="lazyloading" />
         </AppContainer>
-        <AppContainer>
+        <AppContainer className="app-container">
           <AppIcon name="music" />
-          <AppName name="music" />
         </AppContainer>
-        <AppContainer>
+        <AppContainer className="app-container">
           <AppIcon name="racingcar" />
-          <AppName name="racingcar" />
         </AppContainer>
-        <AppContainer>
+        <AppContainer className="app-container">
           <AppIcon name="lotto" />
-          <AppName name="lotto" />
         </AppContainer>
       </IndexContainer>
-    </BackgroundContainer>
-  )
-}
+    </Container>
+  );
+};
 
-export default index
+export default index;

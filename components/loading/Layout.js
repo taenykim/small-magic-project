@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react'
-import styled, { keyframes } from 'styled-components'
-import ContentsMenubar from '../ContentsMenubar'
+import React, { useEffect, useState, useCallback } from "react";
+import styled, { keyframes } from "styled-components";
+import ContentsMenubar from "../ContentsMenubar";
 
 const BackgroundContainer = styled.div`
   display: flex;
@@ -8,8 +8,7 @@ const BackgroundContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  background: white;
-`
+`;
 
 const spin = keyframes`
   0% {
@@ -18,12 +17,12 @@ const spin = keyframes`
   100% {
     transform: translate(-50%, -50%) rotate(360deg);
   }
-`
+`;
 
 const positionbottom = keyframes`
   from{ margin-top:150px; opacity:0 } 
   to{ margin-top:100px; opacity:1 }
-`
+`;
 
 const customAni = keyframes`
 0%, 100% {
@@ -32,7 +31,7 @@ const customAni = keyframes`
  50% {
   transform: translatey(20px);
  }
-`
+`;
 
 const MainLoader = styled.div`
   position: fixed;
@@ -45,7 +44,7 @@ const MainLoader = styled.div`
   height: 100vh;
   background: darkviolet;
   z-index: 20;
-`
+`;
 
 const MainLoaderText = styled.div`
   position: absolute;
@@ -53,16 +52,16 @@ const MainLoaderText = styled.div`
   text-shadow: 2px 2px 4px black;
   font-family: escore9;
   color: ${(props) => {
-    return props.color
+    return props.color;
   }};
   animation: ${customAni} 1.5s ease-in-out infinite;
   animation-delay: ${(props) => {
-    return props.delay
+    return props.delay;
   }};
   margin-left: ${(props) => {
-    return props.transX
+    return props.transX;
   }};
-`
+`;
 
 const Loader = styled.div`
   position: fixed;
@@ -75,7 +74,7 @@ const Loader = styled.div`
   height: 60px;
   transform: translate(-50%, -50%);
   animation: ${spin} 2s linear infinite;
-`
+`;
 
 const Description = styled.div`
   display: flex;
@@ -83,7 +82,7 @@ const Description = styled.div`
   align-items: center;
   margin-top: 100px;
   padding: 20px;
-`
+`;
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -95,7 +94,7 @@ const ButtonContainer = styled.div`
     margin: 6px;
     cursor: pointer;
   }
-`
+`;
 
 const TextContainer = styled.div`
   margin-top: 100px;
@@ -103,83 +102,80 @@ const TextContainer = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   animation: ${positionbottom} 1s linear;
-`
+`;
 
 const Layout = () => {
-  const [imgLoadToggle, setImgLoadToggle] = useState(false)
-  const [imgArr, setImgArr] = useState([])
+  const [imgLoadToggle, setImgLoadToggle] = useState(false);
+  const [imgArr, setImgArr] = useState([]);
 
-  console.log('this')
+  console.log("this");
 
   const crawling = useCallback((animal) => {
-    const cheerio = require('cheerio')
-    const url = `https://cors-anywhere.herokuapp.com/https://wall.alphacoders.com/search.php?search=${animal}`
+    const cheerio = require("cheerio");
+    const url = `https://cors-anywhere.herokuapp.com/https://wall.alphacoders.com/search.php?search=${animal}`;
     fetch(url)
       .then((res) => {
-        return res.text()
+        return res.text();
       })
       .then((text) => {
-        console.log('크롤링실행')
-        const $ = cheerio.load(text)
+        console.log("크롤링실행");
+        const $ = cheerio.load(text);
         let json = [],
           id,
           link,
-          img
+          img;
         if (window.innerWidth < 1070) {
-          $('#page_container > div:nth-child(6) > div.thumb-container').each(function (i, elem) {
-            id = i
-            link = $(this).find('div.thumb-container > a').attr('href')
-            img = $(this).find('div.thumb-container > a.wallpaper-thumb > img').attr('data-src')
-            json.push({ id: id, link: link, img: img })
-          })
+          $("#page_container > div:nth-child(6) > div.thumb-container").each(function (i, elem) {
+            id = i;
+            link = $(this).find("div.thumb-container > a").attr("href");
+            img = $(this).find("div.thumb-container > a.wallpaper-thumb > img").attr("data-src");
+            json.push({ id: id, link: link, img: img });
+          });
         } else {
-          $('#page_container > div:nth-child(6) > div.thumb-container-big').each(function (
-            i,
-            elem
-          ) {
-            id = i
-            link = $(this).find('div.thumb-container > div.boxgrid > a').attr('href')
-            img = $(this).find('div.thumb-container > div.boxgrid > a > img').attr('data-src')
-            json.push({ id: id, link: link, img: img })
-          })
+          $("#page_container > div:nth-child(6) > div.thumb-container-big").each(function (i, elem) {
+            id = i;
+            link = $(this).find("div.thumb-container > div.boxgrid > a").attr("href");
+            img = $(this).find("div.thumb-container > div.boxgrid > a > img").attr("data-src");
+            json.push({ id: id, link: link, img: img });
+          });
         }
-        console.log(json)
-        return json
+        console.log(json);
+        return json;
       })
       .then((json) => {
-        setImgArr(json)
-        showPage()
+        setImgArr(json);
+        showPage();
       })
-      .catch((error) => console.log(error))
-  }, [])
+      .catch((error) => console.log(error));
+  }, []);
 
   const showFull = () => {
-    document.getElementById('main_loader').style.display = 'none'
-  }
+    document.getElementById("main_loader").style.display = "none";
+  };
 
   const loadPage = () => {
-    document.getElementById('first_loader').style.display = 'block'
-    document.getElementById('myDiv').style.display = 'none'
-  }
+    document.getElementById("first_loader").style.display = "block";
+    document.getElementById("myDiv").style.display = "none";
+  };
 
   const showPage = () => {
-    document.getElementById('first_loader').style.display = 'none'
-    document.getElementById('myDiv').style.display = 'flex'
-  }
+    document.getElementById("first_loader").style.display = "none";
+    document.getElementById("myDiv").style.display = "flex";
+  };
 
   useEffect(() => {
-    console.log('useEffect')
-    crawling('cat')
-    setTimeout(showFull, 3000)
-    document.getElementById('cat_button').addEventListener('click', (e) => {
-      loadPage()
-      crawling('cat')
-    })
-    document.getElementById('dog_button').addEventListener('click', (e) => {
-      loadPage()
-      crawling('dog')
-    })
-  }, [])
+    console.log("useEffect");
+    crawling("cat");
+    setTimeout(showFull, 3000);
+    document.getElementById("cat_button").addEventListener("click", (e) => {
+      loadPage();
+      crawling("cat");
+    });
+    document.getElementById("dog_button").addEventListener("click", (e) => {
+      loadPage();
+      crawling("dog");
+    });
+  }, []);
 
   return (
     <BackgroundContainer>
@@ -208,17 +204,17 @@ const Layout = () => {
       <Description>
         <p
           style={{
-            fontSize: '20px',
-            fontFamily: 'escore7',
-            color: 'pink',
-            textShadow: '2px 2px 4px black',
-            textAlign: 'center',
+            fontSize: "20px",
+            fontFamily: "escore7",
+            color: "pink",
+            textShadow: "2px 2px 4px black",
+            textAlign: "center",
           }}
         >
           버튼을 클릭하여 크롤링데이터를 불러오세요
         </p>
-        <p style={{ fontSize: '10px', fontFamily: 'escore5', marginTop: '10px' }}>
-          Image data from{'  '}
+        <p style={{ fontSize: "10px", fontFamily: "escore5", marginTop: "10px" }}>
+          Image data from{"  "}
           <a href="https://wall.alphacoders.com/" target="_blank">
             alphacoders.com
           </a>
@@ -228,13 +224,13 @@ const Layout = () => {
         <button id="cat_button">고양이(default)</button>
         <button id="dog_button">강아지</button>
       </ButtonContainer>
-      <TextContainer id="myDiv" style={{ display: 'none' }}>
+      <TextContainer id="myDiv" style={{ display: "none" }}>
         {imgArr.map((item, i) => {
-          return <img key={i} src={item.img}></img>
+          return <img key={i} src={item.img}></img>;
         })}
       </TextContainer>
     </BackgroundContainer>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

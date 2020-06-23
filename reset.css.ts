@@ -1,6 +1,10 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+@font-face {
+	font-family:"harry";
+	src:url(/harry.ttf) format("truetype");
+}
 @font-face {
 	font-family: "escore1"; 
 	src: url(/SCDream1.otf) format("opentype");
@@ -37,7 +41,7 @@ export const GlobalStyle = createGlobalStyle`
 	font-family: "escore9"; 
 	src: url(/SCDream9.otf) format("opentype");
 }
-  
+
 
 
 html, body, div, span, applet, object, iframe,
@@ -106,4 +110,4 @@ button {
 		outline: none;
 	}
 }
-`
+`;

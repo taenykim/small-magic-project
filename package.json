@@ -14,13 +14,15 @@
   "license": "ISC",
   "dependencies": {
     "@types/jest": "^25.2.1",
+    "@types/masonry-layout": "^4.2.1",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
+    "@types/react-redux": "^7.1.9",
     "@types/styled-components": "^5.1.0",
     "cheerio": "^1.0.0-rc.3",
-    "immer": "^5.3.6",
     "jest": "^25.4.0",
     "lodash": "^4.17.15",
+    "masonry-layout": "^4.2.2",
     "next": "^9.2.2",
     "next-redux-wrapper": "^5.0.0",
     "react": "^16.12.0",
@@ -33,6 +35,7 @@
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.7",
-    "webpack": "^4.41.6"
+    "redux-devtools-extension": "^2.13.8",
+    "webpack": "^4.43.0"
   }
 }
