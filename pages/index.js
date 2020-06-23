@@ -8,7 +8,7 @@ const scale = keyframes`
   100% {
     transform: perspective(500px) scale(1.05) ;
     background:#fff;
-    background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+    background-image: url("https://www.transparenttextures.com/patterns/checkered-pattern.png");
 
   }
 `;
