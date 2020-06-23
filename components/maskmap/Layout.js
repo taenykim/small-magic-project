@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import ContentsMenubar from '../ContentsMenubar'
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import ContentsMenubar from "../ContentsMenubar";
 
 const BackgroundContainer = styled.div`
   display: flex;
@@ -8,15 +8,13 @@ const BackgroundContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height:100vh;
-  }};
-  background: #f5f6f7;
-`
+  height: 100vh;
+`;
 
 const MapContainer = styled.div`
   width: 100%;
   height: 100%;
-`
+`;
 
 const Description = styled.div`
   display: flex;
@@ -53,64 +51,64 @@ const Description = styled.div`
       padding: 6px;
     }
   }
-`
+`;
 
 const Layout = () => {
-  let map = null
-  const week = new Date().getDay()
-  const weekArr = ['일', '월', '화', '수', '목', '금', '토']
-  const weekMask = ['누구나', '1,6년생', '2,7년생', '3,8년생', '4,9년생', '5,0년생', '누구나']
+  let map = null;
+  const week = new Date().getDay();
+  const weekArr = ["일", "월", "화", "수", "목", "금", "토"];
+  const weekMask = ["누구나", "1,6년생", "2,7년생", "3,8년생", "4,9년생", "5,0년생", "누구나"];
 
   useEffect(() => {
-    map = new naver.maps.Map('map', {
+    map = new naver.maps.Map("map", {
       center: new naver.maps.LatLng(37.5666805, 126.9784147),
       zoom: 10,
-      mapTypeId: naver.maps.MapTypeId.NORMAL
-    })
+      mapTypeId: naver.maps.MapTypeId.NORMAL,
+    });
 
-    naver.maps.Event.addListener(map, 'dragend', function(e) {
-      const url = 'https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json'
-      const query = `?lat=${map.getCenter().y}&lng=${map.getCenter().x}`
+    naver.maps.Event.addListener(map, "dragend", function (e) {
+      const url = "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json";
+      const query = `?lat=${map.getCenter().y}&lng=${map.getCenter().x}`;
       fetch(url + query)
-        .then(res => {
-          return res.json()
+        .then((res) => {
+          return res.json();
         })
-        .then(json => {
-          console.log(json)
+        .then((json) => {
+          console.log(json);
           const remain_stat = {
-            plenty: 'green',
-            some: 'orange',
-            few: 'red',
-            empty: 'black',
-            break: 'black'
-          }
+            plenty: "green",
+            some: "orange",
+            few: "red",
+            empty: "black",
+            break: "black",
+          };
           for (let i = 0; i < json.count; i++) {
             var marker = new naver.maps.Marker({
               icon: {
                 content: `<div style="font-size:10px; font-family:escore6; border:1px solid lightgrey; color:white; background:${
                   remain_stat[json.stores[i].remain_stat]
-                }; border-radius:5px; padding:4px;">${json.stores[i].name}</div>`
+                }; border-radius:5px; padding:4px;">${json.stores[i].name}</div>`,
               },
               position: new naver.maps.LatLng(json.stores[i].lat, json.stores[i].lng),
-              map: map
-            })
+              map: map,
+            });
           }
-        })
-    })
-  })
+        });
+    });
+  });
 
-  const onSuccessGeolocation = position => {
-    var location = new naver.maps.LatLng(position.coords.latitude, position.coords.longitude)
+  const onSuccessGeolocation = (position) => {
+    var location = new naver.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-    map.setCenter(location) // 얻은 좌표를 지도의 중심으로 설정합니다.
-    map.setZoom(16) // 지도의 줌 레벨을 변경합니다.
+    map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+    map.setZoom(16); // 지도의 줌 레벨을 변경합니다.
 
-    console.log('Coordinates: ' + location.toString())
-  }
+    console.log("Coordinates: " + location.toString());
+  };
 
   const onErrorGeolocation = () => {
     // 에러!!
-  }
+  };
 
   const mylocationHandler = () => {
     if (navigator.geolocation) {
@@ -119,11 +117,11 @@ const Layout = () => {
        * http://localhost 에서는 사용이 가능하며, 테스트 목적으로, Chrome 의 바로가기를 만들어서 아래와 같이 설정하면 접속은 가능합니다.
        * chrome.exe --unsafely-treat-insecure-origin-as-secure="http://example.com"
        */
-      navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation)
+      navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
     } else {
       // 에러
     }
-  }
+  };
 
   return (
     <BackgroundContainer>
@@ -131,21 +129,19 @@ const Layout = () => {
       <Description>
         <button onClick={mylocationHandler}>내 위치</button>
         <div>
-          <span
-            style={{ textAlign: 'center', color: 'black', background: 'rgba(255,255,255,0.7)' }}
-          >
-            <div style={{ fontSize: '20px', fontFamily: 'escore8' }}>{weekArr[week]}요일</div>
-            <div style={{ marginTop: '5px' }}>{weekMask[week]}</div>
+          <span style={{ textAlign: "center", color: "black", background: "rgba(255,255,255,0.7)" }}>
+            <div style={{ fontSize: "20px", fontFamily: "escore8" }}>{weekArr[week]}요일</div>
+            <div style={{ marginTop: "5px" }}>{weekMask[week]}</div>
           </span>
-          <span style={{ background: 'green' }}>100개이상</span>
-          <span style={{ background: 'orange' }}>30~100개</span>
-          <span style={{ background: 'red' }}>2~30개</span>
-          <span style={{ background: 'black' }}>없음</span>
+          <span style={{ background: "green" }}>100개이상</span>
+          <span style={{ background: "orange" }}>30~100개</span>
+          <span style={{ background: "red" }}>2~30개</span>
+          <span style={{ background: "black" }}>없음</span>
         </div>
       </Description>
       <MapContainer id="map"></MapContainer>
     </BackgroundContainer>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

@@ -1,8 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
-import Weather from './Weather'
-import Clock from './Clock'
-import ContentsMenubar from '../ContentsMenubar'
+import React from "react";
+import styled from "styled-components";
+import Weather from "./Weather";
+import Clock from "./Clock";
+import ContentsMenubar from "../ContentsMenubar";
 
 const BackgroundContainer = styled.div`
   display: flex;
@@ -11,8 +11,7 @@ const BackgroundContainer = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background: #f5f6f7;
-`
+`;
 
 const TodayContainer = styled.div`
   display: flex;
@@ -22,7 +21,7 @@ const TodayContainer = styled.div`
   border-radius: 3px;
   box-shadow: -4px -2px 4px 0px white, 4px 2px 6px 0px #dfe4ea;
   padding: 40px 40px 40px 40px;
-`
+`;
 
 const Layout = () => {
   return (
@@ -35,7 +34,7 @@ const Layout = () => {
         </TodayContainer>
       </BackgroundContainer>
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

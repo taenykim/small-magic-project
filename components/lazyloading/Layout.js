@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
-import styled from 'styled-components'
-import ContentsMenubar from '../ContentsMenubar'
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import ContentsMenubar from "../ContentsMenubar";
 
 const obj = [
   <img
@@ -27,34 +27,13 @@ const obj = [
     height="267"
     alt="A city skyline."
   />,
-]
+];
 
 const obj2 = [
-  <img
-    className="lazy"
-    src="solid.jpg"
-    data-src="thanos.png"
-    width="400"
-    height="267"
-    alt="A city skyline."
-  />,
-  <img
-    className="lazy"
-    src="solid.jpg"
-    data-src="spider.jpg"
-    width="400"
-    height="267"
-    alt="A city skyline."
-  />,
-  <img
-    className="lazy"
-    src="solid.jpg"
-    data-src="rocket.jpg"
-    width="400"
-    height="267"
-    alt="A city skyline."
-  />,
-]
+  <img className="lazy" src="solid.jpg" data-src="thanos.png" width="400" height="267" alt="A city skyline." />,
+  <img className="lazy" src="solid.jpg" data-src="spider.jpg" width="400" height="267" alt="A city skyline." />,
+  <img className="lazy" src="solid.jpg" data-src="rocket.jpg" width="400" height="267" alt="A city skyline." />,
+];
 
 const BackgroundContainer = styled.div`
   display: flex;
@@ -62,8 +41,7 @@ const BackgroundContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  background: white;
-`
+`;
 
 const Contents = styled.div`
   display: flex;
@@ -87,71 +65,67 @@ const Contents = styled.div`
     font-size: 36px;
     font-family: escore9;
   }
-`
+`;
 
 const Layout = () => {
   for (let i = 0; i < 9; i++) {
-    obj.push(obj[i])
+    obj.push(obj[i]);
   }
   for (let i = 0; i < 9; i++) {
-    obj2.push(obj2[i])
+    obj2.push(obj2[i]);
   }
   useEffect(() => {
-    console.log('this')
-    let lazyImages = [].slice.call(document.querySelectorAll('img.lazy'))
-    let active = false
+    console.log("this");
+    let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+    let active = false;
 
     const lazyLoad = () => {
       if (active === false) {
-        active = true
+        active = true;
 
         setTimeout(() => {
           lazyImages.map((lazyImage) => {
-            if (
-              lazyImage.getBoundingClientRect().top <= window.innerHeight &&
-              lazyImage.getBoundingClientRect().bottom >= 0 &&
-              getComputedStyle(lazyImage).display !== 'none'
-            ) {
-              lazyImage.src = lazyImage.dataset.src
-              lazyImage.classList.remove('lazy')
+            if (lazyImage.getBoundingClientRect().top <= window.innerHeight && lazyImage.getBoundingClientRect().bottom >= 0 && getComputedStyle(lazyImage).display !== "none") {
+              lazyImage.src = lazyImage.dataset.src;
+              lazyImage.classList.remove("lazy");
 
               lazyImages = lazyImages.filter(function (image) {
-                return image !== lazyImage
-              })
+                return image !== lazyImage;
+              });
 
               if (lazyImages.length === 0) {
-                document.removeEventListener('scroll', lazyLoad)
-                window.removeEventListener('resize', lazyLoad)
-                window.removeEventListener('orientationchange', lazyLoad)
+                document.removeEventListener("scroll", lazyLoad);
+                window.removeEventListener("resize", lazyLoad);
+                window.removeEventListener("orientationchange", lazyLoad);
               }
             }
-          })
+          });
 
-          active = false
-        }, 1000)
+          active = false;
+        }, 1000);
       }
-    }
+    };
 
-    document.addEventListener('scroll', lazyLoad)
-    window.addEventListener('resize', lazyLoad)
-    window.addEventListener('orientationchange', lazyLoad)
-  })
+    document.addEventListener("scroll", lazyLoad);
+    window.addEventListener("resize", lazyLoad);
+    window.addEventListener("orientationchange", lazyLoad);
+  });
   return (
     <BackgroundContainer>
       <ContentsMenubar name="lazyloading" />
-      <Contents style={{ marginTop: '100px' }}>
+      <Contents style={{ marginTop: "100px" }}>
         <p>1초의 지연로딩(lazy loading) 구현</p>
         <div>흐린 이미지로 지연</div>
         {obj.map((item) => {
-          return item
+          return item;
         })}
         <div>단색 이미지로 지연</div>
         {obj2.map((item) => {
-          return item
+          return item;
         })}
       </Contents>
     </BackgroundContainer>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

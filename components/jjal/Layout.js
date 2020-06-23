@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-import ContentsMenubar from '../ContentsMenubar'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import ContentsMenubar from "../ContentsMenubar";
+import { useSelector } from "react-redux";
 
 const BackgroundContainer = styled.div`
   display: flex;
@@ -9,10 +9,8 @@ const BackgroundContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  margin-top:70px;
-  }};
-  background: #f5f6f7;
-`
+  margin-top: 70px;
+`;
 
 const JJalContainer = styled.div`
   display: flex;
@@ -41,7 +39,7 @@ const JJalContainer = styled.div`
   & > div {
     margin-bottom: 100px;
   }
-`
+`;
 
 const JJalForm = styled.form`
   display: flex;
@@ -106,81 +104,78 @@ const JJalForm = styled.form`
   & > canvas {
     width: 90%;
   }
-`
+`;
 
 const Layout = () => {
-  const data = useSelector(state => state.jjal)
+  const data = useSelector((state) => state.jjal);
 
-  const [text, setText] = useState(data.text || 'welcome to my page')
-  const [imageOn, setImageOn] = useState(data.imageOn || '')
-  const [imageOnWidth, setImageOnWidth] = useState(data.imageOnWidth || '')
-  const [imageOnHeight, setImageOnHeight] = useState(data.imageOnHeight || '')
-  const [downloadHref, setDownloadHref] = useState(data.downloadHref || '')
-  const [textFontSize, setTextFontSize] = useState('20')
+  const [text, setText] = useState(data.text || "welcome to my page");
+  const [imageOn, setImageOn] = useState(data.imageOn || "");
+  const [imageOnWidth, setImageOnWidth] = useState(data.imageOnWidth || "");
+  const [imageOnHeight, setImageOnHeight] = useState(data.imageOnHeight || "");
+  const [downloadHref, setDownloadHref] = useState(data.downloadHref || "");
+  const [textFontSize, setTextFontSize] = useState("20");
 
   useEffect(() => {
-    var canvas = document.getElementById('imageCanvas')
-    const ctx = canvas.getContext('2d')
-    ctx.textAlign = 'center'
-    ctx.textBaseline = 'middle'
-    ctx.font = `${textFontSize}px Gulim`
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    var canvas = document.getElementById("imageCanvas");
+    const ctx = canvas.getContext("2d");
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.font = `${textFontSize}px Gulim`;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (imageOn) {
-      ctx.drawImage(imageOn, 0, 0, imageOnWidth, imageOnHeight)
+      ctx.drawImage(imageOn, 0, 0, imageOnWidth, imageOnHeight);
     } else {
-      ctx.fillStyle = 'dodgerblue'
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.fillStyle = "dodgerblue";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
-    ctx.lineWidth = 5
-    ctx.strokeStyle = `black`
-    ctx.strokeText(text, canvas.width / 2, canvas.height - 40)
-    ctx.fillStyle = `white`
-    ctx.fillText(text, canvas.width / 2, canvas.height - 40)
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = `black`;
+    ctx.strokeText(text, canvas.width / 2, canvas.height - 40);
+    ctx.fillStyle = `white`;
+    ctx.fillText(text, canvas.width / 2, canvas.height - 40);
 
-    const href = canvas.toDataURL()
-    setDownloadHref(href)
-  })
+    const href = canvas.toDataURL();
+    setDownloadHref(href);
+  });
 
-  const handleImage = e => {
-    var canvas = document.getElementById('imageCanvas')
-    var ctx = canvas.getContext('2d')
-    var reader = new FileReader()
-    reader.onload = event => {
-      var img = new Image()
+  const handleImage = (e) => {
+    var canvas = document.getElementById("imageCanvas");
+    var ctx = canvas.getContext("2d");
+    var reader = new FileReader();
+    reader.onload = (event) => {
+      var img = new Image();
       img.onload = () => {
         let max_size = 1280,
           width = img.width,
-          height = img.height
+          height = img.height;
 
         if (width > height) {
           if (width > max_size) {
-            height *= max_size / width
-            width = max_size
+            height *= max_size / width;
+            width = max_size;
           }
         } else {
           if (height > max_size) {
-            width *= max_size / height
-            height = max_size
+            width *= max_size / height;
+            height = max_size;
           }
         }
-        canvas.width = width
-        canvas.height = height
-        ctx.drawImage(img, 0, 0, width, height)
-        setImageOnWidth(width)
-        setImageOnHeight(height)
-      }
-      img.src = event.target.result
-      setImageOn(img)
-    }
-    reader.readAsDataURL(e.target.files[0])
-  }
+        canvas.width = width;
+        canvas.height = height;
+        ctx.drawImage(img, 0, 0, width, height);
+        setImageOnWidth(width);
+        setImageOnHeight(height);
+      };
+      img.src = event.target.result;
+      setImageOn(img);
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
 
   return (
     <BackgroundContainer>
-      <ContentsMenubar
-        name="jjal"
-        data={{ text, imageOn, imageOnWidth, imageOnHeight, downloadHref, textFontSize }}
-      />
+      <ContentsMenubar name="jjal" data={{ text, imageOn, imageOnWidth, imageOnHeight, downloadHref, textFontSize }} />
       <JJalContainer>
         <JJalForm>
           <p>이미지는 width 1280 이하로 리사이징 됩니다.</p>
@@ -195,25 +190,22 @@ const Layout = () => {
           <canvas id="imageCanvas"></canvas>
         </JJalForm>
         <input
-          onChange={e => {
-            setText(e.target.value)
+          onChange={(e) => {
+            setText(e.target.value);
           }}
           type="text"
           value={text}
           placeholder="문구를 입력하세요"
         />
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <label
-            style={{ marginRight: '10px', fontFamily: 'escore7', fontSize: '12px', color: '#555' }}
-            htmlFor="textFontSize"
-          >
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <label style={{ marginRight: "10px", fontFamily: "escore7", fontSize: "12px", color: "#555" }} htmlFor="textFontSize">
             글자 크기
           </label>
 
           <select
             id="textFontSize"
-            onChange={e => {
-              setTextFontSize(e.target.value)
+            onChange={(e) => {
+              setTextFontSize(e.target.value);
             }}
           >
             <option value="20">20</option>
@@ -224,7 +216,7 @@ const Layout = () => {
         </div>
       </JJalContainer>
     </BackgroundContainer>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
