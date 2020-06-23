@@ -23,7 +23,7 @@
     "jest": "^25.4.0",
     "lodash": "^4.17.15",
     "masonry-layout": "^4.2.2",
-    "next": "^9.2.2",
+    "next": "^9.3.2",
     "next-redux-wrapper": "^5.0.0",
     "react": "^16.12.0",
     "react-beautiful-dnd": "^13.0.0",
