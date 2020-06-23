@@ -6,7 +6,7 @@ import App from "./containers/App";
 const BackgroundContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 80px;
+  padding-top: 80px;
   align-items: center;
   width: 100vw;
   height: 100vh;

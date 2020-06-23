@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import AppIcon from "../components/AppIcon";
+import Header from "../components/Header";
 
 const scale = keyframes`
   0% {
@@ -96,6 +97,7 @@ const index = () => {
   }, []);
   return (
     <Container>
+      <Header></Header>
       <IndexContainer>
         <AppContainer className="app-container">
           <AppIcon name="Welcome to Small magic project" />

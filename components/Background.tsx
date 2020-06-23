@@ -15,7 +15,6 @@ const Background = ({ children }: { children: any }) => {
   return (
     <>
       <BackgroundContainer>
-        <Header></Header>
         {children}
         <Footer></Footer>
       </BackgroundContainer>

@@ -1,14 +1,14 @@
-import React from 'react'
-import styled from 'styled-components'
-import ContentsMenubar from '../ContentsMenubar'
-import App from './App'
+import React from "react";
+import styled from "styled-components";
+import ContentsMenubar from "../ContentsMenubar";
+import App from "./App";
 
 const BackgroundContainer = styled.div`
   display: flex;
   width: 100vw;
   height: 1000px;
-  margin: 100px;
-`
+  padding-top: 100px;
+`;
 
 const Layout = () => {
   return (
@@ -16,7 +16,7 @@ const Layout = () => {
       <ContentsMenubar name="lotto" />
       <App />
     </BackgroundContainer>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

@@ -9,7 +9,7 @@ const BackgroundContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  margin-top: 70px;
+  min-height: 100vh;
 `;
 
 const JJalContainer = styled.div`

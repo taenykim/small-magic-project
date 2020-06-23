@@ -11,7 +11,6 @@ const BackgroundContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  margin-top: 70px;
 `;
 
 const Description = styled.div`
