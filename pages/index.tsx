@@ -34,28 +34,45 @@ const AppContainer = styled.div`
   overflow-wrap: anywhere;
   border: 2px solid black;
   box-sizing: border-box;
+  transform: rotateY(-180deg) translate(50%, 50%);
+  opacity: 0;
   &:hover {
     animation: ${scale} 0.6s ease;
     animation-fill-mode: forwards;
   }
 `;
 
-const Description = styled.div`
-  padding: 11px 11px 11px 11px;
+const Text = styled.div`
+  font-family: escore5;
+  font-size: 22px;
 `;
 
-const index = () => {
+const SubText = styled.div`
+  font-family: escore3;
+  font-size: 14px;
+  margin: 8px 0px 10px 0px;
+`;
+
+const index: React.FC = () => {
   useEffect(() => {
     const figure = document.querySelectorAll(".app-container");
     const vid = document.querySelectorAll("video");
     const appIconImage = document.querySelectorAll(".app-icon-image");
 
-    [].forEach.call(figure, function (item, index) {
+    [].forEach.call(figure, function (item: any, index) {
       item.addEventListener("mouseover", hoverVideo.bind(item, index), false);
       item.addEventListener("mouseout", hideVideo.bind(item, index), false);
     });
 
-    function hoverVideo(index, e) {
+    const cards = document.querySelectorAll(".app-container");
+    let timer: any;
+    for (let i = 0; i < cards.length; i++) {
+      timer = setTimeout(() => {
+        cards[i].classList.add("flip");
+      }, 200 * i);
+    }
+
+    function hoverVideo(index: any, e: any) {
       vid[index].style.opacity = "100%";
       const playPromise = vid[index].play();
 
@@ -72,36 +89,37 @@ const index = () => {
             console.log("playback prevented");
           });
       }
-      appIconImage[index].style.opacity = "0%";
+      const appIcon = appIconImage[index] as HTMLElement;
+      appIcon.style.opacity = "0%";
     }
 
-    function hideVideo(index, e) {
+    function hideVideo(index: any, e: any) {
       vid[index].style.opacity = "0%";
-      var playPromise = vid[index].pause();
+      var playPromise: any = vid[index].pause();
 
       if (playPromise !== undefined) {
         playPromise
-          .then((_) => {
+          .then((_: any) => {
             // Automatic playback started!
             // Show playing UI.
             console.log("audio played auto");
           })
-          .catch((error) => {
+          .catch((error: any) => {
             // Auto-play was prevented
             // Show paused UI.
             console.log("playback prevented");
           });
       }
-      appIconImage[index].style.opacity = "100%";
+      const appIcon = appIconImage[index] as HTMLElement;
+      appIcon.style.opacity = "100%";
     }
   }, []);
   return (
     <Container>
       <Header></Header>
+      <Text>Welcome to my small magic project !</Text>
+      <SubText>Enjoy a collection of front-end projects.</SubText>
       <IndexContainer>
-        <AppContainer className="app-container">
-          <AppIcon name="Welcome to Small magic project" />
-        </AppContainer>
         <AppContainer className="app-container">
           <AppIcon name="calculator" />
         </AppContainer>

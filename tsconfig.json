@@ -16,5 +16,5 @@
     "jsx": "preserve"
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/lotto/Layout.js", "pages/index.js"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/lotto/Layout.js", "pages/index.tsx"]
 }
