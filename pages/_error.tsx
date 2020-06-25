@@ -15,7 +15,7 @@ const _error: React.FC = () => {
       <Header></Header>
       This is 404 pages
       <div style={{ margin: "10px" }}>
-        <a href="http://localhost:3001/">HOME</a>
+        <a href="https://small-magic-project.now.sh/">HOME</a>
       </div>
     </Container>
   );
