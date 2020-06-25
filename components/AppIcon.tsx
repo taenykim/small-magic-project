@@ -38,8 +38,8 @@ const AppIcon: React.FC<AppIconProps> = ({ name }) => {
     <AppIconContainer name={name}>
       <Link href={url}>
         <a style={{ textDecoration: "none" }}>
-          <img className="app-icon-image" style={{ filter: "grayscale(100%)", transition: "1s ease", position: "absolute", top: 0, maxWidth: "100%", opacity: "100%" }} src="captain.jpg" />
-          <video style={{ objectFit: "cover", transition: "1s ease", position: "absolute", top: 0, height: "100%", opacity: "0%", width: "196px" }} playsInline muted loop autoPlay>
+          <img className="app-icon-image" style={{ filter: "grayscale(100%)", transition: "1s ease", position: "absolute", top: 0, left: 0, maxWidth: "100%", opacity: "100%" }} src="captain.jpg" />
+          <video style={{ objectFit: "cover", transition: "1s ease", position: "absolute", top: 0, left: 0, height: "100%", opacity: "0%", width: "196px" }} playsInline muted loop autoPlay>
             <source src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>

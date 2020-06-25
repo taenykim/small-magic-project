@@ -5,18 +5,18 @@ import Header from "../components/Header";
 
 const Container = styled.div`
   min-height: 100vh;
-  font-family: escore9;
-  font-size: 30px;
   width: 100vw;
   text-align: center;
 `;
 
-const _error = () => {
+const _error: React.FC = () => {
   return (
     <Container>
       <Header></Header>
-      <ContentsMenubar data={{}} name="404" />
-      Hello, this is small magic project
+      This is 404 pages
+      <div style={{ margin: "10px" }}>
+        <a href="http://localhost:3001/">HOME</a>
+      </div>
     </Container>
   );
 };

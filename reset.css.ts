@@ -42,6 +42,11 @@ export const GlobalStyle = createGlobalStyle`
 	src: url(/SCDream9.otf) format("opentype");
 }
 
+.flip {
+	transform:rotateY(0deg) translate(0,0);
+	transition: 0.4s;
+	opacity:1;
+}
 
 
 html, body, div, span, applet, object, iframe,
