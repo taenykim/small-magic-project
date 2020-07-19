@@ -21,7 +21,7 @@
     "@types/styled-components": "^5.1.0",
     "cheerio": "^1.0.0-rc.3",
     "jest": "^25.4.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "masonry-layout": "^4.2.2",
     "next": "^9.2.2",
     "next-redux-wrapper": "^5.0.0",
